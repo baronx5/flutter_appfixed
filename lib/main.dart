@@ -50,7 +50,12 @@ class _MyAppState extends State<MyApp> {
           }
 
           // By default, show a loading spinner.
-          return CircularProgressIndicator();
+          return new Container(
+            height: 60.0,
+            child: new Center(child: new CircularProgressIndicator(
+              backgroundColor: Colors.grey,
+            )),
+          );
         },
       ),
       elevation: 0.0,

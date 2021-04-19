@@ -123,7 +123,12 @@ class SelectCategoryItems extends StatelessWidget {
 
               }else if (snapshot.hasError){
                 return Text("${snapshot.error}");
-              } return CircularProgressIndicator();
+              } return new Container(
+                height: 60.0,
+                child: new Center(child: new CircularProgressIndicator(
+                  backgroundColor: Colors.grey,
+                )),
+              );
             },
           )
         ],

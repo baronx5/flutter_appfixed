@@ -57,7 +57,12 @@ class HomeCategories extends StatelessWidget {
         }
 
         // By default, show a loading spinner.
-        return CircularProgressIndicator();
+        return new Container(
+          height: 60.0,
+          child: new Center(child: new CircularProgressIndicator(
+            backgroundColor: Colors.grey,
+          )),
+        );
       },
     );
   }

@@ -6,7 +6,7 @@ import 'dart:convert';
 import 'package:http/http.dart';
 
 Future getSettingsData() async {
-  var url = Uri.parse("http://localhost/resturant/settings.php");
+  var url = Uri.parse("https://flutterforweb.000webhostapp.com/resturant/settings.php");
   http.Response response = await http.get(url);
   var responseBody = jsonDecode(response.body);
   print(responseBody);
@@ -14,7 +14,7 @@ Future getSettingsData() async {
 }
 
 Future getCategoriesData() async {
-  var url = Uri.parse("http://localhost/resturant/categories.php");
+  var url = Uri.parse("https://flutterforweb.000webhostapp.com/resturant/categories.php");
   http.Response response = await http.get(url);
   var responseBody = jsonDecode(response.body);
   print(responseBody);
@@ -22,7 +22,7 @@ Future getCategoriesData() async {
 }
 
 Future getProductsData() async {
-  var url = Uri.parse("http://localhost/resturant/products.php");
+  var url = Uri.parse("https://flutterforweb.000webhostapp.com/resturant/products.php");
   http.Response response = await http.get(url);
   var responseBody = jsonDecode(response.body);
   print(responseBody);
@@ -30,7 +30,7 @@ Future getProductsData() async {
 }
 
 Future getAddonsData(val) async {
-  http.Response response = await get(Uri.parse('http://localhost/resturant/addOns.php?getId='+ val.toString()));
+  http.Response response = await get(Uri.parse('https://flutterforweb.000webhostapp.com/resturant/addOns.php?getId='+ val.toString()));
   var responseBody = jsonDecode(response.body);
   List<ProductAddons> productAddons = [];
   for (var addons in responseBody){
