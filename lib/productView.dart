@@ -21,6 +21,7 @@ class ProductSelect extends StatefulWidget {
         this.getImage,
         this.getPrice});
 
+
   @override
   _ProductSelectState createState() =>
       _ProductSelectState(getId, getName, getDescription, getImage, getPrice);
