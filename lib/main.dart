@@ -14,6 +14,7 @@ void main() {
           return SelectCategoryItems();
         }
       },
+      debugShowCheckedModeBanner: false,
     ),
   );
 }

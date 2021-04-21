@@ -152,7 +152,7 @@ class CustomAppBar extends PreferredSize {
           children: [
             ClipOval(
               child: Material(
-                color: Colors.white, // button color
+                //color: Colors.white, // button color
                 child: InkWell(
                   splashColor: Colors.red, // inkwell color
                   child: SizedBox(
