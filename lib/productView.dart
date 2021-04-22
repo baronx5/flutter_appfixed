@@ -7,11 +7,11 @@ import 'apiresponse.dart';
 
 class ProductSelect extends StatefulWidget {
   // Passing details ..
-  String getId;
+  int getId;
   String getName;
   String getDescription;
   String getImage;
-  String getPrice;
+  double getPrice;
   List getAddons;
 
   ProductSelect(
@@ -35,11 +35,11 @@ class _ProductSelectState extends State<ProductSelect> {
   double totalPrice = 0.0;
 
   // Passing Details from main class
-  String getId;
+  int getId;
   String getName;
   String getDescription;
   String getImage;
-  String getPrice;
+  double getPrice;
 
 
 
@@ -50,7 +50,7 @@ class _ProductSelectState extends State<ProductSelect> {
   Widget build(BuildContext context) {
     print(checkBoxes);
     print(addonsPrice);
-    double totalpricefinal = (addonsPrice + double.parse(getPrice)) * counter;
+    double totalpricefinal = (addonsPrice + getPrice) * counter;
 
     return Scaffold(
       backgroundColor: Color(0xFFF5F6F9),

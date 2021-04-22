@@ -70,15 +70,15 @@ class SelectCategoryItems extends StatelessWidget {
                     return new Directionality(
                         textDirection: TextDirection.rtl,
                         child: ListTile(
-                          leading: Image.network(snapshot.data[i]['image']),
+                          leading: Image.network(snapshot.data[i].image),
                           title: Text(
-                            snapshot.data[i]['name'],
+                            snapshot.data[i].name,
                             style: TextStyle(
                               fontSize: 18,
                               fontFamily: 'Droid',
                             ),
                           ),
-                          subtitle: Text(snapshot.data[i]['description'],style: TextStyle(
+                          subtitle: Text(snapshot.data[i].description,style: TextStyle(
                             fontSize: 12,
                             fontFamily: 'Droid',
                           )),
@@ -98,11 +98,11 @@ class SelectCategoryItems extends StatelessWidget {
                                   )
                               ),
                               onPressed: () {
-                                var getId = snapshot.data[i]['id'];
-                                var getName = snapshot.data[i]['name'];
-                                var getDescription = snapshot.data[i]['description'];
-                                var getImage = snapshot.data[i]['image'];
-                                var getPrice = snapshot.data[i]['price'];
+                                var getId = snapshot.data[i].id;
+                                var getName = snapshot.data[i].name;
+                                var getDescription = snapshot.data[i].description;
+                                var getImage = snapshot.data[i].image;
+                                var getPrice = snapshot.data[i].price;
                                 Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) => ProductSelect(
                                     getId: getId,

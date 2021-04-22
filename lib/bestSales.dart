@@ -7,25 +7,25 @@ class BestSales extends StatelessWidget {
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: getProductsData(),
-      builder: (context, snapshot){
-        if (snapshot.hasData){
+      builder: (context, products){
+        if (products.hasData){
           return ListView.separated(
             shrinkWrap: true,
             physics: const ClampingScrollPhysics(),
-            itemCount: snapshot.data.length,
+            itemCount: products.data.length,
             itemBuilder: (context, i) {
               return new Directionality(
                   textDirection: TextDirection.rtl,
                   child: ListTile(
-                    leading: Image.network(snapshot.data[i]['image']),
+                    leading: Image.network(products.data[i].image),
                     title: Text(
-                      snapshot.data[i]['name'],
+                      products.data[i].name,
                       style: TextStyle(
                         fontSize: 18,
                         fontFamily: 'Droid',
                       ),
                     ),
-                    subtitle: Text(snapshot.data[i]['description'],style: TextStyle(
+                    subtitle: Text(products.data[i].description,style: TextStyle(
                       fontSize: 12,
                       fontFamily: 'Droid',
                     )),
@@ -45,11 +45,11 @@ class BestSales extends StatelessWidget {
                             )
                         ),
                         onPressed: () {
-                          var getId = snapshot.data[i]['id'];
-                          var getName = snapshot.data[i]['name'];
-                          var getDescription = snapshot.data[i]['description'];
-                          var getImage = snapshot.data[i]['image'];
-                          var getPrice = snapshot.data[i]['price'];
+                          var getId = products.data[i].id;
+                          var getName = products.data[i].name;
+                          var getDescription = products.data[i].description;
+                          var getImage = products.data[i].image;
+                          var getPrice = products.data[i].price;
                           Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => ProductSelect(
                               getId: getId,
@@ -68,8 +68,8 @@ class BestSales extends StatelessWidget {
             },
           );
 
-        }else if (snapshot.hasError){
-          return Text("${snapshot.error}");
+        }else if (products.hasError){
+          return Text("${products.error}");
         } return new Container(
           height: 60.0,
           child: new Center(child: new CircularProgressIndicator(

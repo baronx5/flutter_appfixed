@@ -7,13 +7,13 @@ class HomeCategories extends StatelessWidget {
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: getCategoriesData(),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
+      builder: (context, categories) {
+        if (categories.hasData) {
           return Container(
               height: 180,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: snapshot.data.length, // نحدد العدد للايتم بلدر
+                itemCount: categories.data.length, // نحدد العدد للايتم بلدر
                 itemBuilder: (context, i){   // ندخلها بالبلدر علشان اللوب
                   return InkWell(
                     child: Container(
@@ -33,11 +33,11 @@ class HomeCategories extends StatelessWidget {
                           image: DecorationImage(
                               colorFilter: new ColorFilter.mode(
                                   Colors.black.withOpacity(0.6), BlendMode.dstATop),
-                              image: NetworkImage(snapshot.data[i]['image']),
+                              image: NetworkImage(categories.data[i].image),
                               fit: BoxFit.cover)),
                       child: Container(
                         alignment: Alignment.bottomCenter,
-                        child: Text(snapshot.data[i]['name'],
+                        child: Text(categories.data[i].name,
                             style: TextStyle(
                               color: Colors.white,
                               fontFamily: 'Droid',
@@ -46,14 +46,14 @@ class HomeCategories extends StatelessWidget {
                       ),
                     ),
                     onTap: (){
-                      Navigator.of(context).pushNamed('categories');
+                      Navigator.of(context).pushNamed('selectCategory');
                     },
                   );
                 },
               )
           );
-        } else if (snapshot.hasError) {
-          return Text("${snapshot.error}");
+        } else if (categories.hasError) {
+          return Text("${categories.error}");
         }
 
         // By default, show a loading spinner.

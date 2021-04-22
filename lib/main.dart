@@ -5,14 +5,12 @@ import 'apiresponse.dart';
 import 'selectCategory.dart';
 
 void main() {
-
   runApp(
     MaterialApp(
       home: MyApp(),
+      initialRoute: '/',
       routes: {
-        'categories' : (context){
-          return SelectCategoryItems();
-        }
+        'selectCategory' : (context) => SelectCategoryItems(),
       },
       debugShowCheckedModeBanner: false,
     ),
@@ -38,16 +36,16 @@ class _MyAppState extends State<MyApp> {
     return Scaffold(
       appBar: AppBar(title: FutureBuilder(
         future: getSettingsData(),
-        builder: (context, snapshot){
-          if (snapshot.hasData){
-          return Text(snapshot.data[0]['appName'], style: TextStyle(
+        builder: (context, settings){
+          if (settings.hasData){
+          return Text(settings.data[0].appName, style: TextStyle(
               fontFamily: 'Droid',
               fontSize: 22,
               color: Colors.black54
-          ),); }else if (snapshot.hasError) {
-            return Text("${snapshot.error}");
-          } else if (snapshot.hasError) {
-            return Text("${snapshot.error}");
+          ),); }else if (settings.hasError) {
+            return Text("${settings.error}");
+          } else if (settings.hasError) {
+            return Text("${settings.error}");
           }
 
           // By default, show a loading spinner.
@@ -65,7 +63,8 @@ class _MyAppState extends State<MyApp> {
       body: IndexedStack(
         index: _selectedPage,
         children: _pageOptions,
-      ),
+      )
+      ,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedPage,
         onTap: (int index) {
@@ -79,7 +78,7 @@ class _MyAppState extends State<MyApp> {
             title: Text('الصفحة الرئيسية',style: TextStyle(fontFamily: 'Droid', fontSize: 12),),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shop),
+            icon: Icon(Icons.menu),
             title: Text('قائمة المأكولات',style: TextStyle(fontFamily: 'Droid', fontSize: 12),),
           ),
           BottomNavigationBarItem(
@@ -100,3 +99,4 @@ class _MyAppState extends State<MyApp> {
     });
   }
 }
+
