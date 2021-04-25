@@ -278,8 +278,9 @@ class _ProductSelectState extends State<ProductSelect> {
                    color: Colors.lightGreen,
                    textColor: Colors.white,
                    onPressed: () {
-                     Item item = Item(getName,getPrice);
+                     Item item = Item(getName,getPrice, getImage);
                      cart.add(item);
+
                    },
                  ),
                ),
