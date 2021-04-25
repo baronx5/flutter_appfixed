@@ -10,6 +10,7 @@ class SelectCategoryItems extends StatelessWidget {
     return Scaffold(
       appBar: CustomAppBar(),
       body: ListView(
+        shrinkWrap: true,
         children: [
           Container(
             height: 200,

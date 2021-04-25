@@ -50,7 +50,7 @@ class BestSales extends StatelessWidget {
                           var getDescription = products.data[i].description;
                           var getImage = products.data[i].image;
                           var getPrice = products.data[i].price;
-                          Navigator.of(context).push(MaterialPageRoute(
+                          Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(
                             builder: (context) => ProductSelect(
                               getId: getId,
                               getName: getName,
