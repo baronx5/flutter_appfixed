@@ -33,6 +33,7 @@ class HomePage extends StatelessWidget {
         ), // Text
         Container(
           height: 180,
+          margin: EdgeInsets.all(5.0),
           child: HomeCategories(),
         ), // Menu Categories
         Container(
