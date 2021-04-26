@@ -1,3 +1,5 @@
+import 'package:flutter_appfixed/Models/addOns.dart';
+
 class Product {
   int id;
   String name;
@@ -6,6 +8,7 @@ class Product {
   double price;
   String catId;
   int totalSales;
+  List<ProductAddons> addons;
 
   Product(
       {this.id,
@@ -14,7 +17,8 @@ class Product {
         this.image,
         this.price,
         this.catId,
-        this.totalSales});
+        this.totalSales,
+        this.addons});
 
   Product.fromJson(Map<String, dynamic> json) {
     id = int.parse(json['id']);

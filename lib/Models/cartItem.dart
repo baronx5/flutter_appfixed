@@ -1,9 +1,5 @@
+import 'package:flutter_appfixed/Models/product.dart';
 class Item {
-  String name;
-  double price;
-  String image;
-  String description;
-
-
-  Item(this.name, this.price, this.image, this.description);
+  Product productItem;
+  Item({this.productItem});
 }

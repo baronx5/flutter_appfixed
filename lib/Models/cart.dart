@@ -8,13 +8,13 @@ class Carts extends ChangeNotifier {
 
   void add(Item item){
     _items.add(item);
-    _totalPrice += item.price;
+    _totalPrice += item.productItem.price;
     notifyListeners();
   }
 
   void remove(Item item){
     _items.remove(item);
-    _totalPrice -= item.price;
+    _totalPrice -= item.productItem.price;
     notifyListeners();
   }
 

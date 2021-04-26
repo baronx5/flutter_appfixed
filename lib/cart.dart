@@ -33,7 +33,7 @@ class CartPage extends StatelessWidget {
                                     height: 100,
                                     color: Colors.lightGreen,
                                     child: Image.network(
-                                      cart.basketItems[i].image,
+                                      cart.basketItems[i].productItem.image,
                                       fit: BoxFit.cover,
                                     ),
                                   ),
@@ -45,7 +45,7 @@ class CartPage extends StatelessWidget {
                                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                                         children: [
                                           Text(
-                                            cart.basketItems[i].price.toString() +
+                                            cart.basketItems[i].productItem.price.toString() +
                                                 " KWD",
                                             textAlign: TextAlign.left,
                                             style: TextStyle(
@@ -79,7 +79,7 @@ class CartPage extends StatelessWidget {
                                     child: Column(
                                       children: [
                                         Text(
-                                          cart.basketItems[i].name,
+                                          cart.basketItems[i].productItem.name,
                                           textAlign: TextAlign.right,
                                           style: TextStyle(
                                               fontFamily: 'Droid',
@@ -87,7 +87,7 @@ class CartPage extends StatelessWidget {
                                               color: Colors.grey[700]),
                                         ),
                                         Text(
-                                          cart.basketItems[i].description,textAlign: TextAlign.right,
+                                          cart.basketItems[i].productItem.description,textAlign: TextAlign.right,
                                           style: TextStyle(
                                               fontFamily: 'Droid',
                                               fontSize: 12,
