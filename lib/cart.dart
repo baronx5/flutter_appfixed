@@ -96,6 +96,7 @@ class CartPage extends StatelessWidget {
                           ],
                         ),
                       ),
+                      Center(child: Text(cart.totalPrice.toString()))
                     ],
                   ),
                 );

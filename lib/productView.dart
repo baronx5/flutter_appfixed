@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 import 'package:flutter_appfixed/Models/cart.dart';
 import 'package:flutter_appfixed/Models/cartItem.dart';
 
-
 class ProductSelect extends StatefulWidget {
   // Passing details ..
   int getId;
@@ -280,6 +279,7 @@ class _ProductSelectState extends State<ProductSelect> {
                    onPressed: () {
                      Item item = Item(getName,getPrice, getImage, getDescription);
                      cart.add(item);
+                     Navigator.pushNamed(context, 'MyApp');
 
                    },
                  ),
