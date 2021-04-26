@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_appfixed/Models/cart.dart';
-import 'package:flutter_appfixed/Models/cartItem.dart';
 
 class CartPage extends StatelessWidget {
   @override
@@ -36,42 +35,63 @@ class CartPage extends StatelessWidget {
                               ),
                             ),
                             Container(
-                              height: 100,
+                                height: 100,
                                 width: 100,
                                 //color: Colors.redAccent,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                                   children: [
                                     Text(
-                                      cart.basketItems[i].price.toString() + " KWD",
+                                      cart.basketItems[i].price.toString() +
+                                          " KWD",
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
                                           fontFamily: 'Droid',
-                                          fontSize: 16,
+                                          fontSize: 14,
                                           color: Colors.lightGreen),
                                     ),
                                     InkWell(
-                                      child: Icon(Icons.delete_forever),
-                                      onTap: (){
+                                      child: TextButton(
+                                          child: Text('حذف', style: TextStyle(fontFamily: 'Droid', fontSize: 12),),
+                                          style: ButtonStyle(
+                                              padding:
+                                                  MaterialStateProperty.all<EdgeInsets>(
+                                                      EdgeInsets.all(5.0)),
+                                              foregroundColor:
+                                                  MaterialStateProperty.all<
+                                                      Color>(Colors.red),
+                                              shape: MaterialStateProperty.all<
+                                                      RoundedRectangleBorder>(
+                                                  RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(18.0),
+                                                      side: BorderSide(color: Colors.red))))),
+                                      onTap: () {
                                         cart.remove(cart.basketItems[i]);
                                       },
                                     )
                                   ],
                                 )),
-                            Column(
-                              children: [
-                                Text(
-                                  cart.basketItems[i].name,
-                                  textAlign: TextAlign.right,
-                                  style: TextStyle(
-                                      fontFamily: 'Droid', fontSize: 16, color: Colors.grey[700]),
-                                ),
-                                Text(
-                                  'الطلبات الجانبية',
-                                  style: TextStyle(
-                                      fontFamily: 'Droid', fontSize: 14, color: Colors.grey[500]),
-                                ),
-                              ],
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  Text(
+                                    cart.basketItems[i].name,
+                                    textAlign: TextAlign.right,
+                                    style: TextStyle(
+                                        fontFamily: 'Droid',
+                                        fontSize: 14,
+                                        color: Colors.grey[700]),
+                                  ),
+                                  Text(
+                                    cart.basketItems[i].description,textAlign: TextAlign.right,
+                                    style: TextStyle(
+                                        fontFamily: 'Droid',
+                                        fontSize: 12,
+                                        color: Colors.grey[500]),
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),

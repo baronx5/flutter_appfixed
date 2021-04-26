@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_appfixed/login.dart';
 import 'homePage.dart';
 import 'bestSales.dart';
 import 'apiresponse.dart';
 import 'selectCategory.dart';
-import 'login.dart';
 import 'cart.dart';
 import 'package:flutter_appfixed/Models/cart.dart';
 import 'package:provider/provider.dart';
@@ -17,9 +15,8 @@ void main() {
         create: (context) => Carts(),
       child: MaterialApp(
         //home: LoginPage(),
-        initialRoute: 'Login',
+        initialRoute: 'MyApp',
         routes: {
-          'Login' : (context) => LoginPage(),
           'MyApp' : (context) => MyApp(),
           'home' : (context) => HomePage(),
           'selectCategory' : (context) => SelectCategoryItems(),
