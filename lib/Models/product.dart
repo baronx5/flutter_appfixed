@@ -46,7 +46,7 @@ class Product {
     return data;
   }
 
-  double get getAddonsPrice {
+  double get getTotalPrice {
     double price = 0;
     price += this.price;
     if (addons.length > 0) {

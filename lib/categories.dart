@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'apiresponse.dart';
+import 'package:flutter_appfixed/Models/categories.dart';
 import 'selectCategory.dart';
 
 class HomeCategories extends StatelessWidget {
@@ -46,7 +47,8 @@ class HomeCategories extends StatelessWidget {
                       ),
                     ),
                     onTap: (){
-                      Navigator.of(context).pushNamed('selectCategory');
+                      int category = categories.data[i].id;
+                      Navigator.of(context).pushNamed('selectCategory', arguments: category);
                     },
                   );
                 },

@@ -7,6 +7,8 @@ import 'package:flutter_appfixed/Models/product.dart';
 class SelectCategoryItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final int catId =
+    ModalRoute.of(context).settings.arguments as int;
     return Scaffold(
         appBar: CustomAppBar(),
         body: ListView(
@@ -62,7 +64,7 @@ class SelectCategoryItems extends StatelessWidget {
               ),
             ),
             FutureBuilder(
-              future: getProductsData(),
+              future: getProductsData(catId),
               builder: (context, products) {
                 if (products.hasData) {
                   return ListView.separated(

@@ -7,7 +7,7 @@ class BestSales extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: getProductsData(),
+      future: getProductsData(1),
       builder: (context, products) {
         if (products.hasData) {
           return ListView.separated(

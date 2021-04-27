@@ -7,7 +7,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart';
 
-String apiUrl = "https://flutterforweb.000webhostapp.com/resturant/";
+String apiUrl = "http://localhost/resturant/";
 
 Future getSettingsData() async {
   var url = Uri.parse(apiUrl + "settings.php");
@@ -31,8 +31,8 @@ Future getCategoriesData() async {
   return categories;
 }
 
-Future getProductsData() async {
-  var url = Uri.parse(apiUrl + "products.php");
+Future getProductsData(val) async {
+  var url = Uri.parse(apiUrl + "products.php?getId=" + val.toString());
   http.Response response = await http.get(url);
   var responseBody = jsonDecode(response.body);
   List<Product> products = [];

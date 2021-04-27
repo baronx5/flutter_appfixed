@@ -38,7 +38,7 @@ class CartPage extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                                   children: [
                                     Text(
-                                      cart.basketItems[i].productItem.getAddonsPrice.toString() +
+                                      cart.basketItems[i].getTotalItemPrice.toString() +
                                           " KWD",
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
