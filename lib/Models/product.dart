@@ -25,7 +25,7 @@ class Product {
       this.addons = [];
     }
     if (this.notes == null){
-      this.notes = " ";
+      this.notes = "لايوجد ملاحظات";
     }
   }
 

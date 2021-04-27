@@ -191,9 +191,13 @@ class _ProductSelectState extends State<ProductSelect> {
                               decoration: InputDecoration.collapsed(
                                   hintText: "اضف ملاحطاتك ..",
                                   hintStyle: TextStyle(fontFamily: 'Droid')),
-                              onChanged: (value){
-                                passedProduct.notes = value;
-                              },
+                              onChanged: (value) {
+                                if (value != null) {
+                                  passedProduct.notes = value;
+                                }else{
+                                  passedProduct.notes = " ";
+                                }
+                              }
 
                             ),
                           ),
