@@ -99,7 +99,11 @@ class CartPage extends StatelessWidget {
                                                   color: Colors.grey[500]),
                                             );
                                           }),
-                                    )
+                                    ),
+                                    Container(
+                                      height: 25,
+                                        child: Text(cart.basketItems[i].productItem.notes,
+                                        style: TextStyle(fontFamily: 'Droid', fontSize: 12,),)),
                                   ],
                                 ),
                               ),

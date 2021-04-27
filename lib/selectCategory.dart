@@ -38,7 +38,7 @@ class SelectCategoryItems extends StatelessWidget {
                           fit: BoxFit.cover)),
                   child: Container(
                     alignment: Alignment.bottomCenter,
-                    child: Text('ألذ و اشهى البرجر ',
+                    child: Text(category.name,
                         style: TextStyle(
                           color: Colors.white,
                           fontFamily: 'Droid',

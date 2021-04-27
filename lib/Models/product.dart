@@ -9,6 +9,7 @@ class Product {
   String catId;
   int totalSales;
   List<ProductAddons> addons;
+  String notes;
 
   Product(
       {this.id,
@@ -17,10 +18,14 @@ class Product {
       this.image,
       this.price,
       this.catId,
+      this.notes,
       this.totalSales,
       this.addons}) {
     if (this.addons == null) {
       this.addons = [];
+    }
+    if (this.notes == null){
+      this.notes = " ";
     }
   }
 

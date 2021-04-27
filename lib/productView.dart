@@ -185,11 +185,16 @@ class _ProductSelectState extends State<ProductSelect> {
                           Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: TextField(
-                              maxLines: 4,
+                              maxLines: 1,
+                              maxLength: 60,
                               textAlign: TextAlign.right,
                               decoration: InputDecoration.collapsed(
                                   hintText: "اضف ملاحطاتك ..",
                                   hintStyle: TextStyle(fontFamily: 'Droid')),
+                              onChanged: (value){
+                                passedProduct.notes = value;
+                              },
+
                             ),
                           ),
                           Divider(),
