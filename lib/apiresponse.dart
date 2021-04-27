@@ -42,6 +42,17 @@ Future getProductsData(val) async {
   return products;
 }
 
+Future getBestSalesData() async {
+  var url = Uri.parse(apiUrl + "bestSales.php");
+  http.Response response = await http.get(url);
+  var responseBody = jsonDecode(response.body);
+  List<Product> products = [];
+  for (var product in responseBody) {
+    products.add(Product.fromJson(product));
+  }
+  return products;
+}
+
 Future getAddonsData(val) async {
   http.Response response =
       await get(Uri.parse(apiUrl + "addOns.php?getId=" + val.toString()));

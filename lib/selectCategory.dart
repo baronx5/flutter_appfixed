@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import 'apiresponse.dart';
 import 'productView.dart';
 import 'package:flutter_appfixed/Models/product.dart';
+import 'package:flutter_appfixed/Models/categories.dart';
 
 class SelectCategoryItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final int catId =
-    ModalRoute.of(context).settings.arguments as int;
+    final Categories category = ModalRoute.of(context).settings.arguments;
+
     return Scaffold(
         appBar: CustomAppBar(),
         body: ListView(
@@ -33,8 +34,7 @@ class SelectCategoryItems extends StatelessWidget {
                       image: DecorationImage(
                           colorFilter: new ColorFilter.mode(
                               Colors.black.withOpacity(0.7), BlendMode.dstATop),
-                          image: NetworkImage(
-                              'https://images.unsplash.com/photo-1428660386617-8d277e7deaf2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1567&q=80'),
+                          image: NetworkImage(category.image),
                           fit: BoxFit.cover)),
                   child: Container(
                     alignment: Alignment.bottomCenter,
@@ -64,7 +64,7 @@ class SelectCategoryItems extends StatelessWidget {
               ),
             ),
             FutureBuilder(
-              future: getProductsData(catId),
+              future: getProductsData(category.id),
               builder: (context, products) {
                 if (products.hasData) {
                   return ListView.separated(
