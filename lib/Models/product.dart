@@ -12,16 +12,16 @@ class Product {
 
   Product(
       {this.id,
-        this.name,
-        this.description,
-        this.image,
-        this.price,
-        this.catId,
-        this.totalSales,
-        this.addons}){
-   if(this.addons == null){
-    this.addons = [];
-   }
+      this.name,
+      this.description,
+      this.image,
+      this.price,
+      this.catId,
+      this.totalSales,
+      this.addons}) {
+    if (this.addons == null) {
+      this.addons = [];
+    }
   }
 
   Product.fromJson(Map<String, dynamic> json) {
@@ -46,15 +46,14 @@ class Product {
     return data;
   }
 
-  double get getAddonsPrice{
+  double get getAddonsPrice {
     double price = 0;
     price += this.price;
-    if(addons.length > 0){
-      for(var addon in addons){
+    if (addons.length > 0) {
+      for (var addon in addons) {
         price += addon.price;
       }
     }
     return price;
   }
 }
-
