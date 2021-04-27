@@ -57,26 +57,20 @@ class _MyAppState extends State<MyApp> {
           items: [
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
-              title: Text(
-                'الصفحة الرئيسية',
-                style: TextStyle(fontFamily: 'Droid', fontSize: 12),
-              ),
+              label: "الرئيسية" ,
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.menu),
-              title: Text(
-                'قائمة المأكولات',
-                style: TextStyle(fontFamily: 'Droid', fontSize: 12),
-              ),
+              label: "القائمة",
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.search),
-              title: Text(
-                'مشترياتي',
-                style: TextStyle(fontFamily: 'Droid', fontSize: 12),
-              ),
+              label: "المشتريات",
             ),
           ],
+          selectedLabelStyle:  TextStyle(fontSize: 16, fontFamily: 'Droid'),
+          selectedItemColor: Colors.orangeAccent,
+          unselectedLabelStyle: TextStyle(fontSize: 14, fontFamily: 'Droid'),
         ),
       );
     });

@@ -7,7 +7,7 @@ import 'package:flutter_appfixed/Models/cartItem.dart';
 import 'package:flutter_appfixed/Models/product.dart';
 
 class ProductSelect extends StatefulWidget {
-  Product passedProduct;
+  final Product passedProduct;
 
   ProductSelect({this.passedProduct});
 
@@ -83,6 +83,7 @@ class _ProductSelectState extends State<ProductSelect> {
                                             fontFamily: "Droid",
                                             color: Colors.grey)),
                                     trailing: TextButton(
+                                      onPressed: (){},
                                       child: Text(
                                           "KWD ${passedProduct.price}"
                                               .toUpperCase(),
@@ -101,7 +102,8 @@ class _ProductSelectState extends State<ProductSelect> {
                                                   borderRadius:
                                                       BorderRadius.circular(18.0),
                                                   side: BorderSide(color: Colors.lightGreen)))),
-                                    )),
+                                    ),
+                                ),
                               )),
                           Align(
                             alignment: Alignment.centerLeft,
