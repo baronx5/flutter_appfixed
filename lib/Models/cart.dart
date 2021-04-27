@@ -9,12 +9,22 @@ class Carts extends ChangeNotifier {
   void add(Item item){
     _items.add(item);
     _totalPrice += item.productItem.price;
+    if(item.productItem.addons.length > 0){
+      for(var addon in item.productItem.addons){
+        _totalPrice += addon.price;
+      }
+    }
     notifyListeners();
   }
 
   void remove(Item item){
     _items.remove(item);
     _totalPrice -= item.productItem.price;
+    if(item.productItem.addons.length > 0) {
+      for (var addon in item.productItem.addons) {
+        _totalPrice -= addon.price;
+      }
+    }
     notifyListeners();
   }
 

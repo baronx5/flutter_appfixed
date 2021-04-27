@@ -1,7 +1,7 @@
 class ProductAddons {
   String id;
   String name;
-  String price;
+  double price;
   String productId;
 
   ProductAddons({this.id, this.name, this.price, this.productId});
@@ -9,7 +9,7 @@ class ProductAddons {
   ProductAddons.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
-    price = json['price'];
+    price = double.parse(json['price']);
     productId = json['productId'];
   }
 

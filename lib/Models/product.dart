@@ -18,7 +18,11 @@ class Product {
         this.price,
         this.catId,
         this.totalSales,
-        this.addons});
+        this.addons}){
+   if(this.addons == null){
+    this.addons = [];
+   }
+  }
 
   Product.fromJson(Map<String, dynamic> json) {
     id = int.parse(json['id']);
@@ -40,6 +44,17 @@ class Product {
     data['catId'] = this.catId;
     data['totalSales'] = this.totalSales;
     return data;
+  }
+
+  double get getAddonsPrice{
+    double price = 0;
+    price += this.price;
+    if(addons.length > 0){
+      for(var addon in addons){
+        price += addon.price;
+      }
+    }
+    return price;
   }
 }
 

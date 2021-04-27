@@ -45,7 +45,7 @@ class CartPage extends StatelessWidget {
                                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                                         children: [
                                           Text(
-                                            cart.basketItems[i].productItem.price.toString() +
+                                            cart.basketItems[i].productItem.getAddonsPrice.toString() +
                                                 " KWD",
                                             textAlign: TextAlign.left,
                                             style: TextStyle(
@@ -86,13 +86,21 @@ class CartPage extends StatelessWidget {
                                               fontSize: 14,
                                               color: Colors.grey[700]),
                                         ),
-                                        Text(
-                                          cart.basketItems[i].productItem.description,textAlign: TextAlign.right,
-                                          style: TextStyle(
-                                              fontFamily: 'Droid',
-                                              fontSize: 12,
-                                              color: Colors.grey[500]),
-                                        ),
+                                        Container(
+                                          height: 200,
+                                          child: ListView.builder(
+                                              itemCount: cart.basketItems[i].productItem.addons.length,
+                                              itemBuilder: (context, index){
+
+                                            return Text(
+                                              cart.basketItems[i].productItem.addons[index].name,textAlign: TextAlign.right,
+                                              style: TextStyle(
+                                                  fontFamily: 'Droid',
+                                                  fontSize: 12,
+                                                  color: Colors.grey[500]),
+                                            );
+                                          }),
+                                        )
                                       ],
                                     ),
                                   ),

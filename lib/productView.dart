@@ -17,7 +17,7 @@ class ProductSelect extends StatefulWidget {
 
 class _ProductSelectState extends State<ProductSelect> {
   List checkBoxesHandle = []; // to add boxes .
-  List checkBoxes = [];
+  List<ProductAddons> checkBoxes = [];
   double addonsPrice = 0.0;
   int counter = 1; // number of orders = 1
   double totalPrice = 0.0;
@@ -29,8 +29,6 @@ class _ProductSelectState extends State<ProductSelect> {
 
   @override
   Widget build(BuildContext context) {
-    print(checkBoxes);
-    print(addonsPrice);
     double totalpricefinal = (addonsPrice + passedProduct.price) * counter;
 
     return Consumer<Carts>(// List of Carts from ConSumer.
@@ -144,7 +142,6 @@ class _ProductSelectState extends State<ProductSelect> {
                                         snapshot.data.length) {
                                       checkBoxesHandle.add(false);
                                     }
-
                                     return new Directionality(
                                       textDirection: TextDirection.rtl,
                                       child: CheckboxListTile(
@@ -160,14 +157,16 @@ class _ProductSelectState extends State<ProductSelect> {
                                                     ? false
                                                     : true;
                                             if (checkBoxesHandle[i]) {
-                                              checkBoxes.add(product.name);
+                                              checkBoxes.add(product);
+                                              passedProduct.addons = checkBoxes;
                                               addonsPrice +=
-                                                  double.parse(product.price);
+                                                  product.price;
                                             } else {
-                                              checkBoxes.remove(product.name);
+                                              checkBoxes.remove(product);
+                                              passedProduct.addons = checkBoxes;
                                               if (addonsPrice > 0) {
                                                 addonsPrice -=
-                                                    double.parse(product.price);
+                                                    product.price;
                                               }
                                             }
                                           });
