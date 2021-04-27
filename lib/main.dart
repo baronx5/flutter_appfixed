@@ -56,7 +56,7 @@ class _MyAppState extends State<MyApp> {
           },
           items: [
             BottomNavigationBarItem(
-              icon: Icon(Icons.menu),
+              icon: Icon(Icons.home),
               title: Text(
                 'الصفحة الرئيسية',
                 style: TextStyle(fontFamily: 'Droid', fontSize: 12),

@@ -106,6 +106,7 @@ class CartPage extends StatelessWidget {
                             ),
                           ],
                         ),
+
                       );
                     }),
               ),
