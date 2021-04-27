@@ -121,7 +121,9 @@ class CustomAppBar extends PreferredSize {
                                         FontAwesomeIcons.shoppingBag,
                                         color: Colors.black54,
                                       ),
-                                      onPressed: null,
+                                      onPressed: (){
+
+                                      },
                                     ),
                                     cart.basketItems.length == 0
                                         ? new Container()
