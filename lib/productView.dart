@@ -31,7 +31,7 @@ class _ProductSelectState extends State<ProductSelect> {
   Widget build(BuildContext context) {
     double totalpricefinal = (addonsPrice + passedProduct.price) * counter;
 
-    return Consumer<Carts>(// List of Carts from ConSumer.
+    return Consumer<Carts>(// List of Carts from Consumer.
         builder: (context, cart, child) {
       return Scaffold(
         backgroundColor: Color(0xFFF5F6F9),
@@ -293,7 +293,7 @@ class _ProductSelectState extends State<ProductSelect> {
                   onPressed: () {
                     Item item = Item(productItem: passedProduct, quantity: counter);
                     cart.add(item);
-                    Navigator.pushNamed(context, 'MyApp');
+                    Navigator.pop(context);
                   },
                 ),
               ),

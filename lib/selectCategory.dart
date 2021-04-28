@@ -4,6 +4,11 @@ import 'apiresponse.dart';
 import 'productView.dart';
 import 'package:flutter_appfixed/Models/product.dart';
 import 'package:flutter_appfixed/Models/categories.dart';
+import 'package:flutter_appfixed/Models/cart.dart';
+import 'package:provider/provider.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+
 
 class SelectCategoryItems extends StatelessWidget {
   @override
@@ -16,7 +21,7 @@ class SelectCategoryItems extends StatelessWidget {
           shrinkWrap: true,
           children: [
             Container(
-                height: 200,
+                height: 300,
                 child: Container(
                   margin: EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
                   padding: EdgeInsets.all(5.0),
@@ -26,8 +31,8 @@ class SelectCategoryItems extends StatelessWidget {
                       color: Colors.black54,
                       shape: BoxShape.rectangle,
                       borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(15.0),
-                        topRight: Radius.circular(15.0),
+                        topLeft: Radius.circular(0.0),
+                        topRight: Radius.circular(0.0),
                         bottomRight: Radius.circular(0.0),
                         bottomLeft: Radius.circular(0.0),
                       ),
@@ -37,7 +42,7 @@ class SelectCategoryItems extends StatelessWidget {
                           image: NetworkImage(category.image),
                           fit: BoxFit.cover)),
                   child: Container(
-                    alignment: Alignment.bottomCenter,
+                    alignment: Alignment.center,
                     child: Text(category.name,
                         style: TextStyle(
                           color: Colors.white,
@@ -149,52 +154,123 @@ class CustomAppBar extends PreferredSize {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 15.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            ClipOval(
-              child: Material(
-                //color: Colors.white, // button color
-                child: InkWell(
-                  splashColor: Colors.red, // inkwell color
-                  child: SizedBox(
-                      width: 56,
-                      height: 56,
-                      child: Icon(Icons.arrow_back_outlined)),
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
+    return Consumer<Carts>(builder: (context, cart, child) {
+      return SafeArea(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              ClipOval(
+                child: Material(
+                  color: Colors.white, // button color
+                  child: InkWell(
+                    splashColor: Colors.red, // inkwell color
+                    child: SizedBox(
+                        width: 56,
+                        height: 56,
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: new Container(
+                              height: 150.0,
+                              width: 30.0,
+                              child: new GestureDetector(
+                                onTap: () {
+                                  cart.basketItems.length.toString();
+                                },
+                                child: new Stack(
+                                  children: <Widget>[
+                                    new IconButton(
+                                      icon: new Icon(
+                                        FontAwesomeIcons.shoppingBag,
+                                        color: Colors.black45,
+                                      ),
+                                      onPressed: (){
+                                        //_selectedPage = 2;
+                                      },
+                                    ),
+                                    cart.basketItems.length == 0
+                                        ? new Container()
+                                        : new Positioned(
+                                        child: new Stack(
+                                          children: <Widget>[
+                                            new Icon(Icons.brightness_1,
+                                                size: 20.0,
+                                                color: Colors.orange[800]),
+                                            new Positioned(
+                                                top: 3.0,
+                                                right: 6.0,
+                                                child: new Center(
+                                                  child: new Text(
+                                                    cart.basketItems.length
+                                                        .toString(),
+                                                    style: new TextStyle(
+                                                        color: Colors.white,
+                                                        fontSize: 11.0,
+                                                        fontWeight:
+                                                        FontWeight.w500),
+                                                  ),
+                                                )),
+                                          ],
+                                        )),
+                                  ],
+                                ),
+                              )),
+                        )),
+                    onTap: () {
+                      //Navigator.pop(context);
+                    },
+                  ),
                 ),
               ),
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 14, vertical: 5),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular((14)),
-                color: Colors.white,
+              FutureBuilder(
+                future: getSettingsData(),
+                builder: (context, settings) {
+                  if (settings.hasData) {
+                    return Text(
+                      settings.data[0].appName,
+                      style: TextStyle(
+                          fontFamily: 'Droid',
+                          fontSize: 22,
+                          color: Colors.black54),
+                    );
+                  } else if (settings.hasError) {
+                    return Text("${settings.error}");
+                  } else if (settings.hasError) {
+                    return Text("${settings.error}");
+                  }
+
+                  // By default, show a loading spinner.
+                  return new Container(
+                    height: 60.0,
+                    child: new Center(
+                        child: new CircularProgressIndicator(
+                          backgroundColor: Colors.grey,
+                        )),
+                  );
+                },
               ),
-              child: Row(
-                children: [
-                  Text(
-                    "4.5",
-                    style: TextStyle(fontWeight: FontWeight.w600),
+              ClipOval(
+                child: Material(
+                  color: Colors.white, // button color
+                  child: InkWell(
+                    splashColor: Colors.red, // inkwell color
+                    child: SizedBox(
+                      width: 56,
+                      height: 56,
+                      child: Icon(FontAwesomeIcons.ellipsisV,
+                          color: Colors.black54),
+                    ),
+                    onTap: () {
+                      //Navigator.pop(context);
+                    },
                   ),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  Icon(
-                    Icons.star,
-                    color: Colors.amber,
-                  )
-                ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    });
   }
 }
