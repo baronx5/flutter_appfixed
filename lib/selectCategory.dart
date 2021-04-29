@@ -18,7 +18,7 @@ class SelectCategoryItems extends StatelessWidget {
             pinned: true,
             snap: true,
             floating: true,
-            backgroundColor: Colors.grey,
+            backgroundColor: Colors.black45,
             expandedHeight: 400.0,
             flexibleSpace: FlexibleSpaceBar(
               title: Row(
