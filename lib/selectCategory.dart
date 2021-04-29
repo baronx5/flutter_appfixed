@@ -16,8 +16,10 @@ class SelectCategoryItems extends StatelessWidget {
         slivers: <Widget>[
           SliverAppBar(
             pinned: true,
+            snap: true,
+            floating: true,
             backgroundColor: Colors.grey,
-            expandedHeight: 340.0,
+            expandedHeight: 440.0,
             flexibleSpace: FlexibleSpaceBar(
               title: Text(category.name, style: TextStyle(fontFamily: 'Droid', fontSize: 18)),
               background: Image.network(
@@ -29,7 +31,6 @@ class SelectCategoryItems extends StatelessWidget {
           FutureBuilder(
             future: getProductsData(category.id),
             builder: (context, products) {
-              //                Whether project = projectSnap.data[index]; //todo check your model
               var childCount = 0;
               if(products.connectionState !=
                   ConnectionState.done || products.hasData == null)
@@ -50,7 +51,7 @@ class SelectCategoryItems extends StatelessWidget {
                             )); //todo set progress bar
                       }
                       if (products.hasData == null) {
-                        return Container();
+                        return Center(child: Container(child: Text('none'),));
                       }
                       return new Directionality(
                           textDirection: TextDirection.rtl,
