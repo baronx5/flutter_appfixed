@@ -1,8 +1,59 @@
 import 'package:flutter/material.dart';
+import 'customWidgets/customAppBar.dart';
+
 
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text('Login Page'),);
+    return Scaffold(
+      appBar: CustomAppBar(),
+      body: Container(
+
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: NetworkImage('https://images.unsplash.com/photo-1544518630-8649eadc9acc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80'),
+            fit: BoxFit.cover,
+            colorFilter: ColorFilter.mode(Colors.white.withOpacity(0.2), BlendMode.dstATop)
+          )
+        ),
+        child: Center(child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            SizedBox(
+              height: 100,
+            ),
+            Text('تسجيل الدخول',style: TextStyle(color: Colors.black, fontSize: 24, fontFamily: 'Droid')),
+            Container(
+              width: 300,
+              child: TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'رقم الهاتف', hintStyle: TextStyle(fontFamily: 'Droid',)
+                ),
+              ),
+            ),
+            Container(
+              width: 300,
+              child: TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'الرقم السري', hintStyle: TextStyle(fontFamily: 'Droid',)
+                ),
+              ),
+            ),
+            // ignore: deprecated_member_use
+            RaisedButton(
+              padding: EdgeInsets.all(20.0),
+              color: Colors.black,
+              child: Text('تسجيل الدخول',style: TextStyle(color: Colors.white,fontFamily: 'Droid', fontSize: 16)),
+              onPressed: () {  },),
+            Text('نسيت الرقم السري',style: TextStyle(color: Colors.black,fontFamily: 'Droid', fontSize: 16)),
+            SizedBox(
+              height: 100,
+            )
+          ],
+        )),
+      ),
+    );
   }
 }

@@ -15,7 +15,7 @@ void main() {
     create: (context) => Carts(),
     child: MaterialApp(
       //home: LoginPage(),
-      initialRoute: 'MyApp',
+      initialRoute: 'login',
       routes: {
         'MyApp': (context) => MyApp(),
         'home': (context) => HomePage(),
