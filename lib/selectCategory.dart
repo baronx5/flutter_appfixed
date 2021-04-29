@@ -19,7 +19,7 @@ class SelectCategoryItems extends StatelessWidget {
             snap: true,
             floating: true,
             backgroundColor: Colors.grey,
-            expandedHeight: 440.0,
+            expandedHeight: 400.0,
             flexibleSpace: FlexibleSpaceBar(
               title: Text(category.name, style: TextStyle(fontFamily: 'Droid', fontSize: 18)),
               background: Image.network(
