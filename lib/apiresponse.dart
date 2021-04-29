@@ -7,7 +7,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart';
 
-String apiUrl = "https://flutterforweb.000webhostapp.com/resturant/";
+String apiUrl = "http://localhost/resturant/";
 
 Future getSettingsData() async {
   var url = Uri.parse(apiUrl + "settings.php");
