@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'customWidgets/customAppBar.dart';
+import '../customWidgets/customAppBar.dart';
 
 
 class LoginPage extends StatelessWidget {
@@ -28,7 +28,9 @@ class LoginPage extends StatelessWidget {
               width: 300,
               child: TextField(
                 decoration: InputDecoration(
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25.0)
+                  ),
                   hintText: 'رقم الهاتف', hintStyle: TextStyle(fontFamily: 'Droid',)
                 ),
               ),
@@ -37,7 +39,9 @@ class LoginPage extends StatelessWidget {
               width: 300,
               child: TextField(
                 decoration: InputDecoration(
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(25.0)
+                  ),
                   hintText: 'الرقم السري', hintStyle: TextStyle(fontFamily: 'Droid',)
                 ),
               ),
@@ -48,7 +52,7 @@ class LoginPage extends StatelessWidget {
               padding: EdgeInsets.all(20.0),
               color: Colors.black,
               child: Text('تسجيل الدخول',style: TextStyle(color: Colors.white,fontFamily: 'Droid', fontSize: 16)),
-              onPressed: () {  },),
+              onPressed: () {  }),
             Text('نسيت الرقم السري',style: TextStyle(color: Colors.black,fontFamily: 'Droid', fontSize: 16)),
             SizedBox(
               height: 100,
