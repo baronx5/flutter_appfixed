@@ -21,7 +21,15 @@ class SelectCategoryItems extends StatelessWidget {
             backgroundColor: Colors.grey,
             expandedHeight: 400.0,
             flexibleSpace: FlexibleSpaceBar(
-              title: Text(category.name, style: TextStyle(fontFamily: 'Droid', fontSize: 18)),
+              title: Row(
+                children: [
+                  Expanded(
+                    child: Container(child: Text(category.name, style: TextStyle(fontFamily: 'Droid', fontSize: 18,),textAlign: TextAlign.end,),
+                        //color: Colors.redAccent,
+                        margin: EdgeInsets.only(right: 10)),
+                  )
+                ],
+              ),
               background: Image.network(
                 category.image,
                 fit: BoxFit.cover,
