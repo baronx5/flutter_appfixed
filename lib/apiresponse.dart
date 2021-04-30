@@ -8,7 +8,7 @@ import 'dart:convert';
 import 'package:http/http.dart';
 
 // Url https://flutterforweb.000webhostapp.com/
-String apiUrl = "https://flutterforweb.000webhostapp.com/resturant/";
+String apiUrl = "http://localhost/resturant/";
 
 
 Future getSettingsData() async {
@@ -65,4 +65,21 @@ Future getAddonsData(val) async {
   }
 
   return productAddons;
+}
+
+
+Future sendLoginData(String phone, String password) async {
+  http.Response response = await http.post(Uri.parse(apiUrl + "login/authenticate.php"),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, String>{
+      'phone': phone,
+      'password' : password
+    }),
+  );
+  //var responseBody = jsonDecode(response.body);
+  print(response.body);
+  return response.body;
+
 }
