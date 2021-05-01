@@ -68,18 +68,14 @@ Future getAddonsData(val) async {
 }
 
 
-Future sendLoginData(String phone, String password) async {
-  http.Response response = await http.post(Uri.parse(apiUrl + "login/authenticate.php"),
-    headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-    },
-    body: jsonEncode(<String, String>{
-      'phone': phone,
-      'password' : password
-    }),
-  );
-  //var responseBody = jsonDecode(response.body);
-  print(response.body);
-  return response.body;
 
+Future signIn(String phone, String password) async{
+  var data = jsonEncode({"phone": phone, "password": password});
+  var url = 'http://localhost/resturant/login/authenticate.php';
+  var response = await http.post(Uri.parse(url), body: data, headers: <String, String>{
+    'Content-Type': 'application/json; charset=UTF-8',
+  });
+  var responseBody = jsonDecode(response.body);
+  print(responseBody);
+  return responseBody ;
 }

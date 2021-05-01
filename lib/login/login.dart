@@ -68,7 +68,7 @@ class LoginPage extends StatelessWidget {
               color: Colors.black,
               child: Text('تسجيل الدخول',style: TextStyle(color: Colors.white,fontFamily: 'Droid', fontSize: 16)),
               onPressed: () {
-                sendLoginData(phone, password);
+                signIn(phone, password);
 
               }
               ),
