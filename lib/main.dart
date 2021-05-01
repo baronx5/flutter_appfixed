@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_appfixed/Models/user.dart';
 import 'package:flutter_appfixed/login/login.dart';
 import 'homePage.dart';
 import 'bestSales.dart';
@@ -43,9 +44,13 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+
+
+    final User user = ModalRoute.of(context).settings.arguments;
+
     return Consumer<Carts>(builder: (context, cart, child) {
       return Scaffold(
-        endDrawer: CustomDrawer(),
+        endDrawer: CustomDrawer(user: user),
         appBar: AppBar(
           title: Text(
             'زوارة',

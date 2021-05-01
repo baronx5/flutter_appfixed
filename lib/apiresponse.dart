@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_appfixed/Models/categories.dart';
 import 'package:flutter_appfixed/Models/product.dart';
 import 'package:flutter_appfixed/Models/addOns.dart';
@@ -6,6 +7,8 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart';
+import 'package:flutter_appfixed/Models/user.dart';
+
 
 // Url https://flutterforweb.000webhostapp.com/
 String apiUrl = "http://localhost/resturant/";
@@ -69,13 +72,20 @@ Future getAddonsData(val) async {
 
 
 
-Future signIn(String phone, String password) async{
-  var data = jsonEncode({"phone": phone, "password": password});
+Future signIn(String phone, String password, BuildContext context) async{
+  var data = {"phone": phone, "password": password};
   var url = 'http://localhost/resturant/login/authenticate.php';
-  var response = await http.post(Uri.parse(url), body: data, headers: <String, String>{
-    'Content-Type': 'application/json; charset=UTF-8',
-  });
+  var response = await http.post(Uri.parse(url), body: data);
   var responseBody = jsonDecode(response.body);
-  print(responseBody);
-  return responseBody ;
+  if (responseBody['status'] == "success"){
+    User user = User(id:responseBody['id'],name: responseBody['name']);
+    return Navigator.pushReplacementNamed(context, 'MyApp', arguments: user);
+  }else{
+    print(responseBody['msg']);
+    return responseBody['msg'];
+  }
 }
+
+
+
+

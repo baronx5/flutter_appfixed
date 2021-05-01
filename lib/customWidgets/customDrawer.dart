@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_appfixed/Models/user.dart';
 
 class CustomDrawer extends StatelessWidget {
+
+  User user;
+  CustomDrawer({this.user});
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -10,7 +14,7 @@ class CustomDrawer extends StatelessWidget {
           Expanded(child: Column(
             children: [
               UserAccountsDrawerHeader(
-                accountName: Text("Ashish Rawat", style: TextStyle(color: Colors.orange),),
+                accountName: Text(user.name, style: TextStyle(color: Colors.orange),),
                 accountEmail: Text("ashishrawat2911@gmail.com", style: TextStyle(color: Colors.orange)),
                 decoration: BoxDecoration(
                   color: Colors.grey[200],
