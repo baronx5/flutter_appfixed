@@ -18,11 +18,12 @@ class _LoginPageState extends State<LoginPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: new Text("Alert!!"),
-          content: new Text(msg),
+          title: new Text("خطأ", style: TextStyle(fontFamily: 'Droid',fontSize: 22, color: Colors.black54),textAlign: TextAlign.center,),
+          content: new Text(msg, style: TextStyle(fontFamily: 'Droid',fontSize: 18, color: Colors.black54),textAlign: TextAlign.center,),
           actions: <Widget>[
             new FlatButton(
-              child: new Text("OK"),
+              child: Center(child: new Text("اعاده المحاولة",style: TextStyle(fontFamily: 'Droid',fontSize: 16, color: Colors.white),)),
+              color: Colors.lightGreen,
               onPressed: () {
                 Navigator.of(context).pop();
               },
