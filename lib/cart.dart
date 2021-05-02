@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_appfixed/Models/cart.dart';
+import 'package:flutter_appfixed/Models/order.dart';
 
 class CartPage extends StatelessWidget {
   @override
@@ -123,7 +124,13 @@ class CartPage extends StatelessWidget {
                   children: [
                     SizedBox(
                       width: 150,
-                      child: TextButton(onPressed: (){}, child: Text('اكمل الطلب', style: TextStyle(fontFamily: 'Droid', fontSize: 16),), style: ButtonStyle(
+                      child: TextButton(onPressed: (){
+                        Order order = Order(id: 11,name:" " ,price:1.0 );
+                        //cart.add(order);
+
+                        print('Hello');
+
+                      }, child: Text('اكمل الطلب', style: TextStyle(fontFamily: 'Droid', fontSize: 16),), style: ButtonStyle(
                           padding:
                           MaterialStateProperty.all<EdgeInsets>(
                               EdgeInsets.all(5.0)),

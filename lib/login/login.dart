@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_appfixed/apiresponse.dart';
+import 'package:flutter_appfixed/login/signup.dart';
 
 class LoginPage extends StatefulWidget {
 
@@ -117,6 +118,14 @@ class _LoginPageState extends State<LoginPage> {
 
                 }
               }
+              ),
+            RaisedButton(
+              padding: EdgeInsets.all(20.0),
+              color: Colors.black,
+              child: Text('انشاء حساب جديد',style: TextStyle(color: Colors.white,fontFamily: 'Droid', fontSize: 16)),
+              onPressed: ()  {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpPage()));
+                }
               ),
             Text('نسيت الرقم السري',style: TextStyle(color: Colors.black,fontFamily: 'Droid', fontSize: 16)),
             InkWell(child: Text('تسجيل لاحقاً',style: TextStyle(color: Colors.black,fontFamily: 'Droid', fontSize: 16)),onTap: (){

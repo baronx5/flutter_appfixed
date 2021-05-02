@@ -95,3 +95,17 @@ Future signIn(String phone, String password, BuildContext context) async {
     return responseBody['msg'];
   }
 }
+
+
+Future signUp(String phone, String password,String email, BuildContext context) async {
+  var data = {"phone": phone, "password": password, "email": email};
+  var url = 'http://localhost/resturant/login/register.php';
+  var response = await http.post(Uri.parse(url), body: data);
+  var responseBody = jsonDecode(response.body);
+  if(responseBody['status'] == "success"){
+    print(responseBody['msg']);
+    return responseBody['msg'];
+  }else {
+    return responseBody['msg'];
+  }
+}

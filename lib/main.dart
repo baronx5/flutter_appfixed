@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_appfixed/Models/user.dart';
 import 'package:flutter_appfixed/login/login.dart';
+import 'package:flutter_appfixed/login/signup.dart';
 import 'homePage.dart';
 import 'bestSales.dart';
 import 'selectCategory.dart';
@@ -22,6 +23,7 @@ void main() {
         'home': (context) => HomePage(),
         'selectCategory': (context) => SelectCategoryItems(),
         'login': (context) => LoginPage(),
+        'signUp': (context) => SignUpPage(),
       },
       debugShowCheckedModeBanner: false,
     ),
