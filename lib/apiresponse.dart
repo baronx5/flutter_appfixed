@@ -8,11 +8,11 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart';
 import 'package:flutter_appfixed/Models/user.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 // Url https://flutterforweb.000webhostapp.com/
 String apiUrl = "http://localhost/resturant/";
-
 
 Future getSettingsData() async {
   var url = Uri.parse(apiUrl + "settings.php");
@@ -72,20 +72,26 @@ Future getAddonsData(val) async {
 
 
 
-Future signIn(String phone, String password, BuildContext context) async{
+savePref(String name, String email) async {
+  SharedPreferences preferences = await SharedPreferences.getInstance();
+  preferences.setString('name', name);
+  preferences.setString('email', email);
+  print(preferences.getString('name'));
+  print(preferences.getString('email'));
+}
+
+
+Future signIn(String phone, String password, BuildContext context) async {
   var data = {"phone": phone, "password": password};
   var url = 'http://localhost/resturant/login/authenticate.php';
   var response = await http.post(Uri.parse(url), body: data);
   var responseBody = jsonDecode(response.body);
-  if (responseBody['status'] == "success"){
-    User user = User(id:responseBody['id'],name: responseBody['name']);
+  if (responseBody['status'] == "success") {
+    User user = User(id: responseBody['id'], name: responseBody['name']);
+    savePref(responseBody['name'], responseBody['email']);
     return Navigator.pushReplacementNamed(context, 'MyApp', arguments: user);
-  }else{
+  } else {
     print(responseBody['msg']);
     return responseBody['msg'];
   }
 }
-
-
-
-

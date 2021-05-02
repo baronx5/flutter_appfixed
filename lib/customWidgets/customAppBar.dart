@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_appfixed/Models/cart.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_appfixed/apiresponse.dart';
 
 class CustomAppBar extends PreferredSize {
@@ -38,7 +37,7 @@ class CustomAppBar extends PreferredSize {
                                   children: <Widget>[
                                     new IconButton(
                                       icon: new Icon(
-                                        FontAwesomeIcons.shoppingBag,
+                                        Icons.shopping_cart,
                                         color: Colors.black54,
                                       ),
                                       onPressed: (){
@@ -114,7 +113,7 @@ class CustomAppBar extends PreferredSize {
                     child: SizedBox(
                       width: 56,
                       height: 56,
-                      child: Icon(FontAwesomeIcons.ellipsisV,
+                      child: Icon(Icons.category,
                           color: Colors.black54),
                     ),
                     onTap: () {

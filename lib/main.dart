@@ -73,7 +73,7 @@ class _MyAppState extends State<MyApp> {
                         children: <Widget>[
                           new IconButton(
                             icon: new Icon(
-                              Icons.shopping_basket,
+                              Icons.shopping_bag_outlined,
                               color: Colors.black54,
                             ),
                             onPressed: (){
