@@ -3,6 +3,8 @@ class Order {
   int id;
   String name;
   double price;
-  Order({this.id, this.name, this.price});
+
+  List<Order> orders = [];
+  Order({this.id, this.name, this.price, this.orders});
 
 }

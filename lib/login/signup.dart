@@ -51,7 +51,7 @@ class SignUpPage extends StatelessWidget {
               height: 100,
             ),
             Image.network('https://flutterforweb.000webhostapp.com/resturant/logo.jpg', width: 150,),
-            Text('تسجيل الدخول',style: TextStyle(color: Colors.black, fontSize: 24, fontFamily: 'Droid')),
+            Text('تسجيل حساب جديد',style: TextStyle(color: Colors.black, fontSize: 24, fontFamily: 'Droid')),
             Form(
                 key: signInForm,
                 child: Column(
@@ -85,7 +85,7 @@ class SignUpPage extends StatelessWidget {
                           maxLength: 30,
                           decoration: InputDecoration(
                               border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25.0)
+                                  borderRadius: BorderRadius.circular(20.0)
                               ),
                               hintText: 'الرقم السري', hintStyle: TextStyle(fontFamily: 'Droid',)
                           ),
@@ -106,7 +106,7 @@ class SignUpPage extends StatelessWidget {
                           maxLength: 30,
                           decoration: InputDecoration(
                               border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25.0)
+                                  borderRadius: BorderRadius.circular(20.0)
                               ),
                               hintText: 'البريد الالكتروني', hintStyle: TextStyle(fontFamily: 'Droid',)
                           ),

@@ -76,8 +76,6 @@ savePref(String name, String email) async {
   SharedPreferences preferences = await SharedPreferences.getInstance();
   preferences.setString('name', name);
   preferences.setString('email', email);
-  print(preferences.getString('name'));
-  print(preferences.getString('email'));
 }
 
 
@@ -102,8 +100,8 @@ Future signUp(String phone, String password,String email, BuildContext context) 
   var url = 'http://localhost/resturant/login/register.php';
   var response = await http.post(Uri.parse(url), body: data);
   var responseBody = jsonDecode(response.body);
-  if(responseBody['status'] == "success"){
-    print(responseBody['msg']);
+  if(responseBody['status'] == 'success'){
+    print('hfrfr');
     return responseBody['msg'];
   }else {
     return responseBody['msg'];

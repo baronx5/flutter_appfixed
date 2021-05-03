@@ -9,7 +9,7 @@ import 'cart.dart';
 import 'package:flutter_appfixed/Models/cart.dart';
 import 'package:provider/provider.dart';
 import 'customWidgets/customDrawer.dart';
-
+import 'checkout.dart';
 
 
 void main() {
@@ -24,6 +24,7 @@ void main() {
         'selectCategory': (context) => SelectCategoryItems(),
         'login': (context) => LoginPage(),
         'signUp': (context) => SignUpPage(),
+        'checkout': (context) => CheckOut(),
       },
       debugShowCheckedModeBanner: false,
     ),

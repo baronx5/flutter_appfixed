@@ -52,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             SizedBox(
-              height: 100,
+              height: 80,
             ),
             Image.network('https://flutterforweb.000webhostapp.com/resturant/logo.jpg', width: 150,),
             Text('تسجيل الدخول',style: TextStyle(color: Colors.black, fontSize: 24, fontFamily: 'Droid')),
@@ -68,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
                     maxLength: 8,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(25.0)
+                            borderRadius: BorderRadius.circular(20.0)
                         ),
                         hintText: 'رقم الهاتف', hintStyle: TextStyle(fontFamily: 'Droid',)
                     ),
@@ -89,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                       maxLength: 30,
                       decoration: InputDecoration(
                           border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(25.0)
+                              borderRadius: BorderRadius.circular(20.0)
                           ),
                           hintText: 'الرقم السري', hintStyle: TextStyle(fontFamily: 'Droid',)
                       ),

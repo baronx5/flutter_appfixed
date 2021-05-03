@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'bestSales.dart';
 import 'categories.dart';
-import 'sliders.dart';
+import 'customWidgets/sliders.dart';
 
 class HomePage extends StatelessWidget {
   @override

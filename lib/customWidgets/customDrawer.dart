@@ -62,6 +62,20 @@ class _CustomDrawerState extends State<CustomDrawer> {
               ),
               ListTile(
                 title: Text(
+                  'ملفي الشخصي',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontFamily: 'Droid',
+                  ),
+                ),
+                leading: Icon(Icons.supervised_user_circle_outlined),
+                onTap: () {
+                  Navigator.pushNamed(context, 'login');
+                },
+              ),
+              Divider(),
+              ListTile(
+                title: Text(
                   'متابعة الطلبات',
                   style: TextStyle(
                     fontSize: 16,
