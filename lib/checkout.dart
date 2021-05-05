@@ -149,10 +149,6 @@ class CheckOut extends StatelessWidget {
 
                 ],
               ),
-              Text('payment Details'),
-              Text(orderItems.length.toString()),
-              Text(cart.totalPrice.toString()),
-
             ],
           ),
         ),
