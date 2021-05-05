@@ -48,6 +48,14 @@ class Product {
     data['price'] = this.price;
     data['catId'] = this.catId;
     data['totalSales'] = this.totalSales;
+    data['addons'] = addonsToJson(addons);
+    return data;
+  }
+  List<Map<String, dynamic>> addonsToJson(List<ProductAddons> addons){
+    List<Map<String, dynamic>> data = [];
+    for(var addon in addons){
+      data.add(addon.toJson());
+    }
     return data;
   }
 
@@ -61,4 +69,6 @@ class Product {
     }
     return price;
   }
+
+
 }

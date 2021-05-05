@@ -6,8 +6,11 @@ import 'package:flutter_appfixed/Models/order.dart';
 import 'checkout.dart';
 
 class CartPage extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
+    List<Map<String, dynamic>> jsonList = [];
+
     return Consumer<Carts>(builder: (context, cart, child) {
       return Center(
           child: Column(
@@ -16,6 +19,7 @@ class CartPage extends StatelessWidget {
             child: ListView.builder(
                 itemCount: cart.basketItems.length,
                 itemBuilder: (context, i) {
+                  jsonList.add(cart.basketItems[i].toJson());
                   return Container(
                     margin: EdgeInsets.all(10.0),
                     color: Colors.grey[200],
@@ -47,7 +51,7 @@ class CartPage extends StatelessWidget {
                                   style: TextStyle(
                                       fontFamily: 'Droid',
                                       fontSize: 14,
-                                      color: Colors.lightGreen),
+                                      color: Colors.green),
                                 ),
                                 InkWell(
                                   child: TextButton(
@@ -82,8 +86,7 @@ class CartPage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Text(
-                                  cart.basketItems[i].productItem.name,
-                                  textAlign: TextAlign.right,
+                                  "${cart.basketItems[i].quantity} x " + cart.basketItems[i].productItem.name,
                                   style: TextStyle(
                                       fontFamily: 'Droid',
                                       fontSize: 14,
@@ -138,11 +141,11 @@ class CartPage extends StatelessWidget {
                   width: 150,
                   child: TextButton(
                     onPressed: () {
-
+                      print(jsonList);
                       Navigator.push(context,MaterialPageRoute(builder: (context) =>CheckOut(orderItems: cart.basketItems)));
                     },
                     child: Text(
-                      'اكمل الطلب',
+                      'تنفيذ الطلب',
                       style: TextStyle(fontFamily: 'Droid', fontSize: 16),
                     ),
                     style: ButtonStyle(

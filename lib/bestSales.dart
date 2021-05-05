@@ -52,8 +52,8 @@ class BestSales extends StatelessWidget {
                               description: products.data[i].description,
                               image: products.data[i].image,
                               price: products.data[i].price);
-                          Navigator.of(context, rootNavigator: true)
-                              .push(MaterialPageRoute(
+                          Navigator.of(context)
+                              .push(MaterialPageRoute( fullscreenDialog: false,
                             builder: (context) => ProductSelect(
                               passedProduct: product,
                             ),

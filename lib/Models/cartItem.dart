@@ -10,6 +10,11 @@ class Item {
    return price;
   }
 
-
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['quantity'] = this.quantity;
+    data['productItem'] = this.productItem.toJson();
+    return data;
+  }
 
 }

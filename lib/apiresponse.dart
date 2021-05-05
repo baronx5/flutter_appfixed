@@ -101,9 +101,24 @@ Future signUp(String phone, String password,String email, BuildContext context) 
   var response = await http.post(Uri.parse(url), body: data);
   var responseBody = jsonDecode(response.body);
   if(responseBody['status'] == 'success'){
-    print('hfrfr');
+    print('new account has been created');
     return responseBody['msg'];
   }else {
     return responseBody['msg'];
   }
 }
+
+Future placeOrder(String phone, String password,String email, BuildContext context) async {
+  var data = {"phone": phone, "password": password, "email": email};
+  var url = 'http://localhost/resturant/login/placeOrder.php';
+  var response = await http.post(Uri.parse(url), body: data);
+  var responseBody = jsonDecode(response.body);
+  if(responseBody['status'] == 'success'){
+    print('Order accepted');
+    return responseBody['msg'];
+  }else {
+    print('Order denied');
+    return responseBody['msg'];
+  }
+}
+
