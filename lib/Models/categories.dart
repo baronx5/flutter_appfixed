@@ -6,7 +6,7 @@ class Categories {
   Categories({this.id, this.name, this.image});
 
   Categories.fromJson(Map<String, dynamic> json) {
-    id = int.parse(json['id']);
+    id = json['id'];
     name = json['name'];
     image = json['image'];
   }

@@ -12,10 +12,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 
 // Url https://flutterforweb.000webhostapp.com/
-String apiUrl = "http://localhost/resturant/";
+String apiUrl = "http://10.0.2.2:5000/";
 
 Future getSettingsData() async {
-  var url = Uri.parse(apiUrl + "settings.php");
+  var url = Uri.parse(apiUrl + "settings");
   http.Response response = await http.get(url);
   var responseBody = jsonDecode(response.body);
   List<Settings> settings = [];
@@ -26,7 +26,7 @@ Future getSettingsData() async {
 }
 
 Future getCategoriesData() async {
-  var url = Uri.parse(apiUrl + "categories.php");
+  var url = Uri.parse(apiUrl + "categories");
   http.Response response = await http.get(url);
   var responseBody = jsonDecode(response.body);
   List<Categories> categories = [];
@@ -37,7 +37,7 @@ Future getCategoriesData() async {
 }
 
 Future getProductsData(val) async {
-  var url = Uri.parse(apiUrl + "products.php?getId=" + val.toString());
+  var url = Uri.parse(apiUrl + "products/" + val.toString());
   http.Response response = await http.get(url);
   var responseBody = jsonDecode(response.body);
   List<Product> products = [];
@@ -48,7 +48,7 @@ Future getProductsData(val) async {
 }
 
 Future getBestSalesData() async {
-  var url = Uri.parse(apiUrl + "bestSales.php");
+  var url = Uri.parse(apiUrl + "best_sales");
   http.Response response = await http.get(url);
   var responseBody = jsonDecode(response.body);
   List<Product> products = [];
@@ -60,7 +60,7 @@ Future getBestSalesData() async {
 
 Future getAddonsData(val) async {
   http.Response response =
-      await get(Uri.parse(apiUrl + "addOns.php?getId=" + val.toString()));
+      await get(Uri.parse(apiUrl + "addons/" + val.toString()));
   var responseBody = jsonDecode(response.body);
   List<ProductAddons> productAddons = [];
   for (var addons in responseBody) {
@@ -81,7 +81,7 @@ savePref(String name, String email) async {
 
 Future signIn(String phone, String password, BuildContext context) async {
   var data = {"phone": phone, "password": password};
-  var url = 'http://localhost/resturant/login/authenticate.php';
+  var url = 'http://10.0.2.2:5000/login';
   var response = await http.post(Uri.parse(url), body: data);
   var responseBody = jsonDecode(response.body);
   if (responseBody['status'] == "success") {
@@ -97,7 +97,7 @@ Future signIn(String phone, String password, BuildContext context) async {
 
 Future signUp(String phone, String password,String email, BuildContext context) async {
   var data = {"phone": phone, "password": password, "email": email};
-  var url = 'http://localhost/resturant/login/register.php';
+  var url = 'http://10.0.2.2:5000/signUp';
   var response = await http.post(Uri.parse(url), body: data);
   var responseBody = jsonDecode(response.body);
   if(responseBody['status'] == 'success'){

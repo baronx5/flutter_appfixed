@@ -30,12 +30,12 @@ class Product {
   }
 
   Product.fromJson(Map<String, dynamic> json) {
-    id = int.parse(json['id']);
+    id = json['id'];
     name = json['name'];
     description = json['description'];
     image = json['image'];
     price = double.parse(json['price']);
-    catId = json['catId'];
+    catId = json['catId'].toString();
     totalSales = int.parse(json['totalSales']);
   }
 
