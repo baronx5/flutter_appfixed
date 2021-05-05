@@ -111,21 +111,37 @@ class CheckOut extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('KWD 12', style: TextStyle(fontSize: 14,fontFamily: 'Droid')),
-                      Text('المبلغ الاجمالي', style: TextStyle(fontSize: 14,fontFamily: 'Droid')),
+                      Row(
+                        children: [
+                          Text(' طلب  ', style: TextStyle(fontSize: 14,fontFamily: 'Droid')),
+                          Text( orderItems.length.toString(), style: TextStyle(fontSize: 14,fontFamily: 'Droid')),
+
+                        ],
+                      ),
+                      Text('مجموع الطلبات', style: TextStyle(fontSize: 14,fontFamily: 'Droid')),
                     ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('KWD 1212', style: TextStyle(fontSize: 14,fontFamily: 'Droid')),
+                      Row(
+                        children: [
+                          Text('0.5', style: TextStyle(fontSize: 14,fontFamily: 'Droid')),
+                          Text('KWD ', style: TextStyle(fontSize: 14,fontFamily: 'Droid')),
+                        ],
+                      ),
                       Text('رسوم التوصيل', style: TextStyle(fontSize: 14,fontFamily: 'Droid')),
                     ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('KWD 1212', style: TextStyle(fontSize: 14,fontFamily: 'Droid')),
+                      Row(
+                        children: [
+                          Text( cart.totalPrice.toString(), style: TextStyle(fontSize: 14,fontFamily: 'Droid')),
+                          Text('KWD', style: TextStyle(fontSize: 14,fontFamily: 'Droid')),
+                        ],
+                      ),
                       Text('المبلغ الاجمالي', style: TextStyle(fontSize: 14,fontFamily: 'Droid')),
 
                     ],
