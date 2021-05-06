@@ -126,8 +126,9 @@ class CheckOut extends StatelessWidget {
                     children: [
                       Row(
                         children: [
+                          Text(' دك  ', style: TextStyle(fontSize: 14,fontFamily: 'Droid')),
                           Text('0.5', style: TextStyle(fontSize: 14,fontFamily: 'Droid')),
-                          Text('KWD ', style: TextStyle(fontSize: 14,fontFamily: 'Droid')),
+
                         ],
                       ),
                       Text('رسوم التوصيل', style: TextStyle(fontSize: 14,fontFamily: 'Droid')),
@@ -138,8 +139,8 @@ class CheckOut extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          Text( cart.totalPrice.toString(), style: TextStyle(fontSize: 14,fontFamily: 'Droid')),
-                          Text('KWD', style: TextStyle(fontSize: 14,fontFamily: 'Droid')),
+                          Text(' دك  ', style: TextStyle(fontSize: 14,fontFamily: 'Droid')),
+                          Text(cart.totalPrice.toString(), style: TextStyle(fontSize: 14,fontFamily: 'Droid')),
                         ],
                       ),
                       Text('المبلغ الاجمالي', style: TextStyle(fontSize: 14,fontFamily: 'Droid')),

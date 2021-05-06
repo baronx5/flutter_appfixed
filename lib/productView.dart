@@ -151,6 +151,7 @@ class _ProductSelectState extends State<ProductSelect> {
                                             style: TextStyle(
                                                 fontSize: 14,
                                                 fontFamily: "Droid")),
+                                        subtitle: product.price != 0 ? Text(product.price.toString()+ " دك ",style: TextStyle(fontFamily: 'Droid'),) : Text('free'),
                                         value: checkBoxesHandle[i],
                                         onChanged: (bool value) {
                                           setState(() {
