@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_appfixed/Models/product.dart';
-import 'apiresponse.dart';
+import 'apiResponse.dart';
 import 'productView.dart';
 
 class BestSales extends StatelessWidget {

@@ -1,17 +1,49 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_appfixed/Models/cartItem.dart';
-import 'package:flutter_appfixed/Models/cart.dart';
+import 'Models/cartItem.dart';
+import 'Models/cart.dart';
+import 'apiResponse.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class CheckOut extends StatelessWidget {
+
+
+
+class CheckOut extends StatefulWidget {
   List<Item> orderItems = [];
-
   CheckOut({@required this.orderItems});
 
+  @override
+  _CheckOutState createState() => _CheckOutState();
+}
+
+class _CheckOutState extends State<CheckOut> {
   double totalPrice = 0;
+  int uid;
+  String email;
+  bool isSignIn = false;
+
+  getPref() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    uid = preferences.getInt('id');
+    email = preferences.getString('email');
+    if (uid != null) {
+      setState(() {
+        uid = preferences.getInt('id');
+        email = preferences.getString('email');
+        isSignIn = true;
+      });
+    }
+  }
+  
 
   @override
+  void initState() {
+    getPref();
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
+
     return Consumer<Carts>(builder: (context, cart, child) {
       return Scaffold(
         appBar: AppBar(
@@ -37,7 +69,72 @@ class CheckOut extends StatelessWidget {
                       'https://media.wired.com/photos/59269cd37034dc5f91bec0f1/191:100/w_1280,c_limit/GoogleMapTA.jpg',
                       fit: BoxFit.cover,
                     ),
-                    Padding(
+                    isSignIn == true ? FutureBuilder(
+                        future: getAdr(uid),
+                        builder: (context, snapshot) {
+                      if(snapshot.connectionState == ConnectionState.waiting){
+                        return Center(child: Text('Loading...'));
+                      }
+                      else{
+                        if(snapshot.hasError){
+                          return Center(child: Text('Error : ${snapshot.error}'),);
+                        }else {
+                          return Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Icon(
+                                  Icons.location_on,
+                                  color: Colors.orangeAccent,
+                                  size: 33,
+                                ),
+                                Column(
+                                  //mainAxisAlignment: MainAxisAlignment.end,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Text(
+                                      snapshot.data != 0 ? snapshot.data[0].area : " Something wrong",
+                                      style: TextStyle(
+                                          fontSize: 16, fontFamily: 'Droid'),
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(snapshot.data[0].housenumber,style: TextStyle( fontSize: 14, fontFamily: 'Droid', color: Colors.grey),),
+                                        Text('شقة',style: TextStyle( fontSize: 14, fontFamily: 'Droid', color: Colors.grey),),
+
+                                        Text(snapshot.data[0].floor,style: TextStyle( fontSize: 14, fontFamily: 'Droid', color: Colors.grey),),
+                                        Text('دور',style: TextStyle( fontSize: 14, fontFamily: 'Droid', color: Colors.grey),),
+
+                                        Text(snapshot.data[0].housenumber,style: TextStyle( fontSize: 14, fontFamily: 'Droid', color: Colors.grey),),
+                                        Text('منزل',style: TextStyle( fontSize: 14, fontFamily: 'Droid', color: Colors.grey),),
+
+                                        Text(snapshot.data[0].jada,style: TextStyle( fontSize: 14, fontFamily: 'Droid', color: Colors.grey),),
+                                        Text('جادة',style: TextStyle( fontSize: 14, fontFamily: 'Droid', color: Colors.grey),),
+
+                                        Text(snapshot.data[0].street,style: TextStyle( fontSize: 14, fontFamily: 'Droid', color: Colors.grey),),
+                                        Text('شارع',style: TextStyle( fontSize: 14, fontFamily: 'Droid', color: Colors.grey),),
+
+                                        Text(snapshot.data[0].block,style: TextStyle( fontSize: 14, fontFamily: 'Droid', color: Colors.grey),),
+                                        Text('ق',style: TextStyle( fontSize: 14, fontFamily: 'Droid', color: Colors.grey),),
+                                      ],
+                                    ),
+                                    Text(
+                                      'تغيير',
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontFamily: 'Droid',
+                                          color: Colors.orange),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          );
+                        }
+                      }
+                    }
+                    ): Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -51,20 +148,12 @@ class CheckOut extends StatelessWidget {
                             //mainAxisAlignment: MainAxisAlignment.end,
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              Text(
-                                'صباح الاحمد',
+                              Text("لايوجد عنوان اضف عنوان",
                                 style: TextStyle(
                                     fontSize: 16, fontFamily: 'Droid'),
                               ),
                               Text(
-                                'قطعه ٦ شارع ٩ منزل ٥',
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    fontFamily: 'Droid',
-                                    color: Colors.grey),
-                              ),
-                              Text(
-                                'تغيير',
+                                'اضافة عنوان',
                                 style: TextStyle(
                                     fontSize: 16,
                                     fontFamily: 'Droid',
@@ -114,7 +203,7 @@ class CheckOut extends StatelessWidget {
                       Row(
                         children: [
                           Text(' طلب  ', style: TextStyle(fontSize: 14,fontFamily: 'Droid')),
-                          Text( orderItems.length.toString(), style: TextStyle(fontSize: 14,fontFamily: 'Droid')),
+                          Text( widget.orderItems.length.toString(), style: TextStyle(fontSize: 14,fontFamily: 'Droid')),
 
                         ],
                       ),

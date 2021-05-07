@@ -12,18 +12,19 @@ class CustomDrawer extends StatefulWidget {
 }
 
 class _CustomDrawerState extends State<CustomDrawer> {
+  int uid;
   String name;
   String email;
   bool isSignIn = false;
 
   getPref() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    name = preferences.getString('name');
+    uid = preferences.getInt('id');
     email = preferences.getString('email');
 
-    if (name != null) {
+    if (uid != null) {
       setState(() {
-        name = preferences.getString('name');
+        uid = preferences.getInt('id');
         email = preferences.getString('email');
         isSignIn = true;
       });
@@ -46,8 +47,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
               child: Column(
             children: [
               UserAccountsDrawerHeader(
-                accountName: isSignIn ? Text(name, style: TextStyle(color: Colors.orange),) : Text(''),
-                accountEmail: isSignIn ? Text(email, style: TextStyle(color: Colors.orange)) : Text('مستخدم افتراضي', style: TextStyle(fontFamily: 'Droid',color: Colors.grey)),
+                accountName: isSignIn ? Text(uid.toString(), style: TextStyle(color: Colors.orange),) : Text(''),
+                accountEmail: isSignIn ? Text(email.toString(), style: TextStyle(color: Colors.orange)) : Text('مستخدم افتراضي', style: TextStyle(fontFamily: 'Droid',color: Colors.grey)),
                 decoration: BoxDecoration(
                   color: Colors.grey[200],
                 ),
@@ -139,8 +140,9 @@ class _CustomDrawerState extends State<CustomDrawer> {
               leading: Icon(Icons.logout),
               onTap: () async{
                 SharedPreferences preferences = await SharedPreferences.getInstance();
-                preferences.remove('name');
+                preferences.remove('id');
                 preferences.remove('email');
+                isSignIn = false;
                 Navigator.of(context).pushNamed('login');
 
               },

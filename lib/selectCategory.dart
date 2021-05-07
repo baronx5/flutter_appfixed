@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'apiresponse.dart';
+import 'apiResponse.dart';
 import 'productView.dart';
 import 'package:flutter_appfixed/Models/product.dart';
 import 'package:flutter_appfixed/Models/categories.dart';

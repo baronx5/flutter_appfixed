@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_appfixed/Models/cart.dart';
-import 'package:flutter_appfixed/Models/order.dart';
+import 'Models/cart.dart';
 import 'checkout.dart';
 
 class CartPage extends StatelessWidget {
@@ -53,8 +52,7 @@ class CartPage extends StatelessWidget {
                                       fontSize: 14,
                                       color: Colors.green),
                                 ),
-                                InkWell(
-                                  child: TextButton(
+                                TextButton(
                                       child: Text(
                                         'حذف',
                                         style: TextStyle(
@@ -71,11 +69,11 @@ class CartPage extends StatelessWidget {
                                               RoundedRectangleBorder(
                                                   borderRadius:
                                                       BorderRadius.circular(18.0),
-                                                  side: BorderSide(color: Colors.red))))),
-                                  onTap: () {
+                                                  side: BorderSide(color: Colors.red)))),onPressed: (){
                                     cart.remove(cart.basketItems[i]);
-                                  },
-                                )
+                                  },),
+
+
                               ],
                             )),
                         Expanded(

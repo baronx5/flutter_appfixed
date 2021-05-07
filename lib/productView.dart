@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_appfixed/Models/addOns.dart';
-import 'apiresponse.dart';
+import 'apiResponse.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_appfixed/Models/cart.dart';
 import 'package:flutter_appfixed/Models/cartItem.dart';
