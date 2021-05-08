@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '/apiResponse.dart';
-import '/login/signup.dart';
+import 'package:flutter_appfixed/apiResponse.dart';
+import 'package:flutter_appfixed/login//signup.dart';
 
 class LoginPage extends StatefulWidget {
 

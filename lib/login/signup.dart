@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '/apiResponse.dart';
+import 'package:flutter_appfixed/apiResponse.dart';
 
 
 class SignUpPage extends StatelessWidget {

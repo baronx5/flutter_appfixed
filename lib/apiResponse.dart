@@ -14,7 +14,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 // Url https://flutterforweb.000webhostapp.com/
 // Url http://127.0.0.1:5000/
 // Url http://10.0.2.2:5000/
-String apiUrl = "http://127.0.0.1:5000/";
+String apiUrl = "http://10.0.2.2:5000/";
 
 Future getSettingsData() async {
   var url = Uri.parse(apiUrl + "settings");
@@ -124,7 +124,7 @@ Future placeOrder(User user, List<Item> orders, BuildContext context) async {
 
 
 Future newAddress( User user, BuildContext context) async {
-  var data = {"userId":user.id, "address": user.address};
+  var data = {"userId":user.id.toString(), "address": user.address.toJson()};
   var url = apiUrl + '/address/add/';
   var response = await http.post(Uri.parse(url), body: data);
   var responseBody = jsonDecode(response.body);

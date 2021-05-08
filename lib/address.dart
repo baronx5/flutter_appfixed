@@ -12,8 +12,8 @@ class AddAddress extends StatefulWidget {
 }
 
 class _AddAddressState extends State<AddAddress> {
-  User user;
-  Address address;
+  User user = User();
+  Address address = Address();
   final addressForm = GlobalKey<FormState>();
 
   getPref() async {
@@ -25,6 +25,7 @@ class _AddAddressState extends State<AddAddress> {
   @override
   void initState() {
     getPref();
+    print(user.address);
     super.initState();
   }
   void _showDialog(BuildContext context, String msg) {
