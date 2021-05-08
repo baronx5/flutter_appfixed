@@ -121,3 +121,17 @@ Future placeOrder(User user, List<Item> orders, BuildContext context) async {
     return responseBody['msg'];
   }
 }
+
+
+Future newAddress( User user, BuildContext context) async {
+  var data = {"userId":user.id, "address": user.address};
+  var url = apiUrl + '/address/add/';
+  var response = await http.post(Uri.parse(url), body: data);
+  var responseBody = jsonDecode(response.body);
+  if (responseBody['status'] == 'success') {
+    print('new address has been created');
+    return responseBody['msg'];
+  } else {
+    return responseBody['msg'];
+  }
+}
