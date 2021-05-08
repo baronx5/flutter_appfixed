@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_appfixed/Models/adress.dart';
 import 'package:flutter_appfixed/Models/user.dart';
 import 'package:flutter_appfixed/login/login.dart';
 import 'package:flutter_appfixed/login/signup.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_appfixed/Models/cart.dart';
 import 'package:provider/provider.dart';
 import 'customWidgets/customDrawer.dart';
 import 'checkout.dart';
+import 'address.dart';
 
 
 void main() {
@@ -25,6 +27,7 @@ void main() {
         'login': (context) => LoginPage(),
         'signUp': (context) => SignUpPage(),
         'checkout': (context) => CheckOut(),
+        'address': (context) => AddAddress(),
       },
       debugShowCheckedModeBanner: false,
     ),

@@ -202,16 +202,21 @@ class _CheckOutState extends State<CheckOut> {
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
                                     Text(
-                                      "لايوجد عنوان اضف عنوان",
+                                      "لايوجد عنوان مسجل مسبقاً",
                                       style: TextStyle(
                                           fontSize: 16, fontFamily: 'Droid'),
                                     ),
-                                    Text(
-                                      'اضافة عنوان',
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontFamily: 'Droid',
-                                          color: Colors.orange),
+                                    TextButton(
+                                      style: TextButton.styleFrom(
+                                          backgroundColor: Colors.red,
+                                          primary: Colors.white
+                                      ),
+                                      child: Padding(
+                                          padding: EdgeInsets.only(left: 5, right: 15),
+                                          child: Center(child: Text("اضف عنوان",style: TextStyle(fontFamily: 'Droid',fontSize: 16),))),
+                                      onPressed: () {
+                                        Navigator.pushNamed(context, 'address');
+                                      },
                                     ),
                                   ],
                                 ),

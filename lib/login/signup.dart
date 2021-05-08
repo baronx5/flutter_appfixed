@@ -55,7 +55,7 @@ class SignUpPage extends StatelessWidget {
                       width: 300,
                       child: TextFormField(
                           textDirection: TextDirection.rtl,
-                          maxLength: 30,
+                          maxLength: 8,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
                                 borderSide: BorderSide(
@@ -79,7 +79,7 @@ class SignUpPage extends StatelessWidget {
                       width: 300,
                       child: TextFormField(
                           textDirection: TextDirection.rtl,
-                          maxLength: 30,
+                          maxLength: 20,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
                                 borderSide: BorderSide(
