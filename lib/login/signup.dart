@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_appfixed/apiResponse.dart';
+import '/apiResponse.dart';
 
 
 class SignUpPage extends StatelessWidget {
@@ -35,15 +35,7 @@ class SignUpPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      //appBar: CustomAppBar(),
       body: Container(
-        decoration: BoxDecoration(
-            image: DecorationImage(
-                image: NetworkImage('https://images.unsplash.com/photo-1577670552647-6ce12a463e7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80'),
-                fit: BoxFit.cover,
-                colorFilter: ColorFilter.mode(Colors.white.withOpacity(0.2), BlendMode.dstATop)
-            )
-        ),
         child: Center(child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [

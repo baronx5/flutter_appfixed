@@ -13,7 +13,9 @@ import 'Models/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // Url https://flutterforweb.000webhostapp.com/
-String apiUrl = "http://10.0.2.2:5000/";
+// Url http://127.0.0.1:5000/
+// Url http://10.0.2.2:5000/
+String apiUrl = "http://127.0.0.1:5000/";
 
 Future getSettingsData() async {
   var url = Uri.parse(apiUrl + "settings");

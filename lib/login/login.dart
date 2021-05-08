@@ -41,13 +41,6 @@ class _LoginPageState extends State<LoginPage> {
       resizeToAvoidBottomInset: false,
       //appBar: CustomAppBar(),
       body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: NetworkImage('https://images.unsplash.com/photo-1577670552647-6ce12a463e7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80'),
-            fit: BoxFit.cover,
-            colorFilter: ColorFilter.mode(Colors.white.withOpacity(0.2), BlendMode.dstATop)
-          )
-        ),
         child: Center(child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
@@ -68,7 +61,10 @@ class _LoginPageState extends State<LoginPage> {
                     maxLength: 8,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20.0)
+                            borderSide: BorderSide(
+                              color: Colors.amber
+                            ),
+                          borderRadius: BorderRadius.circular(10.0)
                         ),
                         hintText: 'رقم الهاتف', hintStyle: TextStyle(fontFamily: 'Droid',)
                     ),
@@ -89,7 +85,10 @@ class _LoginPageState extends State<LoginPage> {
                       maxLength: 30,
                       decoration: InputDecoration(
                           border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0)
+                              borderSide: BorderSide(
+                                  color: Colors.amber
+                              ),
+                              borderRadius: BorderRadius.circular(10.0)
                           ),
                           hintText: 'الرقم السري', hintStyle: TextStyle(fontFamily: 'Droid',)
                       ),
