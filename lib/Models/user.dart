@@ -13,7 +13,12 @@ class User{
     id = json['id'];
     name = json['name'];
     email = json['email'];
-    address = Address.fromJson(json['address']);
+    print(json['address']);
+    if(json['address'] != null ){
+      address = Address.fromJson(json['address']);
+    }else {
+      address = Address();
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -21,7 +26,9 @@ class User{
     data['id'] = this.id;
     data['name'] = this.name;
     data['email'] = this.email;
-    data['address'] = this.address.toJson();
+    if( this.address != null){
+      data['address'] = this.address.toJson();
+    }
     return data;
   }
 
