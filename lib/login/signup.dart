@@ -16,9 +16,12 @@ class SignUpPage extends StatelessWidget {
           title: new Text("خطأ", style: TextStyle(fontFamily: 'Droid',fontSize: 22, color: Colors.black54),textAlign: TextAlign.center,),
           content: new Text(msg, style: TextStyle(fontFamily: 'Droid',fontSize: 18, color: Colors.black54),textAlign: TextAlign.center,),
           actions: <Widget>[
-            new FlatButton(
+            new TextButton(
+              style: TextButton.styleFrom(
+                  backgroundColor: Colors.red,
+                  primary: Colors.white
+              ),
               child: Center(child: new Text("اعاده المحاولة",style: TextStyle(fontFamily: 'Droid',fontSize: 16, color: Colors.white),)),
-              color: Colors.lightGreen,
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -51,12 +54,14 @@ class SignUpPage extends StatelessWidget {
                     Container(
                       width: 300,
                       child: TextFormField(
-                        textDirection: TextDirection.rtl,
-                        keyboardType: TextInputType.phone,
-                        maxLength: 8,
-                        decoration: InputDecoration(
+                          textDirection: TextDirection.rtl,
+                          maxLength: 30,
+                          decoration: InputDecoration(
                             border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(25.0)
+                                borderSide: BorderSide(
+                                    color: Colors.amber
+                                ),
+                                borderRadius: BorderRadius.circular(10.0)
                             ),
                             hintText: 'رقم الهاتف', hintStyle: TextStyle(fontFamily: 'Droid',)
                         ),
@@ -76,9 +81,12 @@ class SignUpPage extends StatelessWidget {
                           textDirection: TextDirection.rtl,
                           maxLength: 30,
                           decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20.0)
-                              ),
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Colors.amber
+                                ),
+                                borderRadius: BorderRadius.circular(10.0)
+                            ),
                               hintText: 'الرقم السري', hintStyle: TextStyle(fontFamily: 'Droid',)
                           ),
                           validator: (value){
@@ -97,9 +105,12 @@ class SignUpPage extends StatelessWidget {
                           textDirection: TextDirection.rtl,
                           maxLength: 30,
                           decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20.0)
-                              ),
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Colors.amber
+                                ),
+                                borderRadius: BorderRadius.circular(10.0)
+                            ),
                               hintText: 'البريد الالكتروني', hintStyle: TextStyle(fontFamily: 'Droid',)
                           ),
                           validator: (value){
@@ -115,9 +126,11 @@ class SignUpPage extends StatelessWidget {
                   ],
                 )),
             // ignore: deprecated_member_use
-            RaisedButton(
-                padding: EdgeInsets.all(20.0),
-                color: Colors.black,
+            TextButton(
+                style: TextButton.styleFrom(
+                  padding: EdgeInsets.all(20.0),
+                  backgroundColor: Colors.black,
+                ),
                 child: Text('تسجيل حساب جديد',style: TextStyle(color: Colors.white,fontFamily: 'Droid', fontSize: 16)),
                 onPressed: () async {
                   if(signInForm.currentState.validate()){
@@ -137,7 +150,7 @@ class SignUpPage extends StatelessWidget {
           ],
         )),
       ),
-    );;
+    );
   }
 }
 

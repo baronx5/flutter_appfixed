@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_appfixed/apiResponse.dart';
-import 'package:flutter_appfixed/login/signup.dart';
+import '/apiResponse.dart';
+import '/login/signup.dart';
 
 class LoginPage extends StatefulWidget {
 
@@ -22,9 +22,12 @@ class _LoginPageState extends State<LoginPage> {
           title: new Text("خطأ", style: TextStyle(fontFamily: 'Droid',fontSize: 22, color: Colors.black54),textAlign: TextAlign.center,),
           content: new Text(msg, style: TextStyle(fontFamily: 'Droid',fontSize: 18, color: Colors.black54),textAlign: TextAlign.center,),
           actions: <Widget>[
-            new FlatButton(
+            new TextButton(
+              style: TextButton.styleFrom(
+                  backgroundColor: Colors.red,
+                  primary: Colors.white
+              ),
               child: Center(child: new Text("اعاده المحاولة",style: TextStyle(fontFamily: 'Droid',fontSize: 16, color: Colors.white),)),
-              color: Colors.lightGreen,
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -105,9 +108,11 @@ class _LoginPageState extends State<LoginPage> {
               ],
             )),
             // ignore: deprecated_member_use
-            RaisedButton(
-              padding: EdgeInsets.all(20.0),
-              color: Colors.black,
+            TextButton(
+                style: TextButton.styleFrom(
+                  padding: EdgeInsets.all(20.0),
+                  backgroundColor: Colors.black,
+                ),
               child: Text('تسجيل الدخول',style: TextStyle(color: Colors.white,fontFamily: 'Droid', fontSize: 16)),
               onPressed: () async {
                 if(signInForm.currentState.validate()){
@@ -118,9 +123,11 @@ class _LoginPageState extends State<LoginPage> {
                 }
               }
               ),
-            RaisedButton(
-              padding: EdgeInsets.all(20.0),
-              color: Colors.black,
+            TextButton(
+              style: TextButton.styleFrom(
+                padding: EdgeInsets.all(20.0),
+                backgroundColor: Colors.black,
+              ),
               child: Text('انشاء حساب جديد',style: TextStyle(color: Colors.white,fontFamily: 'Droid', fontSize: 16)),
               onPressed: ()  {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpPage()));
