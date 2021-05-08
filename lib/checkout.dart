@@ -1,15 +1,16 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'Models/cartItem.dart';
 import 'Models/cart.dart';
+import 'Models/user.dart';
 import 'apiResponse.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
-
-
 class CheckOut extends StatefulWidget {
   List<Item> orderItems = [];
+
   CheckOut({@required this.orderItems});
 
   @override
@@ -18,32 +19,28 @@ class CheckOut extends StatefulWidget {
 
 class _CheckOutState extends State<CheckOut> {
   double totalPrice = 0;
-  int uid;
-  String email;
   bool isSignIn = false;
+  User user;
 
   getPref() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    uid = preferences.getInt('id');
-    email = preferences.getString('email');
-    if (uid != null) {
+    if (preferences.getString('user') != null) {
       setState(() {
-        uid = preferences.getInt('id');
-        email = preferences.getString('email');
+        user = User.fromJson(jsonDecode(preferences.getString('user')));
+        print(user.address.houseNumber);
         isSignIn = true;
       });
     }
   }
-  
 
   @override
   void initState() {
     getPref();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
-
     return Consumer<Carts>(builder: (context, cart, child) {
       return Scaffold(
         appBar: AppBar(
@@ -69,17 +66,8 @@ class _CheckOutState extends State<CheckOut> {
                       'https://media.wired.com/photos/59269cd37034dc5f91bec0f1/191:100/w_1280,c_limit/GoogleMapTA.jpg',
                       fit: BoxFit.cover,
                     ),
-                    isSignIn == true ? FutureBuilder(
-                        future: getAdr(uid),
-                        builder: (context, snapshot) {
-                      if(snapshot.connectionState == ConnectionState.waiting){
-                        return Center(child: Text('Loading...'));
-                      }
-                      else{
-                        if(snapshot.hasError){
-                          return Center(child: Text('Error : ${snapshot.error}'),);
-                        }else {
-                          return Padding(
+                    isSignIn == true
+                        ? Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -94,29 +82,98 @@ class _CheckOutState extends State<CheckOut> {
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
                                     Text(
-                                      snapshot.data != 0 ? snapshot.data[0].area : " Something wrong",
+                                      user.address.area,
                                       style: TextStyle(
-                                          fontSize: 16, fontFamily: 'Droid'),
+                                          fontSize: 14,
+                                          fontFamily: 'Droid',
+                                          color: Colors.grey),
                                     ),
                                     Row(
                                       children: [
-                                        Text(snapshot.data[0].housenumber,style: TextStyle( fontSize: 14, fontFamily: 'Droid', color: Colors.grey),),
-                                        Text('شقة',style: TextStyle( fontSize: 14, fontFamily: 'Droid', color: Colors.grey),),
-
-                                        Text(snapshot.data[0].floor,style: TextStyle( fontSize: 14, fontFamily: 'Droid', color: Colors.grey),),
-                                        Text('دور',style: TextStyle( fontSize: 14, fontFamily: 'Droid', color: Colors.grey),),
-
-                                        Text(snapshot.data[0].housenumber,style: TextStyle( fontSize: 14, fontFamily: 'Droid', color: Colors.grey),),
-                                        Text('منزل',style: TextStyle( fontSize: 14, fontFamily: 'Droid', color: Colors.grey),),
-
-                                        Text(snapshot.data[0].jada,style: TextStyle( fontSize: 14, fontFamily: 'Droid', color: Colors.grey),),
-                                        Text('جادة',style: TextStyle( fontSize: 14, fontFamily: 'Droid', color: Colors.grey),),
-
-                                        Text(snapshot.data[0].street,style: TextStyle( fontSize: 14, fontFamily: 'Droid', color: Colors.grey),),
-                                        Text('شارع',style: TextStyle( fontSize: 14, fontFamily: 'Droid', color: Colors.grey),),
-
-                                        Text(snapshot.data[0].block,style: TextStyle( fontSize: 14, fontFamily: 'Droid', color: Colors.grey),),
-                                        Text('ق',style: TextStyle( fontSize: 14, fontFamily: 'Droid', color: Colors.grey),),
+                                        Text(
+                                          user.address.houseNumber,
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              fontFamily: 'Droid',
+                                              color: Colors.grey),
+                                        ),
+                                        Text(
+                                          'شقة',
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              fontFamily: 'Droid',
+                                              color: Colors.grey),
+                                        ),
+                                        Text(
+                                          user.address.floor,
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              fontFamily: 'Droid',
+                                              color: Colors.grey),
+                                        ),
+                                        Text(
+                                          'دور',
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              fontFamily: 'Droid',
+                                              color: Colors.grey),
+                                        ),
+                                        Text(
+                                          user.address.houseNumber,
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              fontFamily: 'Droid',
+                                              color: Colors.grey),
+                                        ),
+                                        Text(
+                                          'منزل',
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              fontFamily: 'Droid',
+                                              color: Colors.grey),
+                                        ),
+                                        Text(
+                                          user.address.jada,
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              fontFamily: 'Droid',
+                                              color: Colors.grey),
+                                        ),
+                                        Text(
+                                          'جادة',
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              fontFamily: 'Droid',
+                                              color: Colors.grey),
+                                        ),
+                                        Text(
+                                          user.address.street,
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              fontFamily: 'Droid',
+                                              color: Colors.grey),
+                                        ),
+                                        Text(
+                                          'شارع',
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              fontFamily: 'Droid',
+                                              color: Colors.grey),
+                                        ),
+                                        Text(
+                                          user.address.block,
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              fontFamily: 'Droid',
+                                              color: Colors.grey),
+                                        ),
+                                        Text(
+                                          'ق',
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              fontFamily: 'Droid',
+                                              color: Colors.grey),
+                                        ),
                                       ],
                                     ),
                                     Text(
@@ -130,40 +187,38 @@ class _CheckOutState extends State<CheckOut> {
                                 ),
                               ],
                             ),
-                          );
-                        }
-                      }
-                    }
-                    ): Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Icon(
-                            Icons.location_on,
-                            color: Colors.orangeAccent,
-                            size: 33,
+                          )
+                        : Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Icon(
+                                  Icons.location_on,
+                                  color: Colors.orangeAccent,
+                                  size: 33,
+                                ),
+                                Column(
+                                  //mainAxisAlignment: MainAxisAlignment.end,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Text(
+                                      "لايوجد عنوان اضف عنوان",
+                                      style: TextStyle(
+                                          fontSize: 16, fontFamily: 'Droid'),
+                                    ),
+                                    Text(
+                                      'اضافة عنوان',
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontFamily: 'Droid',
+                                          color: Colors.orange),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
-                          Column(
-                            //mainAxisAlignment: MainAxisAlignment.end,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Text("لايوجد عنوان اضف عنوان",
-                                style: TextStyle(
-                                    fontSize: 16, fontFamily: 'Droid'),
-                              ),
-                              Text(
-                                'اضافة عنوان',
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    fontFamily: 'Droid',
-                                    color: Colors.orange),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
                   ],
                 ),
               ),
@@ -194,20 +249,24 @@ class _CheckOutState extends State<CheckOut> {
               ),
               Divider(),
               Column(
-
                 children: [
-                  Text('ملخص الدفع', style: TextStyle(fontSize: 18,fontFamily: 'Droid')),
+                  Text('ملخص الدفع',
+                      style: TextStyle(fontSize: 18, fontFamily: 'Droid')),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Row(
                         children: [
-                          Text(' طلب  ', style: TextStyle(fontSize: 14,fontFamily: 'Droid')),
-                          Text( widget.orderItems.length.toString(), style: TextStyle(fontSize: 14,fontFamily: 'Droid')),
-
+                          Text(' طلب  ',
+                              style:
+                                  TextStyle(fontSize: 14, fontFamily: 'Droid')),
+                          Text(widget.orderItems.length.toString(),
+                              style:
+                                  TextStyle(fontSize: 14, fontFamily: 'Droid')),
                         ],
                       ),
-                      Text('مجموع الطلبات', style: TextStyle(fontSize: 14,fontFamily: 'Droid')),
+                      Text('مجموع الطلبات',
+                          style: TextStyle(fontSize: 14, fontFamily: 'Droid')),
                     ],
                   ),
                   Row(
@@ -215,12 +274,16 @@ class _CheckOutState extends State<CheckOut> {
                     children: [
                       Row(
                         children: [
-                          Text(' دك  ', style: TextStyle(fontSize: 14,fontFamily: 'Droid')),
-                          Text('0.5', style: TextStyle(fontSize: 14,fontFamily: 'Droid')),
-
+                          Text(' دك  ',
+                              style:
+                                  TextStyle(fontSize: 14, fontFamily: 'Droid')),
+                          Text('0.5',
+                              style:
+                                  TextStyle(fontSize: 14, fontFamily: 'Droid')),
                         ],
                       ),
-                      Text('رسوم التوصيل', style: TextStyle(fontSize: 14,fontFamily: 'Droid')),
+                      Text('رسوم التوصيل',
+                          style: TextStyle(fontSize: 14, fontFamily: 'Droid')),
                     ],
                   ),
                   Row(
@@ -228,15 +291,18 @@ class _CheckOutState extends State<CheckOut> {
                     children: [
                       Row(
                         children: [
-                          Text(' دك  ', style: TextStyle(fontSize: 14,fontFamily: 'Droid')),
-                          Text(cart.totalPrice.toString(), style: TextStyle(fontSize: 14,fontFamily: 'Droid')),
+                          Text(' دك  ',
+                              style:
+                                  TextStyle(fontSize: 14, fontFamily: 'Droid')),
+                          Text(cart.totalPrice.toString(),
+                              style:
+                                  TextStyle(fontSize: 14, fontFamily: 'Droid')),
                         ],
                       ),
-                      Text('المبلغ الاجمالي', style: TextStyle(fontSize: 14,fontFamily: 'Droid')),
-
+                      Text('المبلغ الاجمالي',
+                          style: TextStyle(fontSize: 14, fontFamily: 'Droid')),
                     ],
                   ),
-
                 ],
               ),
             ],
@@ -253,9 +319,13 @@ class _CheckOutState extends State<CheckOut> {
               primary: Colors.red, // background
               onPrimary: Colors.white, // foreground
             ),
-
-            onPressed: () { },
-            child: Text('تنفيذ الطلب', style: TextStyle(fontFamily: 'Droid', fontSize: 18),),
+            onPressed: () {
+              placeOrder(user, cart.basketItems, context);
+            },
+            child: Text(
+              'تنفيذ الطلب',
+              style: TextStyle(fontFamily: 'Droid', fontSize: 18),
+            ),
           ),
         ),
       );

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_appfixed/Models/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -12,20 +14,15 @@ class CustomDrawer extends StatefulWidget {
 }
 
 class _CustomDrawerState extends State<CustomDrawer> {
-  int uid;
-  String name;
-  String email;
   bool isSignIn = false;
+  User user;
 
   getPref() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    uid = preferences.getInt('id');
-    email = preferences.getString('email');
-
-    if (uid != null) {
+    if (preferences.getString('user') != null) {
       setState(() {
-        uid = preferences.getInt('id');
-        email = preferences.getString('email');
+        user = User.fromJson(jsonDecode(preferences.getString('user')));
+        print(user.address.houseNumber);
         isSignIn = true;
       });
     }
@@ -47,8 +44,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
               child: Column(
             children: [
               UserAccountsDrawerHeader(
-                accountName: isSignIn ? Text(uid.toString(), style: TextStyle(color: Colors.orange),) : Text(''),
-                accountEmail: isSignIn ? Text(email.toString(), style: TextStyle(color: Colors.orange)) : Text('مستخدم افتراضي', style: TextStyle(fontFamily: 'Droid',color: Colors.grey)),
+                accountName: isSignIn ? Text(user.id.toString(), style: TextStyle(color: Colors.orange),) : Text(''),
+                accountEmail: isSignIn ? Text(user.email, style: TextStyle(color: Colors.orange)) : Text('مستخدم افتراضي', style: TextStyle(fontFamily: 'Droid',color: Colors.grey)),
                 decoration: BoxDecoration(
                   color: Colors.grey[200],
                 ),
@@ -140,8 +137,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
               leading: Icon(Icons.logout),
               onTap: () async{
                 SharedPreferences preferences = await SharedPreferences.getInstance();
-                preferences.remove('id');
-                preferences.remove('email');
+                preferences.remove('user');
                 isSignIn = false;
                 Navigator.of(context).pushNamed('login');
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'Models/adress.dart';
+import 'Models/cartItem.dart';
 import 'Models/categories.dart';
 import 'Models/product.dart';
 import 'Models/addOns.dart';
@@ -11,9 +12,8 @@ import 'package:http/http.dart';
 import 'Models/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 // Url https://flutterforweb.000webhostapp.com/
-String apiUrl = "http://127.0.0.1:5000/";
+String apiUrl = "http://10.0.2.2:5000/";
 
 Future getSettingsData() async {
   var url = Uri.parse(apiUrl + "settings");
@@ -71,26 +71,20 @@ Future getAddonsData(val) async {
   return productAddons;
 }
 
-
-
-savePref(int uid,String email) async {
+savePref(User user) async {
   SharedPreferences preferences = await SharedPreferences.getInstance();
-  preferences.setInt('id', uid);
-  preferences.setString('email', email);
+  preferences.setString('user', jsonEncode(user.toJson()));
+  user = User.fromJson(jsonDecode(preferences.getString('user')));
 }
-
-
-
 
 Future signIn(String phone, String password, BuildContext context) async {
   var data = {"phone": phone, "password": password};
-  var url = apiUrl+'/login';
+  var url = apiUrl + '/login';
   var response = await http.post(Uri.parse(url), body: data);
   var responseBody = jsonDecode(response.body);
   if (responseBody['status'] == "success") {
-    User user = User(id: responseBody['id'], name: responseBody['name']);
-    savePref(responseBody['data']['id'], responseBody['data']['email']);
-    print(responseBody['data']['id']);
+    User user = User.fromJson(responseBody['data']);
+    savePref(user);
     return Navigator.pushReplacementNamed(context, 'MyApp', arguments: user);
   } else {
     print(responseBody['msg']);
@@ -98,43 +92,32 @@ Future signIn(String phone, String password, BuildContext context) async {
   }
 }
 
-
-Future signUp(String phone, String password,String email, BuildContext context) async {
+Future signUp(
+    String phone, String password, String email, BuildContext context) async {
   var data = {"phone": phone, "password": password, "email": email};
-  var url = apiUrl+ '/signUp';
+  var url = apiUrl + '/signUp';
   var response = await http.post(Uri.parse(url), body: data);
   var responseBody = jsonDecode(response.body);
-  if(responseBody['status'] == 'success'){
+  if (responseBody['status'] == 'success') {
     print('new account has been created');
     return responseBody['msg'];
-  }else {
+  } else {
     return responseBody['msg'];
   }
 }
 
-Future placeOrder(String phone, String password,String email, BuildContext context) async {
-  var data = {"phone": phone, "password": password, "email": email};
-  var url = 'http://localhost/resturant/login/placeOrder.php';
-  var response = await http.post(Uri.parse(url), body: data);
+Future placeOrder(User user, List<Item> orders, BuildContext context) async {
+  var data = {"user": user.toJson(), "orders": orders};
+  var response = await http
+      .post(Uri.parse(apiUrl + 'order'), body: jsonEncode(data), headers: {
+    'Content-Type': 'application/json; charset=UTF-8',
+  });
   var responseBody = jsonDecode(response.body);
-  if(responseBody['status'] == 'success'){
+  if (responseBody['status'] == 'success') {
     print('Order accepted');
     return responseBody['msg'];
-  }else {
+  } else {
     print('Order denied');
     return responseBody['msg'];
   }
 }
-
-
-Future<List<dynamic>> getAdr(val) async {
-  var url = Uri.parse(apiUrl +"adress/"+val.toString());
-  http.Response response = await http.get(url);
-  var responseBody = jsonDecode(response.body);
-  List<Adress> Adresses = [];
-  for (var adr in responseBody) {
-    Adresses.add(Adress.fromJson(adr));
-  }
-  return Adresses;
-}
-
