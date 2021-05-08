@@ -37,6 +37,7 @@ class Product {
     price = double.parse(json['price']);
     catId = json['catId'].toString();
     totalSales = int.parse(json['totalSales']);
+    notes = json['notes'];
   }
 
   Map<String, dynamic> toJson() {
@@ -49,6 +50,7 @@ class Product {
     data['catId'] = this.catId;
     data['totalSales'] = this.totalSales;
     data['addons'] = addonsToJson(addons);
+    data['notes'] = this.notes;
     return data;
   }
   List<Map<String, dynamic>> addonsToJson(List<ProductAddons> addons){
