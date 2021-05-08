@@ -65,7 +65,7 @@ class _CheckOutState extends State<CheckOut> {
                       'https://media.wired.com/photos/59269cd37034dc5f91bec0f1/191:100/w_1280,c_limit/GoogleMapTA.jpg',
                       fit: BoxFit.cover,
                     ),
-                    isSignIn == true &&  user.address.area.isNotEmpty
+                    isSignIn == true &&  user.address != null
                         ? Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Row(

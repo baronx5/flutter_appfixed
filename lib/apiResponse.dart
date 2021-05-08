@@ -74,7 +74,6 @@ Future getAddonsData(val) async {
 savePref(User user) async {
   SharedPreferences preferences = await SharedPreferences.getInstance();
   preferences.setString('user', jsonEncode(user.toJson()));
-  user = User.fromJson(jsonDecode(preferences.getString('user')));
 }
 
 Future signIn(String phone, String password, BuildContext context) async {

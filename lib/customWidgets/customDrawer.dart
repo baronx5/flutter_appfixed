@@ -22,7 +22,6 @@ class _CustomDrawerState extends State<CustomDrawer> {
     if (preferences.getString('user') != null) {
       setState(() {
         user = User.fromJson(jsonDecode(preferences.getString('user')));
-        print(user.address.houseNumber);
         isSignIn = true;
       });
     }

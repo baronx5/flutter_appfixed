@@ -13,11 +13,10 @@ class User{
     id = json['id'];
     name = json['name'];
     email = json['email'];
-    print(json['address']);
     if(json['address'] != null ){
       address = Address.fromJson(json['address']);
     }else {
-      address = Address();
+      address = null;
     }
   }
 
@@ -28,6 +27,8 @@ class User{
     data['email'] = this.email;
     if( this.address != null){
       data['address'] = this.address.toJson();
+    }else {
+      address = null;
     }
     return data;
   }
