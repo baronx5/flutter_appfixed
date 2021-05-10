@@ -28,7 +28,6 @@ class _AddAddressState extends State<AddAddress> {
   @override
   void initState() {
     getPref();
-    print(user.address);
     super.initState();
   }
 

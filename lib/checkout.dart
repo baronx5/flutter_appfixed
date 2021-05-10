@@ -1,13 +1,14 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_appfixed/address.dart';
+import 'package:flutter_appfixed/address/address.dart';
 import 'Models/cartItem.dart';
 import 'Models/cart.dart';
 import 'Models/user.dart';
 import 'apiResponse.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'address/ViewAllAddress.dart';
 
 class CheckOut extends StatefulWidget {
   List<Item> orderItems = [];
@@ -180,12 +181,18 @@ class _CheckOutState extends State<CheckOut> {
                                         ),
                                       ],
                                     ),
-                                    Text(
-                                      'تغيير',
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontFamily: 'Droid',
-                                          color: Colors.orange),
+                                    InkWell(
+                                      child: Text(
+                                        'تغيير',
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            fontFamily: 'Droid',
+                                            color: Colors.orange),
+                                      ),
+                                      onTap: (){
+
+                                        Navigator.of(context).pushNamed('viewaddress', arguments: user);
+                                      },
                                     ),
                                   ],
                                 ),
