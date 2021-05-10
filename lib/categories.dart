@@ -14,7 +14,8 @@ class HomeCategories extends StatelessWidget {
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: categories.data.length, // نحدد العدد للايتم بلدر
-                itemBuilder: (context, i){   // ندخلها بالبلدر علشان اللوب
+                itemBuilder: (context, i) {
+                  // ندخلها بالبلدر علشان اللوب
                   return InkWell(
                     child: Container(
                       margin: EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
@@ -32,7 +33,8 @@ class HomeCategories extends StatelessWidget {
                           ),
                           image: DecorationImage(
                               colorFilter: new ColorFilter.mode(
-                                  Colors.black.withOpacity(0.6), BlendMode.dstATop),
+                                  Colors.black.withOpacity(0.6),
+                                  BlendMode.dstATop),
                               image: NetworkImage(categories.data[i].image),
                               fit: BoxFit.cover)),
                       child: Container(
@@ -45,14 +47,14 @@ class HomeCategories extends StatelessWidget {
                             )),
                       ),
                     ),
-                    onTap: (){
+                    onTap: () {
                       Categories category = categories.data[i];
-                      Navigator.of(context).pushNamed('selectCategory', arguments: category);
+                      Navigator.of(context)
+                          .pushNamed('selectCategory', arguments: category);
                     },
                   );
                 },
-              )
-          );
+              ));
         } else if (categories.hasError) {
           return Text("${categories.error}");
         }
@@ -60,7 +62,8 @@ class HomeCategories extends StatelessWidget {
         // By default, show a loading spinner.
         return new Container(
           height: 60.0,
-          child: new Center(child: new CircularProgressIndicator(
+          child: new Center(
+              child: new CircularProgressIndicator(
             backgroundColor: Colors.grey,
           )),
         );
@@ -68,4 +71,3 @@ class HomeCategories extends StatelessWidget {
     );
   }
 }
-

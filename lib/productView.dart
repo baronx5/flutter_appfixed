@@ -71,38 +71,39 @@ class _ProductSelectState extends State<ProductSelect> {
                               child: new Directionality(
                                 textDirection: TextDirection.rtl,
                                 child: ListTile(
-                                    title: Text(
-                                      passedProduct.name,
-                                      textAlign: TextAlign.right,
+                                  title: Text(
+                                    passedProduct.name,
+                                    textAlign: TextAlign.right,
+                                    style: TextStyle(
+                                        fontSize: 18, fontFamily: 'Droid'),
+                                  ),
+                                  subtitle: Text(passedProduct.description,
                                       style: TextStyle(
-                                          fontSize: 18, fontFamily: 'Droid'),
-                                    ),
-                                    subtitle: Text(passedProduct.description,
+                                          fontSize: 12,
+                                          fontFamily: "Droid",
+                                          color: Colors.grey)),
+                                  trailing: TextButton(
+                                    onPressed: () {},
+                                    child: Text(
+                                        "KWD ${passedProduct.price}"
+                                            .toUpperCase(),
                                         style: TextStyle(
-                                            fontSize: 12,
-                                            fontFamily: "Droid",
-                                            color: Colors.grey)),
-                                    trailing: TextButton(
-                                      onPressed: (){},
-                                      child: Text(
-                                          "KWD ${passedProduct.price}"
-                                              .toUpperCase(),
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontFamily: "Droid")),
-                                      style: ButtonStyle(
-                                          padding: MaterialStateProperty.all<
-                                              EdgeInsets>(EdgeInsets.all(5.0)),
-                                          foregroundColor:
-                                              MaterialStateProperty.all<Color>(
-                                                  Colors.lightGreen),
-                                          shape: MaterialStateProperty.all<
-                                                  RoundedRectangleBorder>(
-                                              RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(18.0),
-                                                  side: BorderSide(color: Colors.lightGreen)))),
-                                    ),
+                                            fontSize: 14, fontFamily: "Droid")),
+                                    style: ButtonStyle(
+                                        padding:
+                                            MaterialStateProperty.all<EdgeInsets>(
+                                                EdgeInsets.all(5.0)),
+                                        foregroundColor:
+                                            MaterialStateProperty.all<Color>(
+                                                Colors.lightGreen),
+                                        shape: MaterialStateProperty.all<
+                                                RoundedRectangleBorder>(
+                                            RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(18.0),
+                                                side: BorderSide(
+                                                    color: Colors.lightGreen)))),
+                                  ),
                                 ),
                               )),
                           Align(
@@ -151,7 +152,14 @@ class _ProductSelectState extends State<ProductSelect> {
                                             style: TextStyle(
                                                 fontSize: 14,
                                                 fontFamily: "Droid")),
-                                        subtitle: product.price != 0 ? Text(product.price.toString()+ " دك ",style: TextStyle(fontFamily: 'Droid'),) : Text('free'),
+                                        subtitle: product.price != 0
+                                            ? Text(
+                                                product.price.toString() +
+                                                    " دك ",
+                                                style: TextStyle(
+                                                    fontFamily: 'Droid'),
+                                              )
+                                            : Text('free'),
                                         value: checkBoxesHandle[i],
                                         onChanged: (bool value) {
                                           setState(() {
@@ -162,14 +170,12 @@ class _ProductSelectState extends State<ProductSelect> {
                                             if (checkBoxesHandle[i]) {
                                               checkBoxes.add(product);
                                               passedProduct.addons = checkBoxes;
-                                              addonsPrice +=
-                                                  product.price;
+                                              addonsPrice += product.price;
                                             } else {
                                               checkBoxes.remove(product);
                                               passedProduct.addons = checkBoxes;
                                               if (addonsPrice > 0) {
-                                                addonsPrice -=
-                                                    product.price;
+                                                addonsPrice -= product.price;
                                               }
                                             }
                                           });
@@ -188,21 +194,19 @@ class _ProductSelectState extends State<ProductSelect> {
                           Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: TextField(
-                              maxLines: 1,
-                              maxLength: 60,
-                              textAlign: TextAlign.right,
-                              decoration: InputDecoration.collapsed(
-                                  hintText: "اضف ملاحطاتك ..",
-                                  hintStyle: TextStyle(fontFamily: 'Droid')),
-                              onChanged: (value) {
-                                if (value != null) {
-                                  passedProduct.notes = value;
-                                }else{
-                                  passedProduct.notes = " ";
-                                }
-                              }
-
-                            ),
+                                maxLines: 1,
+                                maxLength: 60,
+                                textAlign: TextAlign.right,
+                                decoration: InputDecoration.collapsed(
+                                    hintText: "اضف ملاحطاتك ..",
+                                    hintStyle: TextStyle(fontFamily: 'Droid')),
+                                onChanged: (value) {
+                                  if (value != null) {
+                                    passedProduct.notes = value;
+                                  } else {
+                                    passedProduct.notes = " ";
+                                  }
+                                }),
                           ),
                           Divider(),
                           Container(
@@ -292,7 +296,8 @@ class _ProductSelectState extends State<ProductSelect> {
                   color: Colors.lightGreen,
                   textColor: Colors.white,
                   onPressed: () {
-                    Item item = Item(productItem: passedProduct, quantity: counter);
+                    Item item =
+                        Item(productItem: passedProduct, quantity: counter);
                     cart.add(item);
                     Navigator.pop(context);
                   },

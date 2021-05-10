@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_appfixed/Models/adress.dart';
 import 'package:flutter_appfixed/Models/user.dart';
 import 'package:flutter_appfixed/login/login.dart';
 import 'package:flutter_appfixed/login/signup.dart';
@@ -12,7 +11,6 @@ import 'package:provider/provider.dart';
 import 'customWidgets/customDrawer.dart';
 import 'checkout.dart';
 import 'address.dart';
-
 
 void main() {
   runApp(ChangeNotifierProvider(
@@ -50,8 +48,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-
-
     final User user = ModalRoute.of(context).settings.arguments;
 
     return Consumer<Carts>(builder: (context, cart, child) {
@@ -82,37 +78,33 @@ class _MyAppState extends State<MyApp> {
                               Icons.shopping_bag_outlined,
                               color: Colors.black54,
                             ),
-                            onPressed: (){
+                            onPressed: () {
                               setState(() {
                                 _selectedPage = 2;
                               });
-
                             },
                           ),
                           cart.basketItems.length == 0
                               ? new Container()
                               : new Positioned(
-                              child: new Stack(
-                                children: <Widget>[
-                                  new Icon(Icons.brightness_1,
-                                      size: 20.0,
-                                      color: Colors.orange[800]),
-                                  new Positioned(
-                                      top: 3.0,
-                                      right: 6.0,
-                                      child: new Center(
-                                        child: new Text(
-                                          cart.basketItems.length
-                                              .toString(),
-                                          style: new TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 11.0,
-                                              fontWeight:
-                                              FontWeight.w500),
-                                        ),
-                                      )),
-                                ],
-                              )),
+                                  child: new Stack(
+                                  children: <Widget>[
+                                    new Icon(Icons.brightness_1,
+                                        size: 20.0, color: Colors.orange[800]),
+                                    new Positioned(
+                                        top: 3.0,
+                                        right: 6.0,
+                                        child: new Center(
+                                          child: new Text(
+                                            cart.basketItems.length.toString(),
+                                            style: new TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 11.0,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                        )),
+                                  ],
+                                )),
                         ],
                       ),
                     )),

@@ -5,7 +5,6 @@ import 'Models/cart.dart';
 import 'checkout.dart';
 
 class CartPage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     List<Map<String, dynamic>> jsonList = [];
@@ -53,27 +52,29 @@ class CartPage extends StatelessWidget {
                                       color: Colors.green),
                                 ),
                                 TextButton(
-                                      child: Text(
-                                        'حذف',
-                                        style: TextStyle(
-                                            fontFamily: 'Droid', fontSize: 12),
-                                      ),
-                                      style: ButtonStyle(
-                                          padding: MaterialStateProperty.all<
-                                              EdgeInsets>(EdgeInsets.all(5.0)),
-                                          foregroundColor:
-                                              MaterialStateProperty.all<Color>(
-                                                  Colors.red),
-                                          shape: MaterialStateProperty.all<
-                                                  RoundedRectangleBorder>(
-                                              RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(18.0),
-                                                  side: BorderSide(color: Colors.red)))),onPressed: (){
+                                  child: Text(
+                                    'حذف',
+                                    style: TextStyle(
+                                        fontFamily: 'Droid', fontSize: 12),
+                                  ),
+                                  style: ButtonStyle(
+                                      padding:
+                                          MaterialStateProperty.all<EdgeInsets>(
+                                              EdgeInsets.all(5.0)),
+                                      foregroundColor:
+                                          MaterialStateProperty.all<Color>(
+                                              Colors.red),
+                                      shape: MaterialStateProperty.all<
+                                              RoundedRectangleBorder>(
+                                          RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(18.0),
+                                              side: BorderSide(
+                                                  color: Colors.red)))),
+                                  onPressed: () {
                                     cart.remove(cart.basketItems[i]);
-                                  },),
-
-
+                                  },
+                                ),
                               ],
                             )),
                         Expanded(
@@ -84,7 +85,8 @@ class CartPage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Text(
-                                  "${cart.basketItems[i].quantity} x " + cart.basketItems[i].productItem.name,
+                                  "${cart.basketItems[i].quantity} x " +
+                                      cart.basketItems[i].productItem.name,
                                   style: TextStyle(
                                       fontFamily: 'Droid',
                                       fontSize: 14,
@@ -140,7 +142,11 @@ class CartPage extends StatelessWidget {
                   child: TextButton(
                     onPressed: () {
                       print(jsonList);
-                      Navigator.push(context,MaterialPageRoute(builder: (context) =>CheckOut(orderItems: cart.basketItems)));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  CheckOut(orderItems: cart.basketItems)));
                     },
                     child: Text(
                       'تنفيذ الطلب',

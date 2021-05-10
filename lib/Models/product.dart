@@ -24,7 +24,7 @@ class Product {
     if (this.addons == null) {
       this.addons = [];
     }
-    if (this.notes == null){
+    if (this.notes == null) {
       this.notes = "لايوجد ملاحظات";
     }
   }
@@ -53,9 +53,10 @@ class Product {
     data['notes'] = this.notes;
     return data;
   }
-  List<Map<String, dynamic>> addonsToJson(List<ProductAddons> addons){
+
+  List<Map<String, dynamic>> addonsToJson(List<ProductAddons> addons) {
     List<Map<String, dynamic>> data = [];
-    for(var addon in addons){
+    for (var addon in addons) {
       data.add(addon.toJson());
     }
     return data;
@@ -71,6 +72,4 @@ class Product {
     }
     return price;
   }
-
-
 }

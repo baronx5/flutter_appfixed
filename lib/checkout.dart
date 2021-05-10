@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_appfixed/address.dart';
 import 'Models/cartItem.dart';
 import 'Models/cart.dart';
 import 'Models/user.dart';
@@ -30,6 +31,10 @@ class _CheckOutState extends State<CheckOut> {
         isSignIn = true;
       });
     }
+  }
+
+  refresh() async {
+    getPref();
   }
 
   @override
@@ -65,7 +70,7 @@ class _CheckOutState extends State<CheckOut> {
                       'https://media.wired.com/photos/59269cd37034dc5f91bec0f1/191:100/w_1280,c_limit/GoogleMapTA.jpg',
                       fit: BoxFit.cover,
                     ),
-                    isSignIn == true &&  user.address != null
+                    isSignIn == true && user.address != null
                         ? Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Row(
@@ -209,13 +214,24 @@ class _CheckOutState extends State<CheckOut> {
                                     TextButton(
                                       style: TextButton.styleFrom(
                                           backgroundColor: Colors.red,
-                                          primary: Colors.white
-                                      ),
+                                          primary: Colors.white),
                                       child: Padding(
-                                          padding: EdgeInsets.only(left: 5, right: 15),
-                                          child: Center(child: Text("اضف عنوان",style: TextStyle(fontFamily: 'Droid',fontSize: 16),))),
+                                          padding: EdgeInsets.only(
+                                              left: 5, right: 15),
+                                          child: Center(
+                                              child: Text(
+                                            "اضف عنوان",
+                                            style: TextStyle(
+                                                fontFamily: 'Droid',
+                                                fontSize: 16),
+                                          ))),
                                       onPressed: () {
-                                        Navigator.pushNamed(context, 'address');
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => AddAddress(
+                                                  notifyParent: refresh)),
+                                        );
                                       },
                                     ),
                                   ],

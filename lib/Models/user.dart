@@ -1,21 +1,18 @@
-
-
-class User{
+class User {
   int id;
   String name;
   String email;
   Address address;
 
-  User({this.id,this.name, this.email, this.address});
-
+  User({this.id, this.name, this.email, this.address});
 
   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     email = json['email'];
-    if(json['address'] != null ){
+    if (json['address'] != null) {
       address = Address.fromJson(json['address']);
-    }else {
+    } else {
       address = null;
     }
   }
@@ -25,16 +22,16 @@ class User{
     data['id'] = this.id;
     data['name'] = this.name;
     data['email'] = this.email;
-    if( this.address != null){
+    if (this.address != null) {
       data['address'] = this.address.toJson();
-    }else {
+    } else {
       address = null;
     }
     return data;
   }
-
 }
-class Address{
+
+class Address {
   int id;
   String area;
   String block;
@@ -77,6 +74,4 @@ class Address{
     data['userId'] = this.userId;
     return data;
   }
-
-
 }

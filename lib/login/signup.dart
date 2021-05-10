@@ -1,27 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_appfixed/apiResponse.dart';
 
-
 class SignUpPage extends StatelessWidget {
-
   String phone;
   String password;
   String email;
   final signInForm = GlobalKey<FormState>();
+
   void _showDialog(BuildContext context, String msg) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: new Text("خطأ", style: TextStyle(fontFamily: 'Droid',fontSize: 22, color: Colors.black54),textAlign: TextAlign.center,),
-          content: new Text(msg, style: TextStyle(fontFamily: 'Droid',fontSize: 18, color: Colors.black54),textAlign: TextAlign.center,),
+          title: new Text(
+            "خطأ",
+            style: TextStyle(
+                fontFamily: 'Droid', fontSize: 22, color: Colors.black54),
+            textAlign: TextAlign.center,
+          ),
+          content: new Text(
+            msg,
+            style: TextStyle(
+                fontFamily: 'Droid', fontSize: 18, color: Colors.black54),
+            textAlign: TextAlign.center,
+          ),
           actions: <Widget>[
             new TextButton(
               style: TextButton.styleFrom(
-                  backgroundColor: Colors.red,
-                  primary: Colors.white
-              ),
-              child: Center(child: new Text("اعاده المحاولة",style: TextStyle(fontFamily: 'Droid',fontSize: 16, color: Colors.white),)),
+                  backgroundColor: Colors.red, primary: Colors.white),
+              child: Center(
+                  child: new Text(
+                "اعاده المحاولة",
+                style: TextStyle(
+                    fontFamily: 'Droid', fontSize: 16, color: Colors.white),
+              )),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -32,21 +44,25 @@ class SignUpPage extends StatelessWidget {
     );
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
-        child: Center(child: Column(
+        child: Center(
+            child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             SizedBox(
               height: 100,
             ),
-            Image.network('https://flutterforweb.000webhostapp.com/resturant/logo.jpg', width: 150,),
-            Text('تسجيل حساب جديد',style: TextStyle(color: Colors.black, fontSize: 24, fontFamily: 'Droid')),
+            Image.network(
+              'https://flutterforweb.000webhostapp.com/resturant/logo.jpg',
+              width: 150,
+            ),
+            Text('تسجيل حساب جديد',
+                style: TextStyle(
+                    color: Colors.black, fontSize: 24, fontFamily: 'Droid')),
             Form(
                 key: signInForm,
                 child: Column(
@@ -54,24 +70,24 @@ class SignUpPage extends StatelessWidget {
                     Container(
                       width: 300,
                       child: TextFormField(
-                          textDirection: TextDirection.rtl,
-                          maxLength: 8,
-                          decoration: InputDecoration(
+                        textDirection: TextDirection.rtl,
+                        maxLength: 8,
+                        decoration: InputDecoration(
                             border: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Colors.amber
-                                ),
-                                borderRadius: BorderRadius.circular(10.0)
-                            ),
-                            hintText: 'رقم الهاتف', hintStyle: TextStyle(fontFamily: 'Droid',)
-                        ),
-                        validator: (value){
-                          if (value.isEmpty || value == null){
+                                borderSide: BorderSide(color: Colors.amber),
+                                borderRadius: BorderRadius.circular(10.0)),
+                            hintText: 'رقم الهاتف',
+                            hintStyle: TextStyle(
+                              fontFamily: 'Droid',
+                            )),
+                        validator: (value) {
+                          if (value.isEmpty || value == null) {
                             return 'ادخل رقم الهاتف';
-                          } return null;
+                          }
+                          return null;
                         },
-                        onSaved: (value){
-                          phone = value ;
+                        onSaved: (value) {
+                          phone = value;
                         },
                       ),
                     ),
@@ -81,23 +97,22 @@ class SignUpPage extends StatelessWidget {
                           textDirection: TextDirection.rtl,
                           maxLength: 20,
                           decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Colors.amber
-                                ),
-                                borderRadius: BorderRadius.circular(10.0)
-                            ),
-                              hintText: 'الرقم السري', hintStyle: TextStyle(fontFamily: 'Droid',)
-                          ),
-                          validator: (value){
-                            if (value.isEmpty || value == null){
+                              border: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.amber),
+                                  borderRadius: BorderRadius.circular(10.0)),
+                              hintText: 'الرقم السري',
+                              hintStyle: TextStyle(
+                                fontFamily: 'Droid',
+                              )),
+                          validator: (value) {
+                            if (value.isEmpty || value == null) {
                               return 'ادخل الرقم السري';
-                            } return null;
+                            }
+                            return null;
                           },
-                          onSaved: (value){
-                            password = value ;
-                          }
-                      ),
+                          onSaved: (value) {
+                            password = value;
+                          }),
                     ),
                     Container(
                       width: 300,
@@ -105,23 +120,22 @@ class SignUpPage extends StatelessWidget {
                           textDirection: TextDirection.rtl,
                           maxLength: 30,
                           decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Colors.amber
-                                ),
-                                borderRadius: BorderRadius.circular(10.0)
-                            ),
-                              hintText: 'البريد الالكتروني', hintStyle: TextStyle(fontFamily: 'Droid',)
-                          ),
-                          validator: (value){
-                            if (value.isEmpty || value == null){
+                              border: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.amber),
+                                  borderRadius: BorderRadius.circular(10.0)),
+                              hintText: 'البريد الالكتروني',
+                              hintStyle: TextStyle(
+                                fontFamily: 'Droid',
+                              )),
+                          validator: (value) {
+                            if (value.isEmpty || value == null) {
                               return 'ادخل البريد الالكتروني';
-                            } return null;
+                            }
+                            return null;
                           },
-                          onSaved: (value){
-                            email = value ;
-                          }
-                      ),
+                          onSaved: (value) {
+                            email = value;
+                          }),
                     ),
                   ],
                 )),
@@ -131,19 +145,27 @@ class SignUpPage extends StatelessWidget {
                   padding: EdgeInsets.all(20.0),
                   backgroundColor: Colors.black,
                 ),
-                child: Text('تسجيل حساب جديد',style: TextStyle(color: Colors.white,fontFamily: 'Droid', fontSize: 16)),
+                child: Text('تسجيل حساب جديد',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: 'Droid',
+                        fontSize: 16)),
                 onPressed: () async {
-                  if(signInForm.currentState.validate()){
+                  if (signInForm.currentState.validate()) {
                     signInForm.currentState.save();
-                    var response = await signUp(phone, password,email, context);
+                    var response =
+                        await signUp(phone, password, email, context);
                     _showDialog(context, response);
-
                   }
-                }
+                }),
+            InkWell(
+              child: Text('العودة',
+                  style: TextStyle(
+                      color: Colors.black, fontFamily: 'Droid', fontSize: 16)),
+              onTap: () {
+                Navigator.pop(context);
+              },
             ),
-            InkWell(child: Text('العودة',style: TextStyle(color: Colors.black,fontFamily: 'Droid', fontSize: 16)),onTap: (){
-              Navigator.pop(context);
-            },),
             SizedBox(
               height: 100,
             )
@@ -153,5 +175,3 @@ class SignUpPage extends StatelessWidget {
     );
   }
 }
-
-

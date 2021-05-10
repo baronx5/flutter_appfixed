@@ -19,11 +19,11 @@ class HomeSlider extends StatelessWidget {
           showIndicator: true,
           indicatorBgPadding: 7.0,
           images: [
-            NetworkImage('https://flutterforweb.000webhostapp.com/resturant/sliderimg1.jpg'),
-            NetworkImage('https://images.unsplash.com/photo-1481931098730-318b6f776db0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=674&q=80'),
+            NetworkImage(
+                'https://flutterforweb.000webhostapp.com/resturant/sliderimg1.jpg'),
+            NetworkImage(
+                'https://images.unsplash.com/photo-1481931098730-318b6f776db0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=674&q=80'),
           ],
-        )
-    );
+        ));
   }
 }
-

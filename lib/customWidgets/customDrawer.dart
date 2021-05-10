@@ -32,10 +32,9 @@ class _CustomDrawerState extends State<CustomDrawer> {
     getPref();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
-
-
     return Drawer(
       child: Column(
         children: <Widget>[
@@ -43,8 +42,17 @@ class _CustomDrawerState extends State<CustomDrawer> {
               child: Column(
             children: [
               UserAccountsDrawerHeader(
-                accountName: isSignIn ? Text(user.id.toString(), style: TextStyle(color: Colors.orange),) : Text(''),
-                accountEmail: isSignIn ? Text(user.email, style: TextStyle(color: Colors.orange)) : Text('مستخدم افتراضي', style: TextStyle(fontFamily: 'Droid',color: Colors.grey)),
+                accountName: isSignIn
+                    ? Text(
+                        user.id.toString(),
+                        style: TextStyle(color: Colors.orange),
+                      )
+                    : Text(''),
+                accountEmail: isSignIn
+                    ? Text(user.email, style: TextStyle(color: Colors.orange))
+                    : Text('مستخدم افتراضي',
+                        style:
+                            TextStyle(fontFamily: 'Droid', color: Colors.grey)),
                 decoration: BoxDecoration(
                   color: Colors.grey[200],
                 ),
@@ -125,33 +133,35 @@ class _CustomDrawerState extends State<CustomDrawer> {
           )),
           Container(
             margin: EdgeInsets.only(bottom: 30),
-            child: isSignIn ? ListTile(
-              title: Text(
-                'تسجيل الخروج',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontFamily: 'Droid',
-                ),
-              ),
-              leading: Icon(Icons.logout),
-              onTap: () async{
-                SharedPreferences preferences = await SharedPreferences.getInstance();
-                preferences.remove('user');
-                isSignIn = false;
-                Navigator.of(context).pushNamed('login');
-
-              },
-            ) : ListTile(
-              title: Text(
-                'تسجيل الدخول',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontFamily: 'Droid',
-                ),
-              ),
-              leading: Icon(Icons.logout),
-              onTap: () {},
-            ),
+            child: isSignIn
+                ? ListTile(
+                    title: Text(
+                      'تسجيل الخروج',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontFamily: 'Droid',
+                      ),
+                    ),
+                    leading: Icon(Icons.logout),
+                    onTap: () async {
+                      SharedPreferences preferences =
+                          await SharedPreferences.getInstance();
+                      preferences.remove('user');
+                      isSignIn = false;
+                      Navigator.of(context).pushNamed('login');
+                    },
+                  )
+                : ListTile(
+                    title: Text(
+                      'تسجيل الدخول',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontFamily: 'Droid',
+                      ),
+                    ),
+                    leading: Icon(Icons.logout),
+                    onTap: () {},
+                  ),
           ),
         ],
       ),

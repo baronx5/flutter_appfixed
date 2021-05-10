@@ -40,34 +40,32 @@ class CustomAppBar extends PreferredSize {
                                         Icons.shopping_cart,
                                         color: Colors.black54,
                                       ),
-                                      onPressed: (){
-
-                                      },
+                                      onPressed: () {},
                                     ),
                                     cart.basketItems.length == 0
                                         ? new Container()
                                         : new Positioned(
-                                        child: new Stack(
-                                          children: <Widget>[
-                                            new Icon(Icons.brightness_1,
-                                                size: 20.0,
-                                                color: Colors.orange[800]),
-                                            new Positioned(
-                                                top: 3.0,
-                                                right: 6.0,
-                                                child: new Center(
-                                                  child: new Text(
-                                                    cart.basketItems.length
-                                                        .toString(),
-                                                    style: new TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 11.0,
-                                                        fontWeight:
-                                                        FontWeight.w500),
-                                                  ),
-                                                )),
-                                          ],
-                                        )),
+                                            child: new Stack(
+                                            children: <Widget>[
+                                              new Icon(Icons.brightness_1,
+                                                  size: 20.0,
+                                                  color: Colors.orange[800]),
+                                              new Positioned(
+                                                  top: 3.0,
+                                                  right: 6.0,
+                                                  child: new Center(
+                                                    child: new Text(
+                                                      cart.basketItems.length
+                                                          .toString(),
+                                                      style: new TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 11.0,
+                                                          fontWeight:
+                                                              FontWeight.w500),
+                                                    ),
+                                                  )),
+                                            ],
+                                          )),
                                   ],
                                 ),
                               )),
@@ -100,8 +98,8 @@ class CustomAppBar extends PreferredSize {
                     height: 60.0,
                     child: new Center(
                         child: new CircularProgressIndicator(
-                          backgroundColor: Colors.grey,
-                        )),
+                      backgroundColor: Colors.grey,
+                    )),
                   );
                 },
               ),
@@ -113,8 +111,7 @@ class CustomAppBar extends PreferredSize {
                     child: SizedBox(
                       width: 56,
                       height: 56,
-                      child: Icon(Icons.category,
-                          color: Colors.black54),
+                      child: Icon(Icons.category, color: Colors.black54),
                     ),
                     onTap: () {
                       //Navigator.pop(context);
