@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_appfixed/address/address.dart';
 import 'Models/cartItem.dart';
@@ -8,7 +7,6 @@ import 'Models/user.dart';
 import 'apiResponse.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'address/ViewAllAddress.dart';
 
 class CheckOut extends StatefulWidget {
   List<Item> orderItems = [];
