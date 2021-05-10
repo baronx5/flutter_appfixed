@@ -14,7 +14,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 // Url https://flutterforweb.000webhostapp.com/
 // Url http://127.0.0.1:5000/
 // Url http://10.0.2.2:5000/
-String apiUrl = "http://10.0.2.2:5000/";
+String apiUrl = "http://127.0.0.1:5000/";
 
 Future getSettingsData() async {
   var url = Uri.parse(apiUrl + "settings");
@@ -79,7 +79,7 @@ savePref(User user) async {
 
 Future signIn(String phone, String password, BuildContext context) async {
   var data = {"phone": phone, "password": password};
-  var url = apiUrl + '/login';
+  var url = apiUrl + 'login';
   var response = await http.post(Uri.parse(url), body: data);
   var responseBody = jsonDecode(response.body);
   if (responseBody['status'] == "success") {
@@ -125,9 +125,10 @@ Future placeOrder(User user, List<Item> orders, BuildContext context) async {
 
 Future newAddress( User user, BuildContext context) async {
 
-  var data = {"address": json.encode(user.address.toJson())};
-  var url = apiUrl + '/address/add/';
-  var response = await http.post(Uri.parse(url), body: data);
+  var data = {"address": user.address.toJson()};
+  var url = apiUrl + 'address/add/';
+  var response = await http.post(Uri.parse(url), body: jsonEncode(data), headers: {
+  'Content-Type': 'application/json; charset=UTF-8'});
   var responseBody = jsonDecode(response.body);
   if (responseBody['status'] == 'success') {
     print('new address has been created');

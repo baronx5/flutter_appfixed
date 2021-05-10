@@ -224,8 +224,12 @@ class _AddAddressState extends State<AddAddress> {
                     if(addressForm.currentState.validate()){
                       addressForm.currentState.save();
                       user.address = address;
+                      user.address.userId = user.id.toString();
                       var postAddress = await newAddress(user, context);
-                      _showDialog(context, postAddress);
+                      setState(() {
+                        _showDialog(context, postAddress);
+                        Navigator.pop(context, true);
+                      });
 
                     }
                   }

@@ -1,4 +1,4 @@
-import 'dart:convert';
+
 
 class User{
   int id;
@@ -74,7 +74,7 @@ class Address{
     data['jada'] = this.jada;
     data['floor'] = this.floor;
     data['housenumber'] = this.houseNumber;
-    data['userId'] = userId;
+    data['userId'] = this.userId;
     return data;
   }
 
