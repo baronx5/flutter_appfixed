@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_appfixed/apiResponse.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'dart:convert';
 import 'package:flutter_appfixed/Models/user.dart';
 import 'package:flutter_appfixed/address/editAddress.dart';
 
@@ -63,10 +61,11 @@ class _ViewAllAddressState extends State<ViewAllAddress> {
                                     color: Colors.orange,
                                   ),
                                   onTap: () {
+                                    print(user.address.street);
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => EditAddress(user)),
+                                          builder: (context) => EditAddress(snapshot.data[index])),
                                     );
                                   },
                                 ),

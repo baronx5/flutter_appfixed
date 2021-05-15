@@ -40,6 +40,7 @@ class Address {
   String floor;
   String houseNumber;
   String userId;
+  bool userDefault;
 
   Address(
       {this.id,
@@ -49,7 +50,8 @@ class Address {
       this.jada,
       this.floor,
       this.houseNumber,
-      this.userId});
+      this.userId,
+        this.userDefault});
 
   Address.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -60,6 +62,7 @@ class Address {
     floor = json['floor'].toString();
     houseNumber = json['housenumber'].toString();
     userId = json['userId'].toString();
+    userDefault = json['user_default'] == "" ? false : true;
   }
 
   Map<String, dynamic> toJson() {
@@ -72,6 +75,8 @@ class Address {
     data['floor'] = this.floor;
     data['housenumber'] = this.houseNumber;
     data['userId'] = this.userId;
+    data['user_default'] = this.userDefault;
     return data;
   }
+
 }
