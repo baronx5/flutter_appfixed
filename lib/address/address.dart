@@ -5,7 +5,7 @@ import 'package:flutter_appfixed/Models/user.dart';
 import 'dart:convert';
 
 class AddAddress extends StatefulWidget {
-  final Function() notifyParent;
+  final Function notifyParent;
 
   const AddAddress({Key key, this.notifyParent}) : super(key: key);
 

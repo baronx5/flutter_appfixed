@@ -34,6 +34,7 @@ class _CheckOutState extends State<CheckOut> {
   }
 
   refresh() async {
+    print("refresh function invoked");
     getPref();
   }
 
@@ -196,7 +197,7 @@ class _CheckOutState extends State<CheckOut> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    ViewAllAddress(refreshDefaultAddress: this.refresh(),)));
+                                                    ViewAllAddress(notifyParent: refresh, user: user)));
                                       },
                                     ),
                                   ],

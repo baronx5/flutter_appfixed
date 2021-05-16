@@ -1,23 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_appfixed/Models/user.dart';
 import 'package:flutter_appfixed/apiResponse.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 
 class EditAddress extends StatefulWidget {
-  Address address;
-  Function() refresh;
-
-  EditAddress(this.address, this.refresh);
+  final Address address;
+  final Function notifyParent;
+  final User user;
+  const EditAddress({Key key, this.notifyParent, this.address, this.user}) : super(key: key);
 
   @override
-  _EditAddressState createState() =>
-      _EditAddressState(refresh: this.refresh, address: this.address);
+  _EditAddressState createState() => _EditAddressState();
 }
 
 class _EditAddressState extends State<EditAddress> {
-  Address address;
-  Function() refresh;
-
-  _EditAddressState({this.refresh, this.address});
 
   final addressForm = GlobalKey<FormState>();
 
@@ -255,9 +252,13 @@ class _EditAddressState extends State<EditAddress> {
                         var postAddress =
                             await addressUpdate(widget.address, context);
                         if (postAddress["status"] == "success") {
-                          //savePref(user);
-                          //widget.notifyParent();
-                          this.refresh();
+                          // if the user made it as default address it will refresh the address in the checkout page
+                          //otherwise it will not refresh
+                          if(widget.address.userDefault){
+                            widget.user.address = widget.address;
+                            savePref(widget.user);
+                            widget.notifyParent();
+                          }
                           Navigator.pop(context);
                         } else {
                           _showDialog(context, postAddress["msg"]);
