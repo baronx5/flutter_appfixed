@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_appfixed/address/ViewAllAddress.dart';
 import 'package:flutter_appfixed/address/address.dart';
 import 'Models/cartItem.dart';
 import 'Models/cart.dart';
@@ -187,9 +188,15 @@ class _CheckOutState extends State<CheckOut> {
                                             fontFamily: 'Droid',
                                             color: Colors.orange),
                                       ),
-                                      onTap: (){
-
-                                        Navigator.of(context).pushNamed('viewaddress', arguments: user);
+                                      onTap: () {
+                                        // Navigator.of(context).pushNamed(
+                                        //     'viewaddress',
+                                        //     arguments: user);
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    ViewAllAddress(refreshDefaultAddress: this.refresh(),)));
                                       },
                                     ),
                                   ],

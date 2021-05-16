@@ -3,21 +3,26 @@ import 'package:flutter_appfixed/Models/user.dart';
 import 'package:flutter_appfixed/apiResponse.dart';
 
 class EditAddress extends StatefulWidget {
-  Address address = Address();
+  Address address;
+  Function() refresh;
 
-  EditAddress(this.address);
+  EditAddress(this.address, this.refresh);
 
   @override
-  _EditAddressState createState() => _EditAddressState();
+  _EditAddressState createState() =>
+      _EditAddressState(refresh: this.refresh, address: this.address);
 }
 
 class _EditAddressState extends State<EditAddress> {
+  Address address;
+  Function() refresh;
+
+  _EditAddressState({this.refresh, this.address});
+
   final addressForm = GlobalKey<FormState>();
 
-bool _valueR =  false;
-int selectR = 0;
-
-
+  bool _valueR = false;
+  int selectR = 0;
 
   void _showDialog(BuildContext context, String msg) {
     showDialog(
@@ -223,11 +228,13 @@ int selectR = 0;
                     child: Directionality(
                       textDirection: TextDirection.rtl,
                       child: CheckboxListTile(
-                        title: Text("I dont know how to type arabic in this mf laptop"),
+                        title: Text(
+                            "I dont know how to type arabic in this mf laptop"),
                         value: widget.address.userDefault,
-                        onChanged: (value){
+                        onChanged: (value) {
                           setState(() {
-                            widget.address.userDefault = !widget.address.userDefault;
+                            widget.address.userDefault =
+                                !widget.address.userDefault;
                           });
                         },
                       ),
@@ -245,12 +252,12 @@ int selectR = 0;
                     onPressed: () async {
                       if (addressForm.currentState.validate()) {
                         addressForm.currentState.save();
-
                         var postAddress =
                             await addressUpdate(widget.address, context);
                         if (postAddress["status"] == "success") {
                           //savePref(user);
                           //widget.notifyParent();
+                          this.refresh();
                           Navigator.pop(context);
                         } else {
                           _showDialog(context, postAddress["msg"]);

@@ -62,7 +62,7 @@ class Address {
     floor = json['floor'].toString();
     houseNumber = json['housenumber'].toString();
     userId = json['userId'].toString();
-    userDefault = json['user_default'] == "" ? false : true;
+    userDefault = json['user_default'] == "False" ? false : true;
   }
 
   Map<String, dynamic> toJson() {

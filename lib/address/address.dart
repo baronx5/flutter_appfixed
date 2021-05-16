@@ -7,7 +7,7 @@ import 'dart:convert';
 class AddAddress extends StatefulWidget {
   final Function() notifyParent;
 
-  const AddAddress({Key key, @required this.notifyParent}) : super(key: key);
+  const AddAddress({Key key, this.notifyParent}) : super(key: key);
 
   @override
   _AddAddressState createState() => _AddAddressState();
