@@ -62,6 +62,9 @@ class _ViewAllAddressState extends State<ViewAllAddress> {
                             setState(() {
                               addressRemove(snapshot.data[index]);
                               snapshot.data.removeAt(index);
+                              user.address = null;
+                              savePref(user);
+                              widget.notifyCheckoutPage();
                             });
                           },
                           key: ValueKey<int>(snapshot.data[index].id),
