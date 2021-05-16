@@ -6,9 +6,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class EditAddress extends StatefulWidget {
   final Address address;
-  final Function notifyParent;
+  final Function notifyCheckoutPage;
+  final Function notifyViewAllAddress;
   final User user;
-  const EditAddress({Key key, this.notifyParent, this.address, this.user}) : super(key: key);
+  const EditAddress({Key key, this.notifyCheckoutPage, this.address, this.user, this.notifyViewAllAddress}) : super(key: key);
 
   @override
   _EditAddressState createState() => _EditAddressState();
@@ -257,8 +258,10 @@ class _EditAddressState extends State<EditAddress> {
                           if(widget.address.userDefault){
                             widget.user.address = widget.address;
                             savePref(widget.user);
-                            widget.notifyParent();
+                            widget.notifyCheckoutPage();
                           }
+                          //to refresh address list in View all address
+                          widget.notifyViewAllAddress();
                           Navigator.pop(context);
                         } else {
                           _showDialog(context, postAddress["msg"]);

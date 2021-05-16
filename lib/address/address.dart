@@ -5,9 +5,9 @@ import 'package:flutter_appfixed/Models/user.dart';
 import 'dart:convert';
 
 class AddAddress extends StatefulWidget {
-  final Function notifyParent;
-
-  const AddAddress({Key key, this.notifyParent}) : super(key: key);
+  final Function notifyCheckoutPage;
+  final Function notifyViewAllAddress;
+  const AddAddress({Key key, this.notifyCheckoutPage, this.notifyViewAllAddress}) : super(key: key);
 
   @override
   _AddAddressState createState() => _AddAddressState();
@@ -17,12 +17,12 @@ class _AddAddressState extends State<AddAddress> {
   User user = User();
   Address address = Address();
   final addressForm = GlobalKey<FormState>();
-
   getPref() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     if (preferences.getString('user') != null) {
       user = User.fromJson(jsonDecode(preferences.getString('user')));
     }
+
   }
 
   @override
@@ -243,7 +243,11 @@ class _AddAddressState extends State<AddAddress> {
                         var postAddress = await newAddress(user, context);
                         if (postAddress["status"] == "success") {
                           savePref(user);
-                          widget.notifyParent();
+                          widget.notifyCheckoutPage();
+                          if(widget.notifyViewAllAddress != null){
+                            print("view all address refresh function invoked");
+                            widget.notifyViewAllAddress();
+                          }
                           Navigator.pop(context, true);
                         } else {
                           _showDialog(context, postAddress["msg"]);

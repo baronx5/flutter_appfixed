@@ -5,24 +5,31 @@ import 'package:flutter_appfixed/Models/user.dart';
 import 'package:flutter_appfixed/address/editAddress.dart';
 
 class ViewAllAddress extends StatefulWidget {
-  final Function notifyParent;
+  final Function notifyCheckoutPage;
   final User user;
-  const ViewAllAddress({Key key, this.notifyParent, this.user}) : super(key: key);
+  const ViewAllAddress({Key key, this.notifyCheckoutPage, this.user}) : super(key: key);
   @override
-  _ViewAllAddressState createState() => _ViewAllAddressState();
+  _ViewAllAddressState createState() => _ViewAllAddressState(user: user);
 }
 
 class _ViewAllAddressState extends State<ViewAllAddress> {
+  User user;
+  Future<List<Address>> allAddress;
+  _ViewAllAddressState({this.user});
+
+  void refreshData(){
+    setState(() {
+      allAddress = getAddressData(widget.user.id);
+    });
+  }
 
   @override
+  void initState() {
+    allAddress = getAddressData(user.id);
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
-    Future<List<Address>> allAddress = getAddressData(widget.user.id);
-
-      void refreshData(){
-        setState(() {
-          allAddress = getAddressData(widget.user.id);
-        });
-      }
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -49,35 +56,45 @@ class _ViewAllAddressState extends State<ViewAllAddress> {
                     shrinkWrap: true,
                       itemCount: snapshot.data.length,
                       itemBuilder: (context, index) {
-                        return new Directionality(
-                            textDirection: TextDirection.rtl,
-                            child: Column(
-                              children: [
-                                ListTile(
-                                  contentPadding: EdgeInsets.all(0),
-                                  title: Row(
-                                    children: [
-                                      Text(snapshot.data[index].area,style: TextStyle(fontFamily: 'Droid', fontSize: 14),),
-                                      Text(" ق " + snapshot.data[index].block,style: TextStyle(fontFamily: 'Droid', fontSize: 14),),
-                                      Text(" ش " +snapshot.data[index].street,style: TextStyle(fontFamily: 'Droid', fontSize: 14),),
-                                      Text(" ج " +snapshot.data[index].jada,style: TextStyle(fontFamily: 'Droid', fontSize: 14),),
-                                      Text(" د " +snapshot.data[index].floor,style: TextStyle(fontFamily: 'Droid', fontSize: 14),),
-                                      Text(" م " +snapshot.data[index].houseNumber,style: TextStyle(fontFamily: 'Droid', fontSize: 14),),
-                                    ],
+                        return Dismissible(
+                          background: Container(color: Colors.red, child: Center(child: Text("DELETE"),),),
+                          onDismissed: (direction){
+                            setState(() {
+                              addressRemove(snapshot.data[index]);
+                              snapshot.data.removeAt(index);
+                            });
+                          },
+                          key: ValueKey<int>(snapshot.data[index].id),
+                          child: new Directionality(
+                              textDirection: TextDirection.rtl,
+                              child: Column(
+                                children: [
+                                  ListTile(
+                                    contentPadding: EdgeInsets.all(0),
+                                    title: Row(
+                                      children: [
+                                        Text(snapshot.data[index].area,style: TextStyle(fontFamily: 'Droid', fontSize: 14),),
+                                        Text(" ق " + snapshot.data[index].block,style: TextStyle(fontFamily: 'Droid', fontSize: 14),),
+                                        Text(" ش " +snapshot.data[index].street,style: TextStyle(fontFamily: 'Droid', fontSize: 14),),
+                                        Text(" ج " +snapshot.data[index].jada,style: TextStyle(fontFamily: 'Droid', fontSize: 14),),
+                                        Text(" د " +snapshot.data[index].floor,style: TextStyle(fontFamily: 'Droid', fontSize: 14),),
+                                        Text(" م " +snapshot.data[index].houseNumber,style: TextStyle(fontFamily: 'Droid', fontSize: 14),),
+                                      ],
+                                    ),
+                                    leading: Icon(Icons.location_city),
+                                    trailing: snapshot.data[index].userDefault? Icon(Icons.location_on,color: Colors.orange, ) : Padding(padding: EdgeInsets.all(0)),
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => EditAddress(address: snapshot.data[index],notifyCheckoutPage: widget.notifyCheckoutPage,user: widget.user, notifyViewAllAddress: refreshData,)),
+                                      );
+                                    },
                                   ),
-                                  leading: Icon(Icons.location_city),
-                                  trailing: snapshot.data[index].userDefault? Icon(Icons.location_on,color: Colors.orange, ) : Padding(padding: EdgeInsets.all(0)),
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => EditAddress(address: snapshot.data[index],notifyParent: widget.notifyParent,user: widget.user,)),
-                                    );
-                                  },
-                                ),
-                                Divider()
-                              ],
-                            ));
+                                  Divider()
+                                ],
+                              )),
+                        );
                       });
                 } else if (snapshot.hasError) {
                   return Text('${snapshot.error}');
@@ -88,7 +105,7 @@ class _ViewAllAddressState extends State<ViewAllAddress> {
             height: 50,
             child: ElevatedButton(onPressed: (){
               //Navigator.pushNamed(context, "address");
-              Navigator.push(context, MaterialPageRoute(builder: (context) => AddAddress(notifyParent: widget.notifyParent,)));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => AddAddress(notifyCheckoutPage: widget.notifyCheckoutPage, notifyViewAllAddress: refreshData,)));
             },
                 style: ElevatedButton.styleFrom(primary: Colors.orange,
                 ),

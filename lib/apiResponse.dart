@@ -161,3 +161,16 @@ Future addressUpdate(Address address, BuildContext context) async {
     return responseBody;
   }
 }
+Future addressRemove(Address address) async {
+  var data = {"address": address.toJson()};
+  var url = apiUrl + 'address/remove/';
+  var response = await http.post(Uri.parse(url),
+      body: jsonEncode(data),
+      headers: {'Content-Type': 'application/json; charset=UTF-8'});
+  var responseBody = jsonDecode(response.body);
+  if (responseBody['status'] == 'success') {
+    return responseBody;
+  } else {
+    return responseBody;
+  }
+}
