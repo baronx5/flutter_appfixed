@@ -81,7 +81,7 @@ class _EditAddressState extends State<EditAddress> {
                   width: 300,
                   child: TextFormField(
                     textDirection: TextDirection.rtl,
-                    maxLength: 8,
+                    maxLength: 30,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.amber),
@@ -106,7 +106,7 @@ class _EditAddressState extends State<EditAddress> {
                   width: 300,
                   child: TextFormField(
                       textDirection: TextDirection.rtl,
-                      maxLength: 20,
+                      maxLength: 30,
                       decoration: InputDecoration(
                           border: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.amber),

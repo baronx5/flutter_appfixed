@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_appfixed/Models/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -102,18 +101,6 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   ),
                 ),
                 leading: Icon(Icons.support),
-                onTap: () {},
-              ),
-              Divider(),
-              ListTile(
-                title: Text(
-                  'الملاحظات والشكاوي',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontFamily: 'Droid',
-                  ),
-                ),
-                leading: Icon(Icons.fastfood),
                 onTap: () {},
               ),
               Divider(),

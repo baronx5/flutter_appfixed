@@ -68,7 +68,7 @@ class _CheckOutState extends State<CheckOut> {
                 child: Column(
                   children: [
                     Image.network(
-                      'https://media.wired.com/photos/59269cd37034dc5f91bec0f1/191:100/w_1280,c_limit/GoogleMapTA.jpg',
+                      'http://localhost/resturant/delivery.jpg',
                       fit: BoxFit.cover,
                     ),
                     isSignIn == true && user.address != null

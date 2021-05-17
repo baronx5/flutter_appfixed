@@ -81,154 +81,173 @@ class _AddAddressState extends State<AddAddress> {
         elevation: 0,
         iconTheme: IconThemeData(color: Colors.black54),
       ),
-      body: Center(
-        child: Form(
+      body: ListView(children: [
+        Directionality(textDirection: TextDirection.rtl, child: Form(
             key: addressForm,
             child: Column(
               children: [
-                Container(
-                  width: 300,
-                  child: TextFormField(
-                    textDirection: TextDirection.rtl,
-                    maxLength: 8,
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.amber),
-                            borderRadius: BorderRadius.circular(10.0)),
-                        hintText: 'اسم المنطقة',
-                        hintStyle: TextStyle(
-                          fontFamily: 'Droid',
-                        )),
-                    validator: (value) {
-                      if (value.isEmpty || value == null) {
-                        return 'ادخل  اسم المنطقة';
-                      }
-                      return null;
-                    },
-                    onSaved: (value) {
-                      address.area = value;
-                    },
-                  ),
+                SizedBox(
+                  height: 200,
+                  child: Image.network('https://freesvg.org/img/1392496432.png'),
                 ),
                 Container(
-                  width: 300,
-                  child: TextFormField(
-                      textDirection: TextDirection.rtl,
-                      maxLength: 20,
-                      decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.amber),
-                              borderRadius: BorderRadius.circular(10.0)),
-                          hintText: 'رقم القطعة',
-                          hintStyle: TextStyle(
-                            fontFamily: 'Droid',
-                          )),
-                      validator: (value) {
-                        if (value.isEmpty || value == null) {
-                          return 'ادخل رقم القطعة';
-                        }
-                        return null;
-                      },
-                      onSaved: (value) {
-                        address.block = value;
-                      }),
+                  height: 100,
+                  margin: EdgeInsets.symmetric(vertical: 10),
+                  //color: Colors.white,
+                  alignment: Alignment.center,
+                  child: Text('اضف عنوانك الحالي',style: TextStyle(fontSize: 18, fontFamily: 'Droid'),),
                 ),
                 Container(
-                  width: 300,
-                  child: TextFormField(
-                      textDirection: TextDirection.rtl,
-                      maxLength: 30,
-                      decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.amber),
-                              borderRadius: BorderRadius.circular(10.0)),
-                          hintText: 'رقم الشارع',
-                          hintStyle: TextStyle(
-                            fontFamily: 'Droid',
-                          )),
-                      validator: (value) {
-                        if (value.isEmpty || value == null) {
-                          return 'ادخل رقم الشارع';
-                        }
-                        return null;
-                      },
-                      onSaved: (value) {
-                        address.street = value;
-                      }),
+                  margin: EdgeInsets.symmetric(horizontal: 20),
+                  //color: Colors.redAccent,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
+                        width: 150,
+                        child: TextFormField(
+                          textDirection: TextDirection.rtl,
+                          maxLength: 8,
+                          decoration: InputDecoration(
+                              hintText: ' المنطقة',
+                              hintStyle: TextStyle(
+                                fontFamily: 'Droid',
+                              )),
+                          validator: (value) {
+                            if (value.isEmpty || value == null) {
+                              return 'ادخل  اسم المنطقة';
+                            }
+                            return null;
+                          },
+                          onSaved: (value) {
+                            address.area = value;
+                          },
+                        ),
+                      ),
+                      Container(
+                        width: 150,
+                        child: TextFormField(
+                            textDirection: TextDirection.rtl,
+                            maxLength: 20,
+                            decoration: InputDecoration(
+                                hintText: 'رقم القطعة',
+                                hintStyle: TextStyle(
+                                  fontFamily: 'Droid',
+                                )),
+                            validator: (value) {
+                              if (value.isEmpty || value == null) {
+                                return 'ادخل رقم القطعة';
+                              }
+                              return null;
+                            },
+                            onSaved: (value) {
+                              address.block = value;
+                            }),
+                      ),
+                    ],),
                 ),
                 Container(
-                  width: 300,
-                  child: TextFormField(
-                      textDirection: TextDirection.rtl,
-                      maxLength: 30,
-                      decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.amber),
-                              borderRadius: BorderRadius.circular(10.0)),
-                          hintText: 'رقم المنزل',
-                          hintStyle: TextStyle(
-                            fontFamily: 'Droid',
-                          )),
-                      validator: (value) {
-                        if (value.isEmpty || value == null) {
-                          return 'ادخل رقم المنزل';
-                        }
-                        return null;
-                      },
-                      onSaved: (value) {
-                        address.houseNumber = value;
-                      }),
+                  margin: EdgeInsets.symmetric(horizontal: 20),
+                  //color: Colors.redAccent,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
+                        width: 150,
+                        child: TextFormField(
+                            textDirection: TextDirection.rtl,
+                            maxLength: 30,
+                            decoration: InputDecoration(
+                                hintText: 'رقم الشارع',
+                                hintStyle: TextStyle(
+                                  fontFamily: 'Droid',
+                                )),
+                            validator: (value) {
+                              if (value.isEmpty || value == null) {
+                                return 'ادخل رقم الشارع';
+                              }
+                              return null;
+                            },
+                            onSaved: (value) {
+                              address.street = value;
+                            }),
+                      ),
+                      Container(
+                        width: 150,
+                        child: TextFormField(
+                            textDirection: TextDirection.rtl,
+                            maxLength: 30,
+                            decoration: InputDecoration(
+                                hintText: 'رقم المنزل',
+                                hintStyle: TextStyle(
+                                  fontFamily: 'Droid',
+                                )),
+                            validator: (value) {
+                              if (value.isEmpty || value == null) {
+                                return 'ادخل رقم المنزل';
+                              }
+                              return null;
+                            },
+                            onSaved: (value) {
+                              address.houseNumber = value;
+                            }),
+                      ),
+                    ],),
                 ),
                 Container(
-                  width: 300,
-                  child: TextFormField(
-                      textDirection: TextDirection.rtl,
-                      maxLength: 30,
-                      decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.amber),
-                              borderRadius: BorderRadius.circular(10.0)),
-                          hintText: 'رقم الجادة',
-                          hintStyle: TextStyle(
-                            fontFamily: 'Droid',
-                          )),
-                      validator: (value) {
-                        if (value.isEmpty || value == null) {
-                          return 'ادخل رقم الجادة';
-                        }
-                        return null;
-                      },
-                      onSaved: (value) {
-                        address.jada = value;
-                      }),
+                  margin: EdgeInsets.symmetric(horizontal: 20),
+                  //color: Colors.redAccent,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
+                        width: 150,
+                        child: TextFormField(
+                            textDirection: TextDirection.rtl,
+                            maxLength: 30,
+                            decoration: InputDecoration(
+                                hintText: 'رقم الجادة',
+                                hintStyle: TextStyle(
+                                  fontFamily: 'Droid',
+                                )),
+                            validator: (value) {
+                              if (value.isEmpty || value == null) {
+                                return 'ادخل رقم الجادة';
+                              }
+                              return null;
+                            },
+                            onSaved: (value) {
+                              address.jada = value;
+                            }),
+                      ),
+                      Container(
+                        width: 150,
+                        child: TextFormField(
+                            textDirection: TextDirection.rtl,
+                            maxLength: 30,
+                            decoration: InputDecoration(
+                                hintText: 'الدور',
+                                hintStyle: TextStyle(
+                                  fontFamily: 'Droid',
+                                )),
+                            validator: (value) {
+                              if (value.isEmpty || value == null) {
+                                return 'ادخل رقم الدور';
+                              }
+                              return null;
+                            },
+                            onSaved: (value) {
+                              address.floor = value;
+                            }),
+                      ),
+                    ],),
                 ),
-                Container(
-                  width: 300,
-                  child: TextFormField(
-                      textDirection: TextDirection.rtl,
-                      maxLength: 30,
-                      decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.amber),
-                              borderRadius: BorderRadius.circular(10.0)),
-                          hintText: 'الدور',
-                          hintStyle: TextStyle(
-                            fontFamily: 'Droid',
-                          )),
-                      validator: (value) {
-                        if (value.isEmpty || value == null) {
-                          return 'ادخل رقم الدور';
-                        }
-                        return null;
-                      },
-                      onSaved: (value) {
-                        address.floor = value;
-                      }),
-                ),
+                Padding(padding: EdgeInsets.symmetric(vertical: 20)),
+
                 TextButton(
                     style: TextButton.styleFrom(
                       padding: EdgeInsets.all(20.0),
-                      backgroundColor: Colors.black,
+                      backgroundColor: Colors.orange[400],
                     ),
                     child: Text('اضافة العنوان الجديد',
                         style: TextStyle(
@@ -255,8 +274,8 @@ class _AddAddressState extends State<AddAddress> {
                       }
                     })
               ],
-            )),
-      ),
+            )))
+      ],),
     );
   }
 }
