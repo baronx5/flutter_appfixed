@@ -50,7 +50,7 @@ class _ViewAllAddressState extends State<ViewAllAddress> {
           padding: EdgeInsets.symmetric(horizontal: 20.0),
           children: [
             SizedBox(
-              child: Image.network('http://localhost/resturant/delivery.jpg'),
+              child: Image.network('http://localhost/resturant/images/delivery.jpg'),
             ),
             Container(
               height: 70,

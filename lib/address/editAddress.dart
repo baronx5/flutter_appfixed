@@ -297,11 +297,11 @@ class _EditAddressState extends State<EditAddress> {
                     TextButton(
                         style: TextButton.styleFrom(
                           padding: EdgeInsets.all(20.0),
-                          backgroundColor: Colors.black,
+                          backgroundColor: Colors.orange[400],
                         ),
                         child: Text('تعديل العنوان ',
                             style: TextStyle(
-                                color: Colors.orange[400],
+                                color: Colors.white,
                                 fontFamily: 'Droid',
                                 fontSize: 16)),
                         onPressed: () async {
