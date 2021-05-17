@@ -73,8 +73,10 @@ class _ViewAllAddressState extends State<ViewAllAddress> {
                             return Dismissible(
                               background: Container(
                                 color: Colors.red,
-                                child: Center(
-                                  child: Text("DELETE"),
+                                child: Container(
+                                  margin: EdgeInsets.symmetric(horizontal: 20),
+                                  alignment: Alignment.centerRight,
+                                  child: Text('حذف العنوان',style: TextStyle(fontFamily: 'Droid',color: Colors.white),),
                                 ),
                               ),
                               onDismissed: (direction) {
