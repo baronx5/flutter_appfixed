@@ -67,8 +67,7 @@ class _CheckOutState extends State<CheckOut> {
                 borderRadius: BorderRadius.all(Radius.circular(10.0)),
                 child: Column(
                   children: [
-                    Image.network(
-                      'http://localhost/resturant/delivery.jpg',
+                    Image(image: AssetImage('images/delivery.jpg'),
                       fit: BoxFit.cover,
                     ),
                     isSignIn == true && user.address != null

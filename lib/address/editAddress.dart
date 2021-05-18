@@ -79,7 +79,9 @@ class _EditAddressState extends State<EditAddress> {
         children: [
           SizedBox(
             height: 200,
-            child: Image.network('http://localhost/resturant/images/location.png'),
+            child: Image(image: AssetImage('images/location.png'),
+              width: 200,
+            ),
           ),
           Container(
             height: 70,
