@@ -176,7 +176,13 @@ class _ViewAllAddressState extends State<ViewAllAddress> {
                     } else if (snapshot.hasError) {
                       return Text('${snapshot.error}');
                     }
-                    return CircularProgressIndicator();
+                    return Center(child: Container(
+                        height: 50,
+                        width: 50,
+                        margin: EdgeInsets.all(10),
+                        child: CircularProgressIndicator(
+                          backgroundColor: Colors.orange,
+                        )));
                   }),
             ),
             SizedBox(
