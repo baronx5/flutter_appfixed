@@ -137,11 +137,11 @@ class CartPage extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                SizedBox(
+                cart.basketItems.length != 0 ? SizedBox(
                   width: 150,
                   child: TextButton(
                     onPressed: () {
-                      print(jsonList);
+                      //print(jsonList);
                       Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -162,6 +162,28 @@ class CartPage extends StatelessWidget {
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(18.0),
                                     side: BorderSide(color: Colors.green)))),
+                  ),
+                )
+                    : SizedBox(
+                  width: 150,
+                  child: TextButton(
+                    onPressed: () {
+                      //print(jsonList);
+                    },
+                    child: Text(
+                      'لاتوجد طلبات',
+                      style: TextStyle(fontFamily: 'Droid', fontSize: 16),
+                    ),
+                    style: ButtonStyle(
+                        padding: MaterialStateProperty.all<EdgeInsets>(
+                            EdgeInsets.all(5.0)),
+                        foregroundColor:
+                        MaterialStateProperty.all<Color>(Colors.orange),
+                        shape:
+                        MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18.0),
+                                side: BorderSide(color: Colors.orange)))),
                   ),
                 ),
                 Text(
