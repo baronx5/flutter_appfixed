@@ -18,4 +18,9 @@ class Item {
     data['productItem'] = this.productItem.toJson();
     return data;
   }
+
+  Item.fromJson(Map<String, dynamic> json) {
+    quantity = json['quantity'];
+    productItem = Product.fromJson(json['productItem']);
+  }
 }

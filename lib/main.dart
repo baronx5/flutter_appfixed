@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_appfixed/Models/user.dart';
 import 'package:flutter_appfixed/address/ViewAllAddress.dart';
+import 'package:flutter_appfixed/followOrder.dart';
 import 'package:flutter_appfixed/login/login.dart';
 import 'package:flutter_appfixed/login/signup.dart';
 import 'homePage.dart';
@@ -12,6 +13,7 @@ import 'package:provider/provider.dart';
 import 'customWidgets/customDrawer.dart';
 import 'checkout.dart';
 import 'address/address.dart';
+import 'followOrder.dart';
 
 void main() {
   runApp(ChangeNotifierProvider(
@@ -28,6 +30,7 @@ void main() {
         'checkout': (context) => CheckOut(),
         'address': (context) => AddAddress(),
         'viewaddress': (context) => ViewAllAddress(),
+        'followOrder': (context) => FollowOrder(),
       },
       debugShowCheckedModeBanner: false,
     ),

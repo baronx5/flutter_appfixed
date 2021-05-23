@@ -10,6 +10,8 @@ import 'dart:convert';
 import 'package:http/http.dart';
 import 'Models/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_appfixed/Models/order.dart';
+
 
 // Url https://flutterforweb.000webhostapp.com/
 // String apiUrl = "http://10.0.2.2:5000/";
@@ -173,4 +175,19 @@ Future addressRemove(Address address) async {
   } else {
     return responseBody;
   }
+}
+
+
+
+
+Future<List<Order>> getOrderLevelData(int val) async {
+  var url = Uri.parse(apiUrl + "order/" + val.toString());
+  http.Response response = await http.get(url);
+  var responseBody = jsonDecode(response.body);
+  print('dfsdfsdfsdfsdfsdfsdfsdfsdf');
+  List<Order> order = [];
+  for (var od in responseBody) {
+    order.add(Order.fromJson(od));
+  }
+  return order;
 }
