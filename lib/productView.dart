@@ -299,7 +299,7 @@ class _ProductSelectState extends State<ProductSelect> {
                     Item item =
                         Item(productItem: passedProduct, quantity: counter);
                     cart.add(item);
-                    Navigator.pop(context);
+                    Navigator.of(context).popUntil((route) => route.isFirst);
                   },
                 ),
               ),

@@ -59,7 +59,20 @@ class BestSales extends StatelessWidget {
                             ),
                           ));
                         }),
-                  ));
+                  onTap: (){
+                    Product product = Product(
+                        id: products.data[i].id,
+                        name: products.data[i].name,
+                        description: products.data[i].description,
+                        image: products.data[i].image,
+                        price: products.data[i].price);
+                    Navigator.of(context).push(MaterialPageRoute(
+                      fullscreenDialog: false,
+                      builder: (context) => ProductSelect(
+                        passedProduct: product,
+                      ),
+                    ));
+                  },),);
             },
             separatorBuilder: (context, index) {
               return Divider();
