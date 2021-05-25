@@ -15,7 +15,7 @@ import 'package:flutter_appfixed/Models/order.dart';
 
 // Url https://flutterforweb.000webhostapp.com/
 // String apiUrl = "http://10.0.2.2:5000/";
- String apiUrl = "http://127.0.0.1:5000/";
+ String apiUrl = "http://127.0.0.1:6000/";
 // String apiUrl = "https://fake-api-kuwait.herokuapp.com/";
 
 Future getSettingsData() async {
@@ -180,14 +180,11 @@ Future addressRemove(Address address) async {
 
 
 
-Future<List<Order>> getOrderLevelData(int val) async {
+Future<Order> getOrderLevelData(int val) async {
   var url = Uri.parse(apiUrl + "order/" + val.toString());
   http.Response response = await http.get(url);
   var responseBody = jsonDecode(response.body);
-  print('dfsdfsdfsdfsdfsdfsdfsdfsdf');
-  List<Order> order = [];
-  for (var od in responseBody) {
-    order.add(Order.fromJson(od));
-  }
+  print(responseBody);
+  Order order = Order.fromJson(responseBody);
   return order;
 }

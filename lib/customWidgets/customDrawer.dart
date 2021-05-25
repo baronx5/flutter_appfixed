@@ -43,7 +43,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
               UserAccountsDrawerHeader(
                 accountName: isSignIn
                     ? Text(
-                        user.id.toString(),
+                        user.phone.toString(),
                         style: TextStyle(color: Colors.orange),
                       )
                     : Text(''),

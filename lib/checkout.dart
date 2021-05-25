@@ -351,7 +351,7 @@ class _CheckOutState extends State<CheckOut> {
             onPressed: () {
               placeOrder(user, cart.basketItems, context);
 
-              Navigator.popAndPushNamed(context, 'followOrder');
+              Navigator.popAndPushNamed(context, 'followOrder',arguments: user);
             },
             child: Text(
               'تنفيذ الطلب',

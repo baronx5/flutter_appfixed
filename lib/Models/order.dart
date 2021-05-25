@@ -12,7 +12,7 @@ class Order {
 
   Order.fromJson(Map<String, dynamic> json){
     id = json['id'];
-    user = User.fromJson(json['user']);
+    user = User.fromJson(json['order_details']['user']);
     json['orders'].forEach((item) => orderItems.add(Item.fromJson(item)));
     level = json['level'];
   }

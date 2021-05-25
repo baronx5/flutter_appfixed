@@ -1,14 +1,16 @@
 class User {
   int id;
   String name;
+  String phone;
   String email;
   Address address;
 
-  User({this.id, this.name, this.email, this.address});
+  User({this.id, this.phone, this.name, this.email, this.address});
 
   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
+    phone = json['phone'];
     email = json['email'];
     if (json['address'] != null) {
       address = Address.fromJson(json['address']);
@@ -21,6 +23,7 @@ class User {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
     data['name'] = this.name;
+    data['phone'] = this.phone;
     data['email'] = this.email;
     if (this.address != null) {
       data['address'] = this.address.toJson();

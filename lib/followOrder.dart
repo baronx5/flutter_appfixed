@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_appfixed/Models/user.dart';
+import 'Models/user.dart';
 import 'dart:convert';
 import 'apiResponse.dart';
 
@@ -13,25 +12,12 @@ class FollowOrder extends StatefulWidget {
 }
 
 class _FollowOrderState extends State<FollowOrder> {
-  User user;
-  getPref() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    if (preferences.getString('user') != null) {
-      user = User.fromJson(jsonDecode(preferences.getString('user')));
-    }
-
-  }
-
-  @override
-  void initState() {
-    getPref();
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     Size size= MediaQuery.of(context).size;
+    final user = ModalRoute.of(context).settings.arguments as User;
     bool order = false;
+
     getOrderLevelData(user.id);
     return Scaffold(
       appBar: AppBar(
