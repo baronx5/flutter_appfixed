@@ -1,25 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_appfixed/Models/user.dart';
-import 'package:flutter_appfixed/address/ViewAllAddress.dart';
-import 'package:flutter_appfixed/followOrder.dart';
-import 'package:flutter_appfixed/login/login.dart';
-import 'package:flutter_appfixed/login/signup.dart';
+import 'Models/user.dart';
+import 'address/ViewAllAddress.dart';
+import 'followOrder.dart';
+import 'login/login.dart';
+import 'login/signup.dart';
 import 'homePage.dart';
 import 'bestSales.dart';
 import 'selectCategory.dart';
 import 'cart.dart';
-import 'package:flutter_appfixed/Models/cart.dart';
+import 'Models/cart.dart';
 import 'package:provider/provider.dart';
 import 'customWidgets/customDrawer.dart';
 import 'checkout.dart';
 import 'address/address.dart';
-import 'followOrder.dart';
 
 void main() {
   runApp(ChangeNotifierProvider(
     create: (context) => Carts(),
     child: MaterialApp(
-      //home: LoginPage(),
       initialRoute: 'login',
       routes: {
         'MyApp': (context) => MyApp(),
@@ -60,7 +58,7 @@ class _MyAppState extends State<MyApp> {
         endDrawer: CustomDrawer(user: user),
         appBar: AppBar(
           title: Text(
-            'زوارة',
+            'ديفــا',
             style: TextStyle(
                 color: Colors.black45, fontFamily: 'Droid', fontSize: 20),
           ),
@@ -139,15 +137,15 @@ class _MyAppState extends State<MyApp> {
           },
           items: [
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
+              icon: Icon(Icons.home_filled),
               label: "الرئيسية",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.menu),
-              label: "القائمة",
+              icon: Icon(Icons.local_offer_outlined),
+              label: "العروض",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.search),
+              icon: Icon(Icons.shopping_bag_outlined),
               label: "المشتريات",
             ),
           ],
