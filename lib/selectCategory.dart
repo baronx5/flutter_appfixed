@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'apiResponse.dart';
 import 'productView.dart';
-import 'package:flutter_appfixed/Models/product.dart';
-import 'package:flutter_appfixed/Models/categories.dart';
+import 'Models/product.dart';
+import 'Models/categories.dart';
 
 class SelectCategoryItems extends StatelessWidget {
   @override

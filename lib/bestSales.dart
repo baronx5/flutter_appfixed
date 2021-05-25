@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_appfixed/Models/product.dart';
+import 'Models/product.dart';
 import 'apiResponse.dart';
 import 'productView.dart';
 

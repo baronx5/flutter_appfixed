@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_appfixed/Models/addOns.dart';
+import 'Models/addOns.dart';
 import 'apiResponse.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_appfixed/Models/cart.dart';
-import 'package:flutter_appfixed/Models/cartItem.dart';
-import 'package:flutter_appfixed/Models/product.dart';
+import 'Models/cart.dart';
+import 'Models/cartItem.dart';
+import 'Models/product.dart';
 
 class ProductSelect extends StatefulWidget {
   final Product passedProduct;
@@ -29,7 +29,7 @@ class _ProductSelectState extends State<ProductSelect> {
 
   @override
   Widget build(BuildContext context) {
-    double totalpricefinal = (addonsPrice + passedProduct.price) * counter;
+    double totalPriceFinal = (addonsPrice + passedProduct.price) * counter;
 
     return Consumer<Carts>(// List of Carts from Consumer.
         builder: (context, cart, child) {
@@ -282,29 +282,28 @@ class _ProductSelectState extends State<ProductSelect> {
                 ),
               ],
             )),
-            SizedBox(
-              //height: 140,
-              child: Container(
-                padding: EdgeInsets.fromLTRB(0, 15.0, 0, 0),
-                width: double.infinity,
-                height: 100,
-                child: FlatButton(
-                  child: Text(
-                    " " + " ${totalpricefinal.toString()} " 'آكمل الطلب',
-                    style: TextStyle(fontSize: 20, fontFamily: "Droid"),
-                  ),
-                  color: Colors.lightGreen,
-                  textColor: Colors.white,
-                  onPressed: () {
-                    Item item =
-                        Item(productItem: passedProduct, quantity: counter);
-                    cart.add(item);
-                    Navigator.of(context).popUntil((route) => route.isFirst);
-                  },
-                ),
+          ],
+        ),
+        bottomNavigationBar: SizedBox(
+          child: Container(
+            padding: EdgeInsets.fromLTRB(0, 15.0, 0, 0),
+            //width: double.infinity,
+            height: 110,
+            child: ElevatedButton(
+              child: Text('أكمل الطلب ( ${totalPriceFinal.toString()} دك )',
+                style: TextStyle(fontSize: 20, fontFamily: "Droid"),
+              ),
+              onPressed: () {
+                Item item =
+                Item(productItem: passedProduct, quantity: counter);
+                cart.add(item);
+                Navigator.of(context).popUntil((route) => route.isFirst);
+              },
+              style: ElevatedButton.styleFrom(
+                  primary: Colors.lightGreen
               ),
             ),
-          ],
+          ),
         ),
       );
     });
