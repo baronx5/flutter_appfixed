@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_appfixed/Models/cartItem.dart';
 import 'package:flutter_appfixed/Models/user.dart';
 
@@ -11,10 +13,11 @@ class Order {
   Order({this.id, this.user, this.orderItems, this.level});
 
   Order.fromJson(Map<String, dynamic> json){
+    var orderDetails = jsonDecode(json['order_details']);
     id = json['id'];
-    user = User.fromJson(json['order_details']['user']);
-    json['orders'].forEach((item) => orderItems.add(Item.fromJson(item)));
     level = json['level'];
+    user = User.fromJson(orderDetails['user']);
+    orderDetails['orders'].forEach((item) => orderItems.add(Item.fromJson(item)));
   }
   Map<String, dynamic> toJson(){
     final Map<String, dynamic> data = new Map<String, dynamic>();

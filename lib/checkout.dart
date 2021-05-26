@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_appfixed/followOrder.dart';
 import 'address/ViewAllAddress.dart';
 import 'address/address.dart';
 import 'Models/cartItem.dart';
@@ -348,10 +349,9 @@ class _CheckOutState extends State<CheckOut> {
               primary: Colors.red, // background
               onPrimary: Colors.white, // foreground
             ),
-            onPressed: () {
-              placeOrder(user, cart.basketItems, context);
-
-              Navigator.popAndPushNamed(context, 'followOrder',arguments: user);
+            onPressed: () async {
+              var getOrderId = await placeOrder(user, cart.basketItems, context);
+              Navigator.push(context, MaterialPageRoute(builder: (context) => FollowOrder(orderId: getOrderId)));
             },
             child: Text(
               'تنفيذ الطلب',

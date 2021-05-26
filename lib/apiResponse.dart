@@ -12,10 +12,9 @@ import 'Models/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_appfixed/Models/order.dart';
 
-
 // Url https://flutterforweb.000webhostapp.com/
-// String apiUrl = "http://10.0.2.2:5000/";
- String apiUrl = "http://127.0.0.1:6000/";
+String apiUrl = "http://10.0.2.2:5000/";
+//  String apiUrl = "http://127.0.0.1:6000/";
 // String apiUrl = "https://fake-api-kuwait.herokuapp.com/";
 
 Future getSettingsData() async {
@@ -108,7 +107,7 @@ Future signUp(
   }
 }
 
-Future placeOrder(User user, List<Item> orders, BuildContext context) async {
+Future<int> placeOrder(User user, List<Item> orders, BuildContext context) async {
   var data = {"user": user.toJson(), "orders": orders};
   var response = await http
       .post(Uri.parse(apiUrl + 'order'), body: jsonEncode(data), headers: {
@@ -116,12 +115,20 @@ Future placeOrder(User user, List<Item> orders, BuildContext context) async {
   });
   var responseBody = jsonDecode(response.body);
   if (responseBody['status'] == 'success') {
-    print('Order accepted');
-    return responseBody['msg'];
+    print('order id ${responseBody['data']}');
+    return responseBody['data'];
   } else {
     print('Order denied');
-    return responseBody['msg'];
+    return null;
   }
+}
+
+Future<Order> getOrderLevelData(int val) async {
+  var url = Uri.parse(apiUrl + "order/" + val.toString());
+  http.Response response = await http.get(url);
+  var responseBody = jsonDecode(response.body);
+  Order order = Order.fromJson(responseBody['data']);
+  return order;
 }
 
 Future newAddress(User user, BuildContext context) async {
@@ -137,6 +144,7 @@ Future newAddress(User user, BuildContext context) async {
     return responseBody;
   }
 }
+
 Future<List<Address>> getAddressData(int val) async {
   var url = Uri.parse(apiUrl + "address/" + val.toString());
   http.Response response = await http.get(url);
@@ -148,7 +156,6 @@ Future<List<Address>> getAddressData(int val) async {
   }
   return address;
 }
-
 
 Future addressUpdate(Address address, BuildContext context) async {
   var data = {"address": address.toJson()};
@@ -163,6 +170,7 @@ Future addressUpdate(Address address, BuildContext context) async {
     return responseBody;
   }
 }
+
 Future addressRemove(Address address) async {
   var data = {"address": address.toJson()};
   var url = apiUrl + 'address/remove/';
@@ -175,16 +183,4 @@ Future addressRemove(Address address) async {
   } else {
     return responseBody;
   }
-}
-
-
-
-
-Future<Order> getOrderLevelData(int val) async {
-  var url = Uri.parse(apiUrl + "order/" + val.toString());
-  http.Response response = await http.get(url);
-  var responseBody = jsonDecode(response.body);
-  print(responseBody);
-  Order order = Order.fromJson(responseBody);
-  return order;
 }

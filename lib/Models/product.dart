@@ -34,9 +34,9 @@ class Product {
     name = json['name'];
     description = json['description'];
     image = json['image'];
-    price = double.parse(json['price']);
+    price = json['price'];
     catId = json['catId'].toString();
-    totalSales = int.parse(json['totalSales']);
+    totalSales = json['totalSales'] == null ? 0 : int.parse(json['totalSales']);
     notes = json['notes'];
   }
 
