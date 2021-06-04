@@ -28,6 +28,7 @@ dependencies:
   shared_preferences: ^2.0.5
   flutter:
     sdk: flutter
+  myfatoorah_flutter: ^1.0.18
 
 
   # The following adds the Cupertino Icons font to your application.
