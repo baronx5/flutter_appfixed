@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_appfixed/Models/user.dart';
+import 'package:flutter_appfixed/followOrder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CustomDrawer extends StatefulWidget {
@@ -88,7 +89,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 ),
                 leading: Icon(Icons.follow_the_signs),
                 onTap: () {
-                  Navigator.pushNamed(context, 'login');
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>FollowOrder(orderId: 60,)));
+
                 },
               ),
               Divider(),

@@ -10,6 +10,8 @@ import 'apiResponse.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'customWidgets/AlertDialog.dart';
+
 class CheckOut extends StatefulWidget {
   List<Item> orderItems = [];
 
@@ -350,8 +352,16 @@ class _CheckOutState extends State<CheckOut> {
               onPrimary: Colors.white, // foreground
             ),
             onPressed: () async {
-              var getOrderId = await placeOrder(user, cart.basketItems, context);
-              Navigator.push(context, MaterialPageRoute(builder: (context) => FollowOrder(orderId: getOrderId)));
+              if(user != null){
+                if(user.address == null){
+                  showDialog(context: context, builder: (_) => messageDialog(context, "user address not found"));
+                }else {
+                  var getOrderId = await placeOrder(user, cart.basketItems, context);
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => FollowOrder(orderId: getOrderId)));
+                }
+              }else {
+                showDialog(context: context, builder: (_) => messageDialog(context, "user not found"));
+              }
             },
             child: Text(
               'تنفيذ الطلب',

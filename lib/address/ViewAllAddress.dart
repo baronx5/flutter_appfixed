@@ -3,6 +3,7 @@ import 'package:flutter_appfixed/address/address.dart';
 import 'package:flutter_appfixed/apiResponse.dart';
 import 'package:flutter_appfixed/Models/user.dart';
 import 'package:flutter_appfixed/address/editAddress.dart';
+import 'package:flutter_appfixed/customWidgets/AlertDialog.dart';
 
 class ViewAllAddress extends StatefulWidget {
   final Function notifyCheckoutPage;
@@ -85,7 +86,11 @@ class _ViewAllAddressState extends State<ViewAllAddress> {
                                 setState(() {
                                   addressRemove(snapshot.data[index]);
                                   snapshot.data.removeAt(index);
-                                  user.address = null;
+                                  if(snapshot.data.length > 0){
+                                    user.address = snapshot.data.last;
+                                  }else {
+                                    user.address = null;
+                                  }
                                   savePref(user);
                                   widget.notifyCheckoutPage();
                                 });

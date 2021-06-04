@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_appfixed/Models/order.dart';
 import 'Models/user.dart';
@@ -7,11 +10,12 @@ import 'apiResponse.dart';
 class FollowOrder extends StatefulWidget {
   final int orderId;
 
-  FollowOrder({this.orderId});
+  FollowOrder({@required this.orderId});
 
   @override
   _FollowOrderState createState() => _FollowOrderState(orderId);
 }
+
 
 class _FollowOrderState extends State<FollowOrder> {
   int orderId;
@@ -20,6 +24,7 @@ class _FollowOrderState extends State<FollowOrder> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
