@@ -8,23 +8,22 @@ import 'dart:convert';
 import '../apiResponse.dart';
 
 class FollowOrder extends StatefulWidget {
-  final int orderId;
   final User user;
 
-  FollowOrder({@required this.orderId, @required this.user});
+  FollowOrder({@required this.user});
 
   @override
-  _FollowOrderState createState() => _FollowOrderState(orderId, user);
+  _FollowOrderState createState() => _FollowOrderState(this.user);
 }
 
 class _FollowOrderState extends State<FollowOrder> {
-  int orderId;
   User user;
 
-  _FollowOrderState(this.orderId, user);
+  _FollowOrderState(this.user);
 
   @override
   Widget build(BuildContext context) {
+    print(user.id);
     return Scaffold(
         appBar: AppBar(
           title: Text(
@@ -56,7 +55,7 @@ class _FollowOrderState extends State<FollowOrder> {
             Container(
               color: Colors.white,
               child: FutureBuilder<List<Order>>(
-                  future: getUserPendingOrders(21),
+                  future: getUserPendingOrders(user.id),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       return ListView.builder(
@@ -85,7 +84,7 @@ class _FollowOrderState extends State<FollowOrder> {
                                     children: [
                                       ListTile(
                                         title: Text(
-                                          snapshot.data[index].user.phone,
+                                          snapshot.data[index].id.toString(),
                                           style: TextStyle(
                                               fontFamily: 'Droid',
                                               fontSize: 14),

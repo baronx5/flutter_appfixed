@@ -136,9 +136,9 @@ Future<Order> getOrderLevelData(int val) async {
   return order;
 }
 
-Future<List<Order>> getUserPendingOrders(val) async {
+Future<List<Order>> getUserPendingOrders(int userId) async {
   http.Response response =
-  await get(Uri.parse(apiUrl + "order/all/" + val.toString()));
+  await get(Uri.parse(apiUrl + "order/all/" + userId.toString()));
   var responseBody = jsonDecode(response.body);
   List<Order> orders = [];
   for (var order in responseBody['data']) {

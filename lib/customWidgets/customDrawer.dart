@@ -2,7 +2,11 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_appfixed/Models/user.dart';
 import 'package:flutter_appfixed/followUpOrder/followOrder.dart';
+import 'package:flutter_appfixed/support.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../profile.dart';
+import '../settings.dart';
 
 class CustomDrawer extends StatefulWidget {
   User user;
@@ -75,7 +79,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 ),
                 leading: Icon(Icons.supervised_user_circle_outlined),
                 onTap: () {
-                  Navigator.pushNamed(context, 'login');
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Profile()));
                 },
               ),
               Divider(),
@@ -89,8 +94,12 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 ),
                 leading: Icon(Icons.follow_the_signs),
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>FollowOrder(orderId: 60,)));
-
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => FollowOrder(
+                                user: user,
+                              )));
                 },
               ),
               Divider(),
@@ -103,7 +112,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   ),
                 ),
                 leading: Icon(Icons.support),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Support()));
+                },
               ),
               Divider(),
               ListTile(
@@ -115,7 +127,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   ),
                 ),
                 leading: Icon(Icons.settings),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Settings()));
+                },
               ),
               Divider(),
             ],
