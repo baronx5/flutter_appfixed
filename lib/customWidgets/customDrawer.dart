@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_appfixed/Models/user.dart';
-import 'package:flutter_appfixed/followOrder.dart';
+import 'package:flutter_appfixed/followUpOrder/followOrder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CustomDrawer extends StatefulWidget {

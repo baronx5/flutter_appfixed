@@ -83,14 +83,19 @@ Future signIn(String phone, String password, BuildContext context) async {
   var url = apiUrl + 'login';
   var response = await http.post(Uri.parse(url), body: data);
   var responseBody = jsonDecode(response.body);
-  if (responseBody['status'] == "success") {
-    User user = User.fromJson(responseBody['data']);
-    savePref(user);
-    return Navigator.pushReplacementNamed(context, 'MyApp', arguments: user);
-  } else {
-    print(responseBody['msg']);
-    return responseBody['msg'];
+  if (response.statusCode == 200){
+    if (responseBody['status'] == "success") {
+      User user = User.fromJson(responseBody['data']);
+      savePref(user);
+      return Navigator.pushReplacementNamed(context, 'MyApp', arguments: user);
+    } else {
+      print(responseBody['msg']);
+      return responseBody['msg'];
+    }
+  }else {
+    print('Request failed with status: ${response.statusCode}.');
   }
+
 }
 
 Future signUp(
@@ -129,6 +134,17 @@ Future<Order> getOrderLevelData(int val) async {
   var responseBody = jsonDecode(response.body);
   Order order = Order.fromJson(responseBody['data']);
   return order;
+}
+
+Future<List<Order>> getUserPendingOrders(val) async {
+  http.Response response =
+  await get(Uri.parse(apiUrl + "order/all/" + val.toString()));
+  var responseBody = jsonDecode(response.body);
+  List<Order> orders = [];
+  for (var order in responseBody['data']) {
+    orders.add(Order.fromJson(order));
+  }
+  return orders;
 }
 
 Future newAddress(User user, BuildContext context) async {
