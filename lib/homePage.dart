@@ -11,11 +11,6 @@ class HomePage extends StatelessWidget {
     return ListView(
       children: [
         Container(
-          height: 80,
-          margin: EdgeInsets.all(10.0),
-          child: SearchBar(),
-        ), // Search bar
-        Container(
           height: 350,
           child: HomeSlider(),
         ), // Slider
