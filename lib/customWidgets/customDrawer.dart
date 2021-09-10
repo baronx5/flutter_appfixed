@@ -164,7 +164,9 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       ),
                     ),
                     leading: Icon(Icons.logout),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.of(context).pushNamed('login');
+                    },
                   ),
           ),
         ],

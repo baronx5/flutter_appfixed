@@ -21,14 +21,14 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  flutter:
+    sdk: flutter
   http: ^0.13.1
   carousel_pro: ^1.0.0
   flappy_search_bar: 1.4.1
   provider: ^5.0.0
   shared_preferences: ^2.0.5
-  flutter:
-    sdk: flutter
-  myfatoorah_flutter: ^1.0.18
+  go_sell_sdk_flutter: ^2.0.7
 
 
   # The following adds the Cupertino Icons font to your application.

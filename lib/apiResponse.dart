@@ -13,9 +13,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_appfixed/Models/order.dart';
 
 // Url https://flutterforweb.000webhostapp.com/
-String apiUrl = "http://10.0.2.2:5000/";
+// String apiUrl = "http://10.0.2.2:5000/";
 //  String apiUrl = "http://127.0.0.1:6000/";
-// String apiUrl = "https://fake-api-kuwait.herokuapp.com/";
+String apiUrl = "https://fake-api-kuwait.herokuapp.com/";
 
 Future getSettingsData() async {
   var url = Uri.parse(apiUrl + "settings");

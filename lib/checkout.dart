@@ -9,7 +9,6 @@ import 'Models/user.dart';
 import 'apiResponse.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:myfatoorah_flutter/myfatoorah_flutter.dart';
 import 'customWidgets/AlertDialog.dart';
 
 class CheckOut extends StatefulWidget {
@@ -44,33 +43,10 @@ class _CheckOutState extends State<CheckOut> {
     getPref();
   }
 
-  sendPayment() {
-    int paymentMethod = 1;
-    var request = new MFExecutePaymentRequest(paymentMethod, 5);
-    request.customerName = "Hussain";
-    request.customerEmail = "hello@gmail.com";
-    request.customerMobile = "62228494";
-    request.mobileCountryCode = "+965";
-    MFSDK.executePayment(context, request, MFAPILanguage.EN,
-        (String invoiceId, MFResult<MFPaymentStatusResponse> result) {
-      if (result.isSuccess()) {
-        showDialog(
-            context: context,
-            builder: (_) => invoiceDialog(context, request, invoiceId));
-      } else {
-        showDialog(
-            context: context,
-            builder: (_) => messageDialog(context, result.error.message));
-      }
-    });
-  }
-
   @override
   void initState() {
     getPref();
     super.initState();
-    MFSDK.init('https://apitest.myfatoorah.com/',
-        'rLtt6JWvbUHDDhsZnfpAhpYk4dxYDQkbcPTyGaKp2TYqQgG7FGZ5Th_WD53Oq8Ebz6A53njUoo1w3pjU1D4vs_ZMqFiz_j0urb_BH9Oq9VZoKFoJEDAbRZepGcQanImyYrry7Kt6MnMdgfG5jn4HngWoRdKduNNyP4kzcp3mRv7x00ahkm9LAK7ZRieg7k1PDAnBIOG3EyVSJ5kK4WLMvYr7sCwHbHcu4A5WwelxYK0GMJy37bNAarSJDFQsJ2ZvJjvMDmfWwDVFEVe_5tOomfVNt6bOg9mexbGjMrnHBnKnZR1vQbBtQieDlQepzTZMuQrSuKn-t5XZM7V6fCW7oP-uXGX-sMOajeX65JOf6XVpk29DP6ro8WTAflCDANC193yof8-f5_EYY-3hXhJj7RBXmizDpneEQDSaSz5sFk0sV5qPcARJ9zGG73vuGFyenjPPmtDtXtpx35A-BVcOSBYVIWe9kndG3nclfefjKEuZ3m4jL9Gg1h2JBvmXSMYiZtp9MR5I6pvbvylU_PP5xJFSjVTIz7IQSjcVGO41npnwIxRXNRxFOdIUHn0tjQ-7LwvEcTXyPsHXcMD8WtgBh-wxR8aKX7WPSsT1O8d8reb2aR7K3rkV3K82K_0OgawImEpwSvp9MNKynEAJQS6ZHe_J_l77652xwPNxMRTMASk1ZsJL');
   }
 
   @override
@@ -393,7 +369,6 @@ class _CheckOutState extends State<CheckOut> {
                 } else {
                   var getOrderId =
                       await placeOrder(user, cart.basketItems, context);
-                  sendPayment();
                   // Navigator.push(
                   //     context,
                   //     MaterialPageRoute(
