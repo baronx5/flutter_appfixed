@@ -5,7 +5,7 @@ import 'followUpOrder/followOrder.dart';
 import 'login/login.dart';
 import 'login/signup.dart';
 import 'homePage.dart';
-import 'bestSales.dart';
+import 'offers.dart';
 import 'selectCategory.dart';
 import 'cart.dart';
 import 'Models/cart.dart';
@@ -45,7 +45,7 @@ class _MyAppState extends State<MyApp> {
   Widget currentScreen;
   final _pageOptions = [
     HomePage(),
-    BestSales(),
+    OffersPage(),
     CartPage(),
   ];
 
