@@ -146,7 +146,7 @@ class _MyAppState extends State<MyApp> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.shopping_bag_outlined),
-              label: "المشتريات",
+              label: "الطلبات",
             ),
           ],
           selectedLabelStyle: TextStyle(fontSize: 16, fontFamily: 'Droid'),
