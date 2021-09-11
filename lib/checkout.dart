@@ -59,6 +59,7 @@ class _CheckOutState extends State<CheckOut> {
     // You should call the "initiatePayment" API to can get this id and the ids of all other payment methods
     int paymentMethod = 1;
     var request = new MFExecutePaymentRequest(paymentMethod, cart.totalPrice);
+    MFSDK.setUpAppBar(isShowAppBar: false);
     MFSDK.executePayment(
         context,
         request,
@@ -67,22 +68,26 @@ class _CheckOutState extends State<CheckOut> {
               if (result.isSuccess())
                 {
                   print(result.response.toJson().toString()),
-                  placeOrder(user, cart.basketItems, context).then((value)  {
-                    if(value != null){
+                  placeOrder(user, cart.basketItems, context).then((value) {
+                    if (value != null) {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => FollowOrder(
-                                user: user,
-                              )));
+                                    user: user,
+                                  )));
                     }
                   })
                 }
               else
                 {
-                  showDialog(context: context, builder: (_) => messageDialog(context, result.error.message))
+                  showDialog(
+                      context: context,
+                      builder: (_) =>
+                          messageDialog(context, result.error.message))
                 }
             });
+
   }
 
   @override

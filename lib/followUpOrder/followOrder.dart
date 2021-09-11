@@ -35,7 +35,7 @@ class _FollowOrderState extends State<FollowOrder> {
           iconTheme: IconThemeData(color: Colors.black54),
         ),
         body: ListView(
-          padding: EdgeInsets.symmetric(horizontal: 20.0),
+            padding: EdgeInsets.symmetric(horizontal: 20.0),
           children: [
             SizedBox(
               child: Image(
@@ -58,6 +58,8 @@ class _FollowOrderState extends State<FollowOrder> {
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       return ListView.builder(
+                          physics:BouncingScrollPhysics(),
+
                           shrinkWrap: true,
                           itemCount: snapshot.data.length,
                           itemBuilder: (context, index) {
