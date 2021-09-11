@@ -23,7 +23,6 @@ class _FollowOrderState extends State<FollowOrder> {
 
   @override
   Widget build(BuildContext context) {
-    print(user.id);
     return Scaffold(
         appBar: AppBar(
           title: Text(
