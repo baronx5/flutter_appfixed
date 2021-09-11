@@ -54,24 +54,35 @@ class _CheckOutState extends State<CheckOut> {
         'j4lc68ycMg3Vk30apbsbLnGWMtWbLXzRGilTN4l8ZTz6qlZ5SI7SYZbrRdjtI5FuRWz3lg6jnCV15VBU9cFhA_pRo4qiQCyZtTdjaAkN2QOq-TOWRuj81B6dVbP4DR-nhs4c_KVsYqfHmHcqb3hVS9Aymc771P_e13LU4X_Zd3bKyVY_L9WWBQ3bQtK-gAHpn9RVoVioQo1g_ZaaAiV4GP8scxfEMy02uN-OvcRGXExThTanoqwKwXgzU9dxJQteD0vbgVfeVbtzoWIjnroB2oPQuE_PZtG1ljdq0r5jFJp3fREVJEa2K8DjkMIo0KHavlPBClW11HyBYsnmGxVjXGFMeXVFRrXosl9KudRR8s98QusPDcbP1e4oDv3iJo8bYMDAT8F327FGBjGdonzNsaOIvfzCMdI-jpxaZ7wh5eO-KTTNX4N5xP6Vp0CShkhPTT16z84JFQvnzaJ6nRtYJ6w9AJbi3WghON9x350OIaR0ffThTrincoBGo_0szIj-TcyZhNAT4RRRd01gEm3O6d-qeDVL6xhVKYh9g8Op1AWBB5q5oWlPD8VSRHsWzR7Z05RdPK8qKOXaoA9iQBpo9HS_qddqF9KCyOvy9fhOtYOxdLYv5NpbefMAGfLl87NzjBxCUfKR5KPnGg3Jibv6xSk500KIo_xoKQvcsAo5PvEGvUcQ');
   }
 
-  Future<bool> pay() async {
+  pay(Carts cart) {
     // The value 1 is the paymentMethodId of KNET payment method.
     // You should call the "initiatePayment" API to can get this id and the ids of all other payment methods
     int paymentMethod = 1;
-    var request = new MFExecutePaymentRequest(paymentMethod, 0.100);
-    bool response;
+    var request = new MFExecutePaymentRequest(paymentMethod, cart.totalPrice);
     MFSDK.executePayment(
         context,
         request,
         MFAPILanguage.EN,
         (String invoiceId, MFResult<MFPaymentStatusResponse> result) => {
               if (result.isSuccess())
-                {print(result.response.toJson().toString()), response = true}
+                {
+                  print(result.response.toJson().toString()),
+                  placeOrder(user, cart.basketItems, context).then((value)  {
+                    if(value != null){
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => FollowOrder(
+                                user: user,
+                              )));
+                    }
+                  })
+                }
               else
-                {print(result.error.message), response = false}
+                {
+                  showDialog(context: context, builder: (_) => messageDialog(context, result.error.message))
+                }
             });
-    print(response);
-    return response;
   }
 
   @override
@@ -404,20 +415,7 @@ class _CheckOutState extends State<CheckOut> {
                       builder: (_) =>
                           messageDialog(context, "user address not found"));
                 } else {
-                  pay().then((response) => {
-                        if (response)
-                          {
-                            placeOrder(user, cart.basketItems, context)
-                                .then((value) => {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) => FollowOrder(
-                                                    user: user,
-                                                  )))
-                                    })
-                          }
-                      });
+                  pay(cart);
                 }
               } else {
                 showDialog(
