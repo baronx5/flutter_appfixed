@@ -28,7 +28,7 @@ class OrderView extends StatelessWidget {
                 margin: EdgeInsets.all(10),
                 child: Icon(Icons.done),
                 decoration: BoxDecoration(
-                    color: Colors.orange,
+                    color: Colors.grey[300],
                     shape: BoxShape.circle
                 ),),
               Text('تم استلام طلبك', style: TextStyle(fontFamily: 'Droid')),
