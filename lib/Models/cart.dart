@@ -28,4 +28,10 @@ class Carts extends ChangeNotifier {
   List<Item> get basketItems {
     return _items;
   }
+
+  void clearBasket(){
+    _totalPrice = 0.0;
+    _items.clear();
+    notifyListeners();
+  }
 }

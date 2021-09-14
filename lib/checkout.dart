@@ -71,6 +71,7 @@ class _CheckOutState extends State<CheckOut> {
                   print(result.response.toJson().toString()),
                   placeOrder(user, cart.basketItems, context).then((value) {
                     if (value != null) {
+                      cart.clearBasket();
                       Navigator.push(
                           context,
                           MaterialPageRoute(
