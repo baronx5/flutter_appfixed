@@ -94,6 +94,7 @@ class _CheckOutState extends State<CheckOut> {
   Widget build(BuildContext context) {
     return Consumer<Carts>(builder: (context, cart, child) {
       return Scaffold(
+        resizeToAvoidBottomInset: true,
         appBar: AppBar(
           title: Text(
             'خطوات اكمال الطلب',
