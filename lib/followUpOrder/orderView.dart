@@ -32,58 +32,90 @@ class OrderView extends StatelessWidget {
               'توقيت الطلب : ١٠.١٥',
               style: TextStyle(fontFamily: 'Droid', fontSize: 22),
             ),
-            Column(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container(
-                  padding: EdgeInsets.all(30.0),
-                  margin: EdgeInsets.all(10),
-                  child: Icon(Icons.done),
-                  decoration: BoxDecoration(
-                      color: Colors.grey[300], shape: BoxShape.circle),
+                Column(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(20.0),
+                      margin: EdgeInsets.all(10),
+                      child: Icon(Icons.delivery_dining),
+                      decoration: BoxDecoration(
+                          color: Colors.grey[200], shape: BoxShape.circle),
+                    ),
+                    Text('جاري توصيل الطلب',
+                        style: TextStyle(fontFamily: 'Droid')),
+                  ],
                 ),
-                Text('تم استلام طلبك', style: TextStyle(fontFamily: 'Droid')),
+                Container(
+                  color: Colors.grey,
+                  child: Container(
+                    width: 40,
+                    height: 1,
+                    padding: EdgeInsets.all(10),
+                  ),
+                ),
+                Column(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(20.0),
+                      margin: EdgeInsets.all(10),
+                      child: Icon(Icons.fastfood_outlined),
+                      decoration: BoxDecoration(
+                          color: Colors.grey[200], shape: BoxShape.circle),
+                    ),
+                    Text('جاري تحضير الطلب',
+                        style: TextStyle(fontFamily: 'Droid')),
+                  ],
+                ),
+                Container(
+                  color: Colors.grey,
+                  child: Container(
+                    width: 40,
+                    height: 1,
+                    padding: EdgeInsets.all(10),
+                  ),
+                ),
+                Column(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(20.0),
+                      margin: EdgeInsets.all(10),
+                      child: Icon(Icons.done),
+                      decoration: BoxDecoration(
+                          color: Colors.orange[400], shape: BoxShape.circle),
+                    ),
+                    Text('تم استلام طلبك', style: TextStyle(fontFamily: 'Droid')),
+                  ],
+                ),
               ],
             ),
-            Container(
-              color: Colors.grey,
-              child: Container(
-                width: 2,
-                height: 100,
-                padding: EdgeInsets.all(10),
-              ),
-            ),
-            Column(
-              children: [
-                Container(
-                  padding: EdgeInsets.all(30.0),
-                  margin: EdgeInsets.all(10),
-                  child: Icon(Icons.fastfood_outlined),
-                  decoration: BoxDecoration(
-                      color: Colors.orange, shape: BoxShape.circle),
-                ),
-                Text('جاري تحضير الطلب', style: TextStyle(fontFamily: 'Droid')),
-              ],
-            ),
-            Container(
-              color: Colors.grey,
-              child: Container(
-                width: 2,
-                height: 100,
-                padding: EdgeInsets.all(10),
-              ),
-            ),
-            Column(
-              children: [
-                Container(
-                  padding: EdgeInsets.all(30.0),
-                  margin: EdgeInsets.all(10),
-                  child: Icon(Icons.delivery_dining),
-                  decoration: BoxDecoration(
-                      color: Colors.orange, shape: BoxShape.circle),
-                ),
-                Text('جاري توصيل الطلب', style: TextStyle(fontFamily: 'Droid')),
-              ],
+            Divider(),
+            Center(child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text('تفاصيل الطلب', style: TextStyle(fontFamily: 'Droid', fontSize: 22),),
+            ),),
+
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    width: 100,
+                    height: 100,
+                    color: Colors.red,
+                    child: Text('image'),
+                  ),
+                  Text('AddOns'),
+                  Text('name')
+                ],),
             )
+
+
           ],
         ),
       ),
