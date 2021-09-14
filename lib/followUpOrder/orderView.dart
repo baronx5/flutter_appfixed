@@ -113,27 +113,32 @@ class OrderView extends StatelessWidget {
                     itemCount: orderDetails.orderItems.length,
                     itemBuilder: (context, index) {
 
-                      return Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            width: 100,
-                            height: 100,
-                            color: Colors.red,
-                            child: Text('image'),
-                          ),
-                          orderDetails.orderItems[index].productItem.addons.length > 0 ? Container(
-                            width: 50,
-                            child: ListView.builder(
-                                shrinkWrap: true,
-                                itemCount: orderDetails.orderItems[index].productItem.addons.length,
-                                itemBuilder: (context, i) {
-                                  return Text(orderDetails.orderItems[index].productItem.addons[i].name);
-                                }),
-                          ) :  Text('No addons'),
-                          Text(orderDetails.orderItems[index].productItem.name),
-                        ],
+                      return Container(
+                        color: Colors.grey[100],
+                        margin: EdgeInsets.only(top: 10,bottom: 10),
+                        padding: EdgeInsets.all(10),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              width: 100,
+                              height: 100,
+                              color: Colors.red,
+                              child: Image.network(orderDetails.orderItems[index].productItem.image),
+                            ),
+                            orderDetails.orderItems[index].productItem.addons.length > 0 ? Container(
+                              width: 50,
+                              child: ListView.builder(
+                                  shrinkWrap: true,
+                                  itemCount: orderDetails.orderItems[index].productItem.addons.length,
+                                  itemBuilder: (context, i) {
+                                    return Text(orderDetails.orderItems[index].productItem.addons[i].name, style: TextStyle(fontFamily: 'Droid'),);
+                                  }),
+                            ) :  Text('لاتوجد اضافات'),
+                            Text(orderDetails.orderItems[index].productItem.name, style: TextStyle(fontFamily: 'Droid'),),
+                          ],
+                        ),
                       );
                     })),
           ],
