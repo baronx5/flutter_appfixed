@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_appfixed/followUpOrder/followOrder.dart';
+import 'package:flutter_appfixed/followUpOrder/orderView.dart';
 import 'package:myfatoorah_flutter/myfatoorah_flutter.dart';
 import 'address/ViewAllAddress.dart';
 import 'address/address.dart';
@@ -73,8 +74,8 @@ class _CheckOutState extends State<CheckOut> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => FollowOrder(
-                                    user: user,
+                              builder: (context) => OrderView(
+                                    orderId: value
                                   )));
                     }
                   })

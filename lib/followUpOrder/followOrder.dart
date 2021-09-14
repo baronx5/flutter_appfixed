@@ -77,7 +77,8 @@ class _FollowOrderState extends State<FollowOrder> {
                                   ),
                                 ),
                               ),
-                              onDismissed: (direction) {},
+                              onDismissed: (direction) {
+                              },
                               key: ValueKey<int>(snapshot.data[index].id),
                               child: new Directionality(
                                   textDirection: TextDirection.rtl,
@@ -85,7 +86,7 @@ class _FollowOrderState extends State<FollowOrder> {
                                     children: [
                                       ListTile(
                                         title: Text(
-                                          snapshot.data[index].id.toString(),
+                                          snapshot.data[index].orderItems[0].productItem.name,
                                           style: TextStyle(
                                               fontFamily: 'Droid',
                                               fontSize: 14),
@@ -97,7 +98,7 @@ class _FollowOrderState extends State<FollowOrder> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    OrderView()),
+                                                    OrderView(orderId: snapshot.data[index].id,)),
                                           );
                                         },
                                       ),
