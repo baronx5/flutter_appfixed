@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_appfixed/Models/order.dart';
 
 class OrderView extends StatelessWidget {
   final int orderId;
+  final Order orderDetails;
 
-  OrderView({this.orderId});
+  OrderView({this.orderId, this.orderDetails});
 
   @override
   Widget build(BuildContext context) {
+    print(orderDetails.level);
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -43,7 +46,7 @@ class OrderView extends StatelessWidget {
                       margin: EdgeInsets.all(10),
                       child: Icon(Icons.delivery_dining),
                       decoration: BoxDecoration(
-                          color: Colors.grey[200], shape: BoxShape.circle),
+                          color: orderDetails.level == 'delivery' ? Colors.orange[400] : Colors.grey[200], shape: BoxShape.circle),
                     ),
                     Text('جاري توصيل الطلب',
                         style: TextStyle(fontFamily: 'Droid')),
@@ -64,7 +67,7 @@ class OrderView extends StatelessWidget {
                       margin: EdgeInsets.all(10),
                       child: Icon(Icons.fastfood_outlined),
                       decoration: BoxDecoration(
-                          color: Colors.grey[200], shape: BoxShape.circle),
+                          color: orderDetails.level == 'cooking'|| orderDetails.level == 'delivery' ? Colors.orange[400] : Colors.grey[200], shape: BoxShape.circle),
                     ),
                     Text('جاري تحضير الطلب',
                         style: TextStyle(fontFamily: 'Droid')),
@@ -85,37 +88,54 @@ class OrderView extends StatelessWidget {
                       margin: EdgeInsets.all(10),
                       child: Icon(Icons.done),
                       decoration: BoxDecoration(
-                          color: Colors.orange[400], shape: BoxShape.circle),
+                          color: orderDetails.level == 'new' || orderDetails.level == 'cooking'|| orderDetails.level == 'delivery'  ? Colors.orange[400] : Colors.grey[200], shape: BoxShape.circle),
                     ),
-                    Text('تم استلام طلبك', style: TextStyle(fontFamily: 'Droid')),
+                    Text('تم استلام طلبك',
+                        style: TextStyle(fontFamily: 'Droid')),
                   ],
                 ),
               ],
             ),
             Divider(),
-            Center(child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text('تفاصيل الطلب', style: TextStyle(fontFamily: 'Droid', fontSize: 22),),
-            ),),
-
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  'تفاصيل الطلب',
+                  style: TextStyle(fontFamily: 'Droid', fontSize: 22),
+                ),
+              ),
+            ),
             Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    width: 100,
-                    height: 100,
-                    color: Colors.red,
-                    child: Text('image'),
-                  ),
-                  Text('AddOns'),
-                  Text('name')
-                ],),
-            )
+                padding: const EdgeInsets.all(20.0),
+                child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: orderDetails.orderItems.length,
+                    itemBuilder: (context, index) {
 
-
+                      return Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            width: 100,
+                            height: 100,
+                            color: Colors.red,
+                            child: Text('image'),
+                          ),
+                          orderDetails.orderItems[index].productItem.addons.length > 0 ? Container(
+                            width: 50,
+                            child: ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: orderDetails.orderItems[index].productItem.addons.length,
+                                itemBuilder: (context, i) {
+                                  return Text(orderDetails.orderItems[index].productItem.addons[i].name);
+                                }),
+                          ) :  Text('No addons'),
+                          Text(orderDetails.orderItems[index].productItem.name),
+                        ],
+                      );
+                    })),
           ],
         ),
       ),

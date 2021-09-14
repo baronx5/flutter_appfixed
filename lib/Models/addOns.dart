@@ -9,7 +9,11 @@ class ProductAddons {
   ProductAddons.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
-    price = double.parse(json['price']);
+    if(json['price'] is String){
+      price = double.parse(json['price']);
+    }else {
+      price = json['price'];
+    }
     productId = json['productId'];
   }
 

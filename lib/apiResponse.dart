@@ -112,7 +112,7 @@ Future signUp(
   }
 }
 
-Future<int> placeOrder(User user, List<Item> orders, BuildContext context) async {
+Future<Order> placeOrder(User user, List<Item> orders, BuildContext context) async {
   var data = {"user": user.toJson(), "orders": orders};
   var response = await http
       .post(Uri.parse(apiUrl + 'order'), body: jsonEncode(data), headers: {
@@ -120,10 +120,9 @@ Future<int> placeOrder(User user, List<Item> orders, BuildContext context) async
   });
   var responseBody = jsonDecode(response.body);
   if (responseBody['status'] == 'success') {
-    print('order id ${responseBody['data']}');
-    return responseBody['data'];
+
+    return Order.fromJson(responseBody['data']);
   } else {
-    print('Order denied');
     return null;
   }
 }

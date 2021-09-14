@@ -59,7 +59,6 @@ class _FollowOrderState extends State<FollowOrder> {
                     if (snapshot.hasData) {
                       return ListView.builder(
                           physics:BouncingScrollPhysics(),
-
                           shrinkWrap: true,
                           itemCount: snapshot.data.length,
                           itemBuilder: (context, index) {
@@ -98,7 +97,7 @@ class _FollowOrderState extends State<FollowOrder> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    OrderView(orderId: snapshot.data[index].id,)),
+                                                    OrderView(orderId: snapshot.data[index].id,orderDetails: snapshot.data[index],)),
                                           );
                                         },
                                       ),

@@ -76,7 +76,8 @@ class _CheckOutState extends State<CheckOut> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => OrderView(
-                                    orderId: value
+                                    orderId: value.id,
+                                    orderDetails: value,
                                   )));
                     }
                   })

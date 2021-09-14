@@ -8,7 +8,7 @@ class Product {
   double price;
   String catId;
   int totalSales;
-  List<ProductAddons> addons;
+  List<ProductAddons> addons = [];
   String notes;
 
   Product(
@@ -38,6 +38,12 @@ class Product {
     catId = json['catId'].toString();
     totalSales = json['totalSales'] == null ? 0 : int.parse(json['totalSales']);
     notes = json['notes'];
+    if(json['addons'] != null){
+      for(var addon in json['addons']){
+        addons.add(ProductAddons.fromJson(addon));
+      }
+    }
+
   }
 
   Map<String, dynamic> toJson() {
