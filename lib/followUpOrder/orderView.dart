@@ -135,7 +135,7 @@ class OrderView extends StatelessWidget {
                                   itemBuilder: (context, i) {
                                     return Text(orderDetails.orderItems[index].productItem.addons[i].name, style: TextStyle(fontFamily: 'Droid'),);
                                   }),
-                            ) :  Text('لاتوجد اضافات'),
+                            ) :  Text('لاتوجد اضافات', style: TextStyle(fontFamily: 'Droid'),),
                             Text(orderDetails.orderItems[index].productItem.name, style: TextStyle(fontFamily: 'Droid'),),
                           ],
                         ),
