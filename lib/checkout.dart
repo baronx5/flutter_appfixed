@@ -90,7 +90,6 @@ class _CheckOutState extends State<CheckOut> {
                           messageDialog(context, result.error.message))
                 }
             });
-
   }
 
   @override

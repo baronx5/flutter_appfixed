@@ -137,7 +137,7 @@ class OrderView extends StatelessWidget {
                                       return Text(orderDetails.orderItems[index].productItem.addons[i].name, style: TextStyle(fontFamily: 'Droid'),);
                                     }),
                               ) :  Text('لاتوجد اضافات', style: TextStyle(fontFamily: 'Droid'),),
-                              Text(orderDetails.orderItems[index].productItem.name, style: TextStyle(fontFamily: 'Droid'),),
+                              Text(orderDetails.orderItems[index].productItem.name + 'x ${orderDetails.orderItems[index].quantity}', style: TextStyle(fontFamily: 'Droid'),),
                             ],
                           ),
                         );
