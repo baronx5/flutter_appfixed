@@ -8,7 +8,6 @@ class OrderView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(orderDetails.toString());
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -58,7 +57,7 @@ class OrderView extends StatelessWidget {
                   Container(
                     color: Colors.grey,
                     child: Container(
-                      width: 40,
+                      width: 35,
                       height: 1,
                       padding: EdgeInsets.all(10),
                     ),
@@ -83,7 +82,7 @@ class OrderView extends StatelessWidget {
                   Container(
                     color: Colors.grey,
                     child: Container(
-                      width: 40,
+                      width: 35,
                       height: 1,
                       padding: EdgeInsets.all(10),
                     ),
