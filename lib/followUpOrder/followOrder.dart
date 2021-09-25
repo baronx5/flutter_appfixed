@@ -1,10 +1,7 @@
-import 'dart:async';
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_appfixed/Models/order.dart';
 import 'package:flutter_appfixed/followUpOrder/orderView.dart';
 import '../Models/user.dart';
-import 'dart:convert';
 import '../apiResponse.dart';
 
 class FollowOrder extends StatefulWidget {

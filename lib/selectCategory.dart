@@ -44,9 +44,9 @@ class SelectCategoryItems extends StatelessWidget {
               ),
             ),
           ),
-          FutureBuilder(
-            future: getProductsData(category.id),
-            builder: (context, products) {
+          FutureBuilder<List<Product>>(
+            future: getProductByCatId(category.id),
+            builder: (context, AsyncSnapshot<List<Product>> products) {
               var childCount = 0;
               if (products.connectionState != ConnectionState.done ||
                   products.hasData == null)
@@ -108,26 +108,28 @@ class SelectCategoryItems extends StatelessWidget {
                                   name: products.data[i].name,
                                   description: products.data[i].description,
                                   image: products.data[i].image,
-                                  price: products.data[i].price);
+                                  price: products.data[i].price,
+                                  addons: products.data[i].addons);
+
                               Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => ProductSelect(
                                   passedProduct: product,
                                 ),
                               ));
                             }),
-                        onTap: (){
+                        onTap: () {
                           Product product = Product(
                               id: products.data[i].id,
                               name: products.data[i].name,
                               description: products.data[i].description,
                               image: products.data[i].image,
-                              price: products.data[i].price);
+                              price: products.data[i].price,
+                              addons: products.data[i].addons);
                           Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => ProductSelect(
                               passedProduct: product,
                             ),
                           ));
-
                         },
                       ));
                 }, childCount: childCount),

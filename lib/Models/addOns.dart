@@ -9,12 +9,14 @@ class ProductAddons {
   ProductAddons.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
-    if(json['price'] is String){
-      price = double.parse(json['price']);
-    }else {
-      price = json['price'];
-    }
+    price = json['price'];
     productId = json['productId'];
+  }
+
+  ProductAddons.fromFirebase(Map<String, dynamic> json) {
+    name = json['name'];
+    //add 0.0, to convert it from int to double
+    price = json['price'] + 0.0;
   }
 
   Map<String, dynamic> toJson() {
@@ -25,4 +27,12 @@ class ProductAddons {
     data['productId'] = this.productId;
     return data;
   }
+
+  Map<String, dynamic> toFirebaseJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['name'] = this.name;
+    data['price'] = this.price;
+    return data;
+  }
+
 }

@@ -23,4 +23,11 @@ class Item {
     quantity = json['quantity'];
     productItem = Product.fromJson(json['productItem']);
   }
+
+  Map<String, dynamic> toFirebaseJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['quantity'] = this.quantity;
+    data['productItem'] = this.productItem.toFirebaseJson();
+    return data;
+  }
 }

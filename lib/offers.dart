@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'Models/product.dart';
 import 'apiResponse.dart';
-import 'productView.dart';
 
 class OffersPage extends StatelessWidget {
   const OffersPage({Key key}) : super(key: key);

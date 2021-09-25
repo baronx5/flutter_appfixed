@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'Models/user.dart';
 import 'address/ViewAllAddress.dart';
@@ -8,13 +9,16 @@ import 'homePage.dart';
 import 'offers.dart';
 import 'selectCategory.dart';
 import 'cart.dart';
-import 'Models/cart.dart';
+import 'provider/cart.dart';
 import 'package:provider/provider.dart';
 import 'customWidgets/customDrawer.dart';
 import 'checkout.dart';
 import 'address/address.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
   runApp(ChangeNotifierProvider(
     create: (context) => Carts(),
     child: MaterialApp(
@@ -51,11 +55,9 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    final User user = ModalRoute.of(context).settings.arguments;
-
     return Consumer<Carts>(builder: (context, cart, child) {
       return Scaffold(
-        endDrawer: CustomDrawer(user: user),
+        endDrawer: CustomDrawer(),
         appBar: AppBar(
           title: Text(
             'ديفــا',

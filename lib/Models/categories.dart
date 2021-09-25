@@ -1,5 +1,5 @@
 class Categories {
-  int id;
+  String id;
   String name;
   String image;
 
@@ -17,5 +17,10 @@ class Categories {
     data['name'] = this.name;
     data['image'] = this.image;
     return data;
+  }
+  Categories.fromFirebase(Map<String, dynamic> json, String uid) {
+    id = uid;
+    name = json['name'];
+    image = json['image'];
   }
 }

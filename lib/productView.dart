@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'Models/addOns.dart';
-import 'apiResponse.dart';
 import 'package:provider/provider.dart';
-import 'Models/cart.dart';
+import 'provider/cart.dart';
 import 'Models/cartItem.dart';
 import 'Models/product.dart';
 
@@ -17,7 +16,9 @@ class ProductSelect extends StatefulWidget {
 
 class _ProductSelectState extends State<ProductSelect> {
   List checkBoxesHandle = []; // to add boxes .
+
   List<ProductAddons> checkBoxes = [];
+
   double addonsPrice = 0.0;
   int counter = 1; // number of orders = 1
   double totalPrice = 0.0;
@@ -85,7 +86,7 @@ class _ProductSelectState extends State<ProductSelect> {
                                   trailing: TextButton(
                                     onPressed: () {},
                                     child: Text(
-                                        "KWD ${passedProduct.price}"
+                                        "KWD ${totalPriceFinal.toString()}"
                                             .toUpperCase(),
                                         style: TextStyle(
                                             fontSize: 14, fontFamily: "Droid")),
@@ -130,64 +131,51 @@ class _ProductSelectState extends State<ProductSelect> {
                                   fontSize: 16,
                                   fontFamily: "Droid",
                                   color: Colors.grey)),
-                          FutureBuilder(
-                            future: getAddonsData(passedProduct.id),
-                            builder: (context, snapshot) {
-                              if (snapshot.hasData) {
-                                return ListView.builder(
-                                  scrollDirection: Axis.vertical,
-                                  shrinkWrap: true,
-                                  physics: const ClampingScrollPhysics(),
-                                  itemCount: snapshot.data.length,
-                                  itemBuilder: (context, i) {
-                                    ProductAddons product = snapshot.data[i];
-                                    if (checkBoxesHandle.length <
-                                        snapshot.data.length) {
-                                      checkBoxesHandle.add(false);
-                                    }
-                                    return new Directionality(
-                                      textDirection: TextDirection.rtl,
-                                      child: CheckboxListTile(
-                                        title: Text(product.name,
-                                            style: TextStyle(
-                                                fontSize: 14,
-                                                fontFamily: "Droid")),
-                                        subtitle: product.price != 0
-                                            ? Text(
-                                                product.price.toString() +
-                                                    " دك ",
-                                                style: TextStyle(
-                                                    fontFamily: 'Droid'),
-                                              )
-                                            : Text('free'),
-                                        value: checkBoxesHandle[i],
-                                        onChanged: (bool value) {
-                                          setState(() {
-                                            checkBoxesHandle[i] =
-                                                checkBoxesHandle[i]
-                                                    ? false
-                                                    : true;
-                                            if (checkBoxesHandle[i]) {
-                                              checkBoxes.add(product);
-                                              passedProduct.addons = checkBoxes;
-                                              addonsPrice += product.price;
-                                            } else {
-                                              checkBoxes.remove(product);
-                                              passedProduct.addons = checkBoxes;
-                                              if (addonsPrice > 0) {
-                                                addonsPrice -= product.price;
-                                              }
-                                            }
-                                          });
-                                        },
-                                      ),
-                                    );
-                                  },
-                                );
-                              } else if (snapshot.hasError) {
-                                return Text("${snapshot.error}");
+                          ListView.builder(
+                            scrollDirection: Axis.vertical,
+                            shrinkWrap: true,
+                            physics: const ClampingScrollPhysics(),
+                            itemCount: passedProduct.addons.length,
+                            itemBuilder: (context, i) {
+                              if (checkBoxesHandle.length <
+                                  passedProduct.addons.length) {
+                                checkBoxesHandle.add(false);
                               }
-                              return CircularProgressIndicator();
+                              return new Directionality(
+                                textDirection: TextDirection.rtl,
+                                child: CheckboxListTile(
+                                  title: Text(passedProduct.addons[i].name,
+                                      style: TextStyle(
+                                          fontSize: 14, fontFamily: "Droid")),
+                                  subtitle: passedProduct.addons[i].price != 0
+                                      ? Text(
+                                          passedProduct.addons[i].price
+                                                  .toString() +
+                                              " دك ",
+                                          style: TextStyle(fontFamily: 'Droid'),
+                                        )
+                                      : Text('free'),
+                                  value: checkBoxesHandle[i],
+                                  onChanged: (bool value) {
+                                    setState(() {
+                                      checkBoxesHandle[i] =
+                                          checkBoxesHandle[i] ? false : true;
+                                      if (checkBoxesHandle[i]) {
+                                        checkBoxes.add(passedProduct.addons[i]);
+                                        addonsPrice +=
+                                            passedProduct.addons[i].price;
+                                      } else {
+                                        checkBoxes
+                                            .remove(passedProduct.addons[i]);
+                                        if (addonsPrice > 0) {
+                                          addonsPrice -=
+                                              passedProduct.addons[i].price;
+                                        }
+                                      }
+                                    });
+                                  },
+                                ),
+                              );
                             },
                           ),
                           Divider(),
@@ -290,18 +278,23 @@ class _ProductSelectState extends State<ProductSelect> {
             //width: double.infinity,
             height: 110,
             child: ElevatedButton(
-              child: Text('أكمل الطلب ( ${totalPriceFinal.toString()} دك )',
+              child: Text(
+                'أكمل الطلب ( ${totalPriceFinal.toString()} دك )',
                 style: TextStyle(fontSize: 20, fontFamily: "Droid"),
               ),
               onPressed: () {
-                Item item =
-                Item(productItem: passedProduct, quantity: counter);
+                Product product = Product(
+                    id: passedProduct.id,
+                    name: passedProduct.name,
+                    description: passedProduct.description,
+                    image: passedProduct.image,
+                    price: passedProduct.price,
+                    addons: checkBoxes);
+                Item item = Item(productItem: product, quantity: counter);
                 cart.add(item);
                 Navigator.of(context).popUntil((route) => route.isFirst);
               },
-              style: ElevatedButton.styleFrom(
-                  primary: Colors.lightGreen
-              ),
+              style: ElevatedButton.styleFrom(primary: Colors.lightGreen),
             ),
           ),
         ),

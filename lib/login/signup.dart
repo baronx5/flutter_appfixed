@@ -1,61 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_appfixed/apiResponse.dart';
+import 'package:flutter_appfixed/customWidgets/AlertDialog.dart';
 
 class SignUpPage extends StatelessWidget {
-  String phone;
-  String password;
-  String email;
   final signInForm = GlobalKey<FormState>();
-
-  void _showDialog(BuildContext context, String msg) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: new Text(
-            "خطأ",
-            style: TextStyle(
-                fontFamily: 'Droid', fontSize: 22, color: Colors.black54),
-            textAlign: TextAlign.center,
-          ),
-          content: new Text(
-            msg,
-            style: TextStyle(
-                fontFamily: 'Droid', fontSize: 18, color: Colors.black54),
-            textAlign: TextAlign.center,
-          ),
-          actions: <Widget>[
-            new TextButton(
-              style: TextButton.styleFrom(
-                  backgroundColor: Colors.red, primary: Colors.white),
-              child: Center(
-                  child: new Text(
-                "اعاده المحاولة",
-                style: TextStyle(
-                    fontFamily: 'Droid', fontSize: 16, color: Colors.white),
-              )),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
+    String phone;
+    String password;
+    String name;
+    String email;
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Container(
+      body: SafeArea(
         child: Center(
             child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            SizedBox(
-              height: 100,
-            ),
             Image.network(
               'https://flutterforweb.000webhostapp.com/resturant/logo.jpg',
               width: 150,
@@ -123,13 +86,13 @@ class SignUpPage extends StatelessWidget {
                               border: OutlineInputBorder(
                                   borderSide: BorderSide(color: Colors.amber),
                                   borderRadius: BorderRadius.circular(10.0)),
-                              hintText: 'البريد الالكتروني',
+                              hintText: 'بريدك الالكتروني',
                               hintStyle: TextStyle(
                                 fontFamily: 'Droid',
                               )),
                           validator: (value) {
                             if (value.isEmpty || value == null) {
-                              return 'ادخل البريد الالكتروني';
+                              return 'ادخل بريدك الالكتروني';
                             }
                             return null;
                           },
@@ -137,9 +100,31 @@ class SignUpPage extends StatelessWidget {
                             email = value;
                           }),
                     ),
+                    Container(
+                      width: 300,
+                      child: TextFormField(
+                          textDirection: TextDirection.rtl,
+                          maxLength: 30,
+                          decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.amber),
+                                  borderRadius: BorderRadius.circular(10.0)),
+                              hintText: 'الاسم',
+                              hintStyle: TextStyle(
+                                fontFamily: 'Droid',
+                              )),
+                          validator: (value) {
+                            if (value.isEmpty || value == null) {
+                              return 'ادخل الاسم';
+                            }
+                            return null;
+                          },
+                          onSaved: (value) {
+                            name = value;
+                          }),
+                    ),
                   ],
                 )),
-            // ignore: deprecated_member_use
             TextButton(
                 style: TextButton.styleFrom(
                   padding: EdgeInsets.all(20.0),
@@ -153,9 +138,7 @@ class SignUpPage extends StatelessWidget {
                 onPressed: () async {
                   if (signInForm.currentState.validate()) {
                     signInForm.currentState.save();
-                    var response =
-                        await signUp(phone, password, email, context);
-                    _showDialog(context, response);
+                    await signUp(phone, password, name, email, context);
                   }
                 }),
             InkWell(
@@ -167,7 +150,7 @@ class SignUpPage extends StatelessWidget {
               },
             ),
             SizedBox(
-              height: 100,
+              height: 20,
             )
           ],
         )),

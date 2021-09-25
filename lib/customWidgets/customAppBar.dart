@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_appfixed/Models/cart.dart';
-import 'package:flutter_appfixed/apiResponse.dart';
+import 'package:flutter_appfixed/provider/cart.dart';
 
 class CustomAppBar extends PreferredSize {
   @override
@@ -76,33 +75,33 @@ class CustomAppBar extends PreferredSize {
                   ),
                 ),
               ),
-              FutureBuilder(
-                future: getSettingsData(),
-                builder: (context, settings) {
-                  if (settings.hasData) {
-                    return Text(
-                      settings.data[0].appName,
-                      style: TextStyle(
-                          fontFamily: 'Droid',
-                          fontSize: 22,
-                          color: Colors.black54),
-                    );
-                  } else if (settings.hasError) {
-                    return Text("${settings.error}");
-                  } else if (settings.hasError) {
-                    return Text("${settings.error}");
-                  }
-
-                  // By default, show a loading spinner.
-                  return new Container(
-                    height: 60.0,
-                    child: new Center(
-                        child: new CircularProgressIndicator(
-                      backgroundColor: Colors.grey,
-                    )),
-                  );
-                },
-              ),
+              // FutureBuilder(
+              //   future: getSettingsData(),
+              //   builder: (context, settings) {
+              //     if (settings.hasData) {
+              //       return Text(
+              //         settings.data[0].appName,
+              //         style: TextStyle(
+              //             fontFamily: 'Droid',
+              //             fontSize: 22,
+              //             color: Colors.black54),
+              //       );
+              //     } else if (settings.hasError) {
+              //       return Text("${settings.error}");
+              //     } else if (settings.hasError) {
+              //       return Text("${settings.error}");
+              //     }
+              //
+              //     // By default, show a loading spinner.
+              //     return new Container(
+              //       height: 60.0,
+              //       child: new Center(
+              //           child: new CircularProgressIndicator(
+              //         backgroundColor: Colors.grey,
+              //       )),
+              //     );
+              //   },
+              // ),
               ClipOval(
                 child: Material(
                   color: Colors.white, // button color

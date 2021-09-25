@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_appfixed/apiResponse.dart';
+import 'package:flutter_appfixed/provider/cart.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_appfixed/Models/user.dart';
 import 'dart:convert';
@@ -14,62 +16,13 @@ class AddAddress extends StatefulWidget {
 }
 
 class _AddAddressState extends State<AddAddress> {
-  User user = User();
-  Address address = Address();
   final addressForm = GlobalKey<FormState>();
-  getPref() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    if (preferences.getString('user') != null) {
-      user = User.fromJson(jsonDecode(preferences.getString('user')));
-    }
-
-  }
-
-  @override
-  void initState() {
-    getPref();
-    super.initState();
-  }
-
-  void _showDialog(BuildContext context, String msg) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: new Text(
-            "خطأ",
-            style: TextStyle(
-                fontFamily: 'Droid', fontSize: 22, color: Colors.black54),
-            textAlign: TextAlign.center,
-          ),
-          content: new Text(
-            msg,
-            style: TextStyle(
-                fontFamily: 'Droid', fontSize: 18, color: Colors.black54),
-            textAlign: TextAlign.center,
-          ),
-          actions: <Widget>[
-            new TextButton(
-              style: TextButton.styleFrom(
-                  backgroundColor: Colors.red, primary: Colors.white),
-              child: Center(
-                  child: new Text(
-                "اعاده المحاولة",
-                style: TextStyle(
-                    fontFamily: 'Droid', fontSize: 16, color: Colors.white),
-              )),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
+  Address address = Address();
 
   @override
   Widget build(BuildContext context) {
+    return Consumer<Carts>(// List of Carts from Consumer.
+        builder: (context, cart, child) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -257,25 +210,16 @@ class _AddAddressState extends State<AddAddress> {
                     onPressed: () async {
                       if (addressForm.currentState.validate()) {
                         addressForm.currentState.save();
-                        user.address = address;
-                        user.address.userId = user.id.toString();
-                        var postAddress = await newAddress(user, context);
-                        if (postAddress["status"] == "success") {
-                          savePref(user);
-                          widget.notifyCheckoutPage();
-                          if(widget.notifyViewAllAddress != null){
-                            print("view all address refresh function invoked");
-                            widget.notifyViewAllAddress();
-                          }
-                          Navigator.pop(context, true);
-                        } else {
-                          _showDialog(context, postAddress["msg"]);
-                        }
+                        cart.addUserAddressProvider(address);
+                        cart.user.defaultAddress = address;
+                        cart.user.defaultAddress.userId = cart.user.id;
+                        await newAddress(cart.user, address);
+                        Navigator.pop(context, true);
                       }
                     })
               ],
             )))
       ],),
-    );
+    );});
   }
 }

@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_appfixed/Models/user.dart';
 import 'package:flutter_appfixed/apiResponse.dart';
+import 'package:flutter_appfixed/provider/cart.dart';
+import 'package:provider/provider.dart';
 
 class EditAddress extends StatefulWidget {
   final Address address;
   final Function notifyCheckoutPage;
   final Function notifyViewAllAddress;
-  final User user;
 
   const EditAddress(
       {Key key,
       this.notifyCheckoutPage,
       this.address,
-      this.user,
       this.notifyViewAllAddress})
       : super(key: key);
 
@@ -64,10 +64,12 @@ class _EditAddressState extends State<EditAddress> {
 
   @override
   Widget build(BuildContext context) {
+    return Consumer<Carts>(// List of Carts from Consumer.
+        builder: (context, cart, child) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'اضافة عنوان جديد',
+          'تعديل عنوان',
           style: TextStyle(fontFamily: 'Droid', color: Colors.black54),
         ),
         centerTitle: true,
@@ -79,7 +81,8 @@ class _EditAddressState extends State<EditAddress> {
         children: [
           SizedBox(
             height: 200,
-            child: Image(image: AssetImage('images/location.png'),
+            child: Image(
+              image: AssetImage('images/location.png'),
               width: 200,
             ),
           ),
@@ -315,12 +318,9 @@ class _EditAddressState extends State<EditAddress> {
                               // if the user made it as default address it will refresh the address in the checkout page
                               //otherwise it will not refresh
                               if (widget.address.userDefault) {
-                                widget.user.address = widget.address;
-                                savePref(widget.user);
+                                cart.user.defaultAddress = widget.address;
                                 widget.notifyCheckoutPage();
                               }
-                              //to refresh address list in View all address
-                              widget.notifyViewAllAddress();
                               Navigator.pop(context);
                             } else {
                               _showDialog(context, postAddress["msg"]);
@@ -332,6 +332,6 @@ class _EditAddressState extends State<EditAddress> {
           )
         ],
       ),
-    );
+    );});
   }
 }

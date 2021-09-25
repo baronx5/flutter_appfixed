@@ -16,63 +16,52 @@ class BestSales extends StatelessWidget {
             itemCount: products.data.length,
             itemBuilder: (context, i) {
               return new Directionality(
-                  textDirection: TextDirection.rtl,
-                  child: ListTile(
-                    leading: Image.network(products.data[i].image),
-                    title: Text(
-                      products.data[i].name,
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontFamily: 'Droid',
-                      ),
+                textDirection: TextDirection.rtl,
+                child: ListTile(
+                  leading: Image.network(products.data[i].image),
+                  title: Text(
+                    products.data[i].name,
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontFamily: 'Droid',
                     ),
-                    subtitle: Text(products.data[i].description,
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontFamily: 'Droid',
-                        )),
-                    trailing: TextButton(
-                        child: Text("طلب".toUpperCase(),
-                            style:
-                                TextStyle(fontSize: 14, fontFamily: "Droid")),
-                        style: ButtonStyle(
-                            padding: MaterialStateProperty.all<EdgeInsets>(
-                                EdgeInsets.all(5.0)),
-                            foregroundColor:
-                                MaterialStateProperty.all<Color>(Colors.red),
-                            shape: MaterialStateProperty.all<
-                                    RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(18.0),
-                                    side: BorderSide(color: Colors.red)))),
-                        onPressed: () {
-                          Product product = Product(
-                              id: products.data[i].id,
-                              name: products.data[i].name,
-                              description: products.data[i].description,
-                              image: products.data[i].image,
-                              price: products.data[i].price);
-                          Navigator.of(context).push(MaterialPageRoute(
-                            fullscreenDialog: false,
-                            builder: (context) => ProductSelect(
-                              passedProduct: product,
-                            ),
-                          ));
-                        }),
-                  onTap: (){
-                    Product product = Product(
-                        id: products.data[i].id,
-                        name: products.data[i].name,
-                        description: products.data[i].description,
-                        image: products.data[i].image,
-                        price: products.data[i].price);
+                  ),
+                  subtitle: Text(products.data[i].description,
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontFamily: 'Droid',
+                      )),
+                  trailing: TextButton(
+                      child: Text("طلب".toUpperCase(),
+                          style: TextStyle(fontSize: 14, fontFamily: "Droid")),
+                      style: ButtonStyle(
+                          padding: MaterialStateProperty.all<EdgeInsets>(
+                              EdgeInsets.all(5.0)),
+                          foregroundColor:
+                              MaterialStateProperty.all<Color>(Colors.red),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(18.0),
+                                      side: BorderSide(color: Colors.red)))),
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          fullscreenDialog: false,
+                          builder: (context) => ProductSelect(
+                            passedProduct: products.data[i],
+                          ),
+                        ));
+                      }),
+                  onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
                       fullscreenDialog: false,
                       builder: (context) => ProductSelect(
-                        passedProduct: product,
+                        passedProduct: products.data[i],
                       ),
                     ));
-                  },),);
+                  },
+                ),
+              );
             },
             separatorBuilder: (context, index) {
               return Divider();

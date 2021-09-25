@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'Models/cart.dart';
+import 'provider/cart.dart';
 import 'checkout.dart';
 
 class CartPage extends StatelessWidget {
