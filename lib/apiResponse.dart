@@ -3,12 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter/material.dart';
 import 'Models/categories.dart';
 import 'Models/product.dart';
-import 'package:http/http.dart' as http;
 import 'dart:async';
-import 'dart:convert';
-import 'package:http/http.dart';
 import 'Models/user.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_appfixed/Models/order.dart';
 
 // Url https://flutterforweb.000webhostapp.com/

@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_appfixed/apiResponse.dart';
 import 'package:flutter_appfixed/provider/cart.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_appfixed/Models/user.dart';
-import 'dart:convert';
 
 class AddAddress extends StatefulWidget {
   final Function notifyCheckoutPage;

@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart' as _auth;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_appfixed/Models/cartItem.dart';
 import 'package:flutter_appfixed/Models/user.dart';

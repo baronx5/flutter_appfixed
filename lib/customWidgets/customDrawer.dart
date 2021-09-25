@@ -1,6 +1,4 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter_appfixed/Models/user.dart';
 import 'package:flutter_appfixed/followUpOrder/followOrder.dart';
 import 'package:flutter_appfixed/provider/cart.dart';
 import 'package:flutter_appfixed/support.dart';

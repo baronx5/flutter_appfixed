@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_appfixed/followUpOrder/orderView.dart';
 import 'package:myfatoorah_flutter/myfatoorah_flutter.dart';
@@ -10,7 +9,6 @@ import 'provider/cart.dart';
 import 'Models/user.dart';
 import 'apiResponse.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'customWidgets/AlertDialog.dart';
 
 class CheckOut extends StatefulWidget {

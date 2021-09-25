@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'Models/product.dart';
 import 'apiResponse.dart';
 import 'productView.dart';
 

@@ -45,13 +45,12 @@ class Order {
   }
 
   Order.fromFirebaseJson(Map<String, dynamic> json, String uid){
-    var orderDetails = json['orders'];
-    print('hello');
+    List<dynamic> orderDetails = json['orders'] as List<dynamic>;
     id = uid;
     level = json['level'];
     userId = json['userId'];
     userAddress = Address.fromJson(json['userAddress']);
-    orderDetails['orders'].forEach((item) => orderItems.add(Item.fromJson(item)));
+    orderDetails.forEach((item) => orderItems.add(Item.fromJson(item)));
   }
 
   @override

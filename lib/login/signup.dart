@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_appfixed/apiResponse.dart';
-import 'package:flutter_appfixed/customWidgets/AlertDialog.dart';
 
 class SignUpPage extends StatelessWidget {
   final signInForm = GlobalKey<FormState>();

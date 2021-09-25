@@ -1,6 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'Models/user.dart';
 import 'address/ViewAllAddress.dart';
 import 'followUpOrder/followOrder.dart';
 import 'login/login.dart';
