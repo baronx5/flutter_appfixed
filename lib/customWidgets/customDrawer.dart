@@ -3,7 +3,6 @@ import 'package:flutter_appfixed/followUpOrder/followOrder.dart';
 import 'package:flutter_appfixed/provider/cart.dart';
 import 'package:flutter_appfixed/support.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../profile.dart';
 import '../settings.dart';
@@ -131,9 +130,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       ),
                       leading: Icon(Icons.logout),
                       onTap: () async {
-                        SharedPreferences preferences =
-                            await SharedPreferences.getInstance();
-                        preferences.remove('user');
+
                         isSignIn = false;
                         Navigator.of(context).pushNamed('login');
                       },
