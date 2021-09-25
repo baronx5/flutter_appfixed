@@ -101,18 +101,14 @@ Future<Order> placeOrder(Order order, BuildContext context) async {
 //   return order;
 // }
 
-Future<List<Order>> getUserPendingOrders(var userId) async {
-  http.Response response =
-      await get(Uri.parse(apiUrl + "order/all/" + userId.toString()));
-  var responseBody = jsonDecode(response.body);
-  List<Order> orders = [];
-  for (var order in responseBody['data']) {
-    orders.add(Order.fromJson(order));
-  }
-  return orders;
+Future<List<Order>> getUserPendingOrders(String userId) async {
+  return await _ordersCollection.where('userId', isEqualTo: userId).get().then(
+          (value) => value.docs
+          .map((item) => Order.fromFirebaseJson(item.data(), item.id))
+          .toList());
 }
 
-Future newAddress(User user, Address address) async {
+Future<void> newAddress(User user, Address address) async {
   user.address.forEach((e) {
     if(e.userDefault == true && e != address){
       e.userDefault = false;
@@ -126,7 +122,7 @@ Future newAddress(User user, Address address) async {
       .set({'address': user.address.map((item) => item.toFirebaseJson()).toList()}, SetOptions(merge: true));
 }
 
-Future addressUpdate(User user, Address address) async {
+Future<void> addressUpdate(User user, Address address) async {
   user.address.forEach((e) {
     if(e.userDefault == true && e != address){
       e.userDefault = false;
@@ -137,6 +133,6 @@ Future addressUpdate(User user, Address address) async {
   return await _usersCollection.doc(user.id).update({'address': user.address.map((e) => e.toFirebaseJson()).toList()});
 }
 
-Future addressRemove(Address address, User user) async {
+Future<void> addressRemove(Address address, User user) async {
   return await _usersCollection.doc(user.id).update({'address': user.address.map((e) => e.toFirebaseJson()).toList()});
 }

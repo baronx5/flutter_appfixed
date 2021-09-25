@@ -52,7 +52,7 @@ class _FollowOrderState extends State<FollowOrder> {
               color: Colors.white,
               child: FutureBuilder<List<Order>>(
                   future: getUserPendingOrders(user.id),
-                  builder: (context, snapshot) {
+                  builder: (context, AsyncSnapshot<List<Order>>snapshot) {
                     if (snapshot.hasData) {
                       return ListView.builder(
                           physics:BouncingScrollPhysics(),
@@ -75,7 +75,7 @@ class _FollowOrderState extends State<FollowOrder> {
                               ),
                               onDismissed: (direction) {
                               },
-                              key: ValueKey<int>(snapshot.data[index].id),
+                              key: ValueKey<String>(snapshot.data[index].id),
                               child: new Directionality(
                                   textDirection: TextDirection.rtl,
                                   child: Column(

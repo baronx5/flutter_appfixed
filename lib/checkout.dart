@@ -49,7 +49,7 @@ class _CheckOutState extends State<CheckOut> {
               if (result.isSuccess())
                 {
                   print(result.response.toJson().toString()),
-                  placeOrder(Order(user: user, orderItems: cart.basketItems),
+                  placeOrder(Order(userAddress: cart.user.getDefaultAddress(), userId: cart.user.id, orderItems: cart.basketItems),
                           context)
                       .then((value) {
                     if (value != null) {

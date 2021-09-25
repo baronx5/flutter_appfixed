@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_appfixed/Models/order.dart';
 
 class OrderView extends StatelessWidget {
-  final int orderId;
+  final String orderId;
   final Order orderDetails;
 
   OrderView({this.orderId, this.orderDetails});
