@@ -94,7 +94,7 @@ class _FollowOrderState extends State<FollowOrder> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    OrderView(orderId: snapshot.data[index].id,orderDetails: snapshot.data[index],)),
+                                                    OrderView(orderDetails: snapshot.data[index])),
                                           );
                                         },
                                       ),

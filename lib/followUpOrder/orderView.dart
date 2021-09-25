@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_appfixed/Models/order.dart';
 
 class OrderView extends StatelessWidget {
-  final String orderId;
   final Order orderDetails;
 
-  OrderView({this.orderId, this.orderDetails});
+  OrderView({this.orderDetails});
 
   @override
   Widget build(BuildContext context) {
-    print(orderDetails.level);
+    print(orderDetails.toString());
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -21,15 +20,15 @@ class OrderView extends StatelessWidget {
         elevation: 0,
         iconTheme: IconThemeData(color: Colors.black54),
       ),
-      body: ListView(
-        children:[Container(
+      body: ListView(children: [
+        Container(
           width: double.infinity,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                'طلب رقم : ${orderId.toString()}',
+                '${orderDetails.id}',
                 style: TextStyle(fontFamily: 'Droid', fontSize: 22),
               ),
               Text(
@@ -47,7 +46,10 @@ class OrderView extends StatelessWidget {
                         margin: EdgeInsets.all(10),
                         child: Icon(Icons.delivery_dining),
                         decoration: BoxDecoration(
-                            color: orderDetails.level == 'delivery' ? Colors.orange[400] : Colors.grey[200], shape: BoxShape.circle),
+                            color: orderDetails.level == 'delivery'
+                                ? Colors.orange[400]
+                                : Colors.grey[200],
+                            shape: BoxShape.circle),
                       ),
                       Text('جاري توصيل الطلب',
                           style: TextStyle(fontFamily: 'Droid')),
@@ -68,7 +70,11 @@ class OrderView extends StatelessWidget {
                         margin: EdgeInsets.all(10),
                         child: Icon(Icons.fastfood_outlined),
                         decoration: BoxDecoration(
-                            color: orderDetails.level == 'cooking'|| orderDetails.level == 'delivery' ? Colors.orange[400] : Colors.grey[200], shape: BoxShape.circle),
+                            color: orderDetails.level == 'cooking' ||
+                                    orderDetails.level == 'delivery'
+                                ? Colors.orange[400]
+                                : Colors.grey[200],
+                            shape: BoxShape.circle),
                       ),
                       Text('جاري تحضير الطلب',
                           style: TextStyle(fontFamily: 'Droid')),
@@ -89,7 +95,12 @@ class OrderView extends StatelessWidget {
                         margin: EdgeInsets.all(10),
                         child: Icon(Icons.done),
                         decoration: BoxDecoration(
-                            color: orderDetails.level == 'new' || orderDetails.level == 'cooking'|| orderDetails.level == 'delivery'  ? Colors.orange[400] : Colors.grey[200], shape: BoxShape.circle),
+                            color: orderDetails.level == 'new' ||
+                                    orderDetails.level == 'cooking' ||
+                                    orderDetails.level == 'delivery'
+                                ? Colors.orange[400]
+                                : Colors.grey[200],
+                            shape: BoxShape.circle),
                       ),
                       Text('تم استلام طلبك',
                           style: TextStyle(fontFamily: 'Droid')),
@@ -113,10 +124,10 @@ class OrderView extends StatelessWidget {
                       shrinkWrap: true,
                       itemCount: orderDetails.orderItems.length,
                       itemBuilder: (context, index) {
-
+                        print(orderDetails.orderItems.length);
                         return Container(
                           color: Colors.grey[100],
-                          margin: EdgeInsets.only(top: 10,bottom: 10),
+                          margin: EdgeInsets.only(top: 10, bottom: 10),
                           padding: EdgeInsets.all(10),
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -126,26 +137,48 @@ class OrderView extends StatelessWidget {
                                 width: 100,
                                 height: 100,
                                 color: Colors.red,
-                                child: Image.network(orderDetails.orderItems[index].productItem.image),
+                                child: Image.network(orderDetails
+                                    .orderItems[index].productItem.image),
                               ),
-                              orderDetails.orderItems[index].productItem.addons.length > 0 ? Container(
-                                width: 50,
-                                child: ListView.builder(
-                                    shrinkWrap: true,
-                                    itemCount: orderDetails.orderItems[index].productItem.addons.length,
-                                    itemBuilder: (context, i) {
-                                      return Text(orderDetails.orderItems[index].productItem.addons[i].name, style: TextStyle(fontFamily: 'Droid'),);
-                                    }),
-                              ) :  Text('لاتوجد اضافات', style: TextStyle(fontFamily: 'Droid'),),
-                              Text(orderDetails.orderItems[index].productItem.name + 'x ${orderDetails.orderItems[index].quantity}', style: TextStyle(fontFamily: 'Droid'),),
+                              orderDetails.orderItems[index].productItem.addons
+                                          .length >
+                                      0
+                                  ? Container(
+                                      width: 50,
+                                      child: ListView.builder(
+                                          shrinkWrap: true,
+                                          itemCount: orderDetails
+                                              .orderItems[index]
+                                              .productItem
+                                              .addons
+                                              .length,
+                                          itemBuilder: (context, i) {
+                                            return Text(
+                                              orderDetails.orderItems[index]
+                                                  .productItem.addons[i].name,
+                                              style: TextStyle(
+                                                  fontFamily: 'Droid'),
+                                            );
+                                          }),
+                                    )
+                                  : Text(
+                                      'لاتوجد اضافات',
+                                      style: TextStyle(fontFamily: 'Droid'),
+                                    ),
+                              Text(
+                                orderDetails
+                                        .orderItems[index].productItem.name +
+                                    'x ${orderDetails.orderItems[index].quantity}',
+                                style: TextStyle(fontFamily: 'Droid'),
+                              ),
                             ],
                           ),
                         );
                       })),
             ],
           ),
-        ),]
-      ),
+        ),
+      ]),
     );
   }
 }

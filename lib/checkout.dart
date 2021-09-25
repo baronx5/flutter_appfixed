@@ -47,18 +47,20 @@ class _CheckOutState extends State<CheckOut> {
               if (result.isSuccess())
                 {
                   print(result.response.toJson().toString()),
-                  placeOrder(Order(userAddress: cart.user.getDefaultAddress(), userId: cart.user.id, orderItems: cart.basketItems),
+                  placeOrder(
+                          Order(
+                              userAddress: cart.user.getDefaultAddress(),
+                              userId: cart.user.id,
+                              orderItems: cart.basketItems),
                           context)
                       .then((value) {
                     if (value != null) {
-                      cart.clearBasket();
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => OrderView(
-                                    orderId: value.id,
-                                    orderDetails: value,
-                                  )));
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      OrderView(orderDetails: value)))
+                          .whenComplete(() => cart.clearBasket());
                     }
                   })
                 }
@@ -128,7 +130,8 @@ class _CheckOutState extends State<CheckOut> {
                                             ),
                                             TextButton(
                                               style: TextButton.styleFrom(
-                                                  backgroundColor: Colors.orange,
+                                                  backgroundColor:
+                                                      Colors.orange,
                                                   primary: Colors.white),
                                               child: Padding(
                                                   padding: EdgeInsets.only(

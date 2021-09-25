@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter/material.dart';
@@ -25,6 +27,12 @@ final CollectionReference _usersCollection =
     FirebaseFirestore.instance.collection('users');
 
 final auth.FirebaseAuth _auth = auth.FirebaseAuth.instance;
+
+const _chars = 'akhms1234567890';
+Random _rnd = Random(DateTime.now().millisecondsSinceEpoch);
+
+String getRandomString(int length) => String.fromCharCodes(Iterable.generate(
+    length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
 
 // Future getSettingsData() async {
 //   var url = Uri.parse(apiUrl + "settings");
@@ -82,11 +90,15 @@ Future signUp(String phone, String password, String name, String email,
 }
 
 Future<Order> placeOrder(Order order, BuildContext context) async {
+  String generateOrderId = getRandomString(6).toLowerCase();
+  Order _order = order;
+  order.id = generateOrderId;
+
   order.level = 'new';
   return await _ordersCollection
-      .doc()
-      .set(order.toFirebaseJson())
-      .then((value) => order);
+      .doc(generateOrderId)
+      .set(_order.toFirebaseJson())
+      .then((value) => _order);
 }
 
 // Future<Order> getOrderLevelData(int val) async {
