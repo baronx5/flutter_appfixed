@@ -75,7 +75,7 @@ class _FollowOrderState extends State<FollowOrder> {
                               ),
                               onDismissed: (direction) {
                               },
-                              key: ValueKey<String>(snapshot.data[index].id),
+                              key: ValueKey<Order>(snapshot.data[index]),
                               child: new Directionality(
                                   textDirection: TextDirection.rtl,
                                   child: Column(
