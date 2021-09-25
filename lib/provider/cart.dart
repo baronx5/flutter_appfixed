@@ -54,13 +54,16 @@ class Carts extends ChangeNotifier {
   void removeUserAddressProvider(Address address){
     user.address.remove(address);
     notifyListeners();
-
   }
 
   void addUserAddressProvider(Address address){
     user.address.add(address);
     notifyListeners();
+  }
 
+  void updateUserAddressProvider(int addressIndex, Address address){
+    user.address[addressIndex] = address;
+    notifyListeners();
   }
 
 }

@@ -134,8 +134,7 @@ class _ViewAllAddressState extends State<ViewAllAddress> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) => EditAddress(
-                                                  address:
-                                                      cart.user.address[index],
+                                                  addressIndex:index,
                                                 )),
                                       );
                                     },

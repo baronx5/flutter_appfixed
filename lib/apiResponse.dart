@@ -126,21 +126,17 @@ Future newAddress(User user, Address address) async {
       .set({'address': user.address.map((item) => item.toFirebaseJson()).toList()}, SetOptions(merge: true));
 }
 
-Future addressUpdate(Address address, BuildContext context) async {
-  var data = {"address": address.toJson()};
-  var url = apiUrl + 'address/edit/';
-  var response = await http.post(Uri.parse(url),
-      body: jsonEncode(data),
-      headers: {'Content-Type': 'application/json; charset=UTF-8'});
-  var responseBody = jsonDecode(response.body);
-  if (responseBody['status'] == 'success') {
-    return responseBody;
-  } else {
-    return responseBody;
-  }
+Future addressUpdate(User user, Address address) async {
+  user.address.forEach((e) {
+    if(e.userDefault == true && e != address){
+      e.userDefault = false;
+    }else if(e == address){
+      e.userDefault = true;
+    }
+  });
+  return await _usersCollection.doc(user.id).update({'address': user.address.map((e) => e.toFirebaseJson()).toList()});
 }
 
 Future addressRemove(Address address, User user) async {
-
   return await _usersCollection.doc(user.id).update({'address': user.address.map((e) => e.toFirebaseJson()).toList()});
 }
